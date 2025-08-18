@@ -1,0 +1,59 @@
+{
+  "header": {
+    "title": "Bossa Nova Restaurant",
+    "nav": {
+      "home": "Accueil",
+      "menu": "Menu",
+      "about": "À propos",
+      "reservations": "Réservations"
+    },
+    "language": "Langue"
+  },
+  "pages": {
+    "home": {
+      "presentationBanner": {
+        "title": "Le Brésil au cœur de Toulouse",
+        "description": "Venez découvrir nos saveurs uniques et notre ambiance chaleureuse"
+      },
+      "textImageContainers": {
+        "0": {
+          "image": {
+            "alt": "",
+            "height": 1024,
+            "rightAligned": false
+          },
+          "text": {
+            "title": "Votre restaurant brésilien à Toulouse",
+            "content": {
+              "0": "<p>Bossa Nova c'est le premier restaurant 100% dédié à la cuisine brésilienne à Toulouse.</p>",
+              "1": "<p>Nous vous proposons une expérience culinaire authentique, avec des plats préparés à partir de recettes traditionnelles brésiliennes.</p>",
+              "2": "<p>Notre équipe passionnée est là pour vous faire découvrir les saveurs du Brésil, dans une ambiance conviviale et chaleureuse.</p>",
+              "3": "<reservationLink>Reservez une table</reservationLink>"
+            }
+          }
+        },
+        "1": {
+          "image": {
+            "alt": "",
+            "height": 1024,
+            "rightAligned": true
+          },
+          "text": {
+            "title": "Un menu savoureux",
+            "content": {
+              "0": "<p>Savourez une variété de plats brésiliens authentiques, préparés avec passion et des ingrédients frais.</p>",
+              "1": "<p>De l'entrée au dessert, chaque plat est une invitation à un voyage culinaire au cœur du Brésil.</p>",
+              "2": "<p>Notre menu change régulièrement pour vous offrir toujours plus de découvertes gustatives.</p>",
+              "3": "<menuLink>Découvrez notre menu</menuLink>"
+            }
+          }
+        }
+      }
+    }
+  },
+  "footer": {
+    "contact": "Contact",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d'utilisation"
+  }
+}

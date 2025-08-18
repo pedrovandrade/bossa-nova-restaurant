@@ -1,0 +1,11 @@
+import { FC } from 'react';
+
+const FranceFlag: FC = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480">
+    <path fill="#0055a4" d="M0 0h213.33v480H0z"/>
+    <path fill="#fff" d="M213.33 0h213.34v480H213.33z"/>
+    <path fill="#ef4135" d="M426.67 0H640v480H426.67z"/>
+  </svg>
+);
+
+export default FranceFlag;
