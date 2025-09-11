@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import restaurantOverviewDesktop from '@assets/images/restaurant-overview-desktop.jpg';
 import restaurantOverviewMobile from '@assets/images/restaurant-overview-mobile.jpg';
+import FadeInContainer from '@app/_components/FadeInContainer';
 
 const PresentationBanner: FC = () => {
   const t = useTranslations('pages.home.presentationBanner');
@@ -10,12 +11,14 @@ const PresentationBanner: FC = () => {
   return (
     <div className="w-full flex items-center justify-center">
       <div className='absolute text-white text-shadow-[0_0_5px_rgb(0_0_0_/_0.5)] p-10 text-center md:text-left'>
-        <h1 className='text-5xl font-bold'>
-          {t('title')}
-        </h1>
-        <p className='mt-6 sm:mt-2 text-2xl font-normal '>
-          {t('description')}
-        </p>
+        <FadeInContainer direction='bottom' duration={3} displacement={80}>
+          <h1 className='text-5xl font-bold'>
+            {t('title')}
+          </h1>
+          <p className='mt-6 sm:mt-2 text-2xl font-normal '>
+            {t('description')}
+          </p>
+        </FadeInContainer>
       </div>
 
       { /* Background image with fixed position to cover the entire banner area */ }

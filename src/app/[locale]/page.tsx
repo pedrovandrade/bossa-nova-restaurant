@@ -4,6 +4,7 @@ import { useMessages, useTranslations } from 'next-intl';
 import foodPhoto1 from '@assets/images/entree-plat-1.jpg';
 import foodPhoto2 from '@assets/images/entree-plat-2.jpg';
 import InstagramFeed from '@/app/_homePageComponents/InstagramFeed';
+import FadeInContainer from '@/app/_components/FadeInContainer';
 
 type TextImageContainer = {
   image: {
@@ -56,7 +57,9 @@ export default function Home() {
       <PresentationBanner />
       <div className='px-5 md:px-10 py-20 flex flex-col gap-28 w-full bg-orange-50'>
         {containerData.map((data, index) => (
-          <TextImageContainer key={index} image={data.image} text={data.text} />
+          <FadeInContainer key={index} direction={index % 2 === 0 ? 'left' : 'right'}>
+            <TextImageContainer image={data.image} text={data.text} />
+          </FadeInContainer>
         ))}
       </div>
       <div className='px-5 md:px-10 py-20 flex flex-col items-center w-full bg-orange-50'>
