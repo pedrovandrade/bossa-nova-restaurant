@@ -1,7 +1,11 @@
-const MapLocation = () => {
+interface MapLocationProps {
+  query: string;
+}
+
+const MapLocation = ({ query }: MapLocationProps) => {
   return (
     <iframe
-      src='https://www.google.com/maps?q=43.6021204,1.4425372&z=17&output=embed'
+      src={`https://www.google.com/maps?q=${encodeURIComponent(query)}&z=17&output=embed`}
       width='600'
       height='400'
       style={{ border: 0 }}

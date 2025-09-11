@@ -48,12 +48,35 @@
             }
           }
         }
+      },
+      "instagramFeed": {
+        "title": "Suivez-nous sur Instagram",
+        "viewThisPostOnInstagram": "Voir cette publication sur Instagram",
+        "aPostSharedBy": "Une publication partagée par"
       }
     }
   },
   "footer": {
-    "contact": "Contact",
-    "privacy": "Politique de confidentialité",
-    "terms": "Conditions d'utilisation"
+    "contact": {
+      "title": "Adresse & Contact",
+      "address": "1 bis Rue de May, 31000 Toulouse",
+      "phone": "Téléphone :",
+      "email": "E-mail :"
+    },
+    "siteMap": {
+      "title": "Plan du site",
+      "home": "Accueil",
+      "menu": "Menu",
+      "about": "À propos",
+      "reservations": "Réservations"
+    },
+    "followUs": {
+      "title": "Suivez-nous",
+      "ariaLabel": {
+        "facebook": "Aller sur notre page Facebook",
+        "instagram": "Aller sur notre page Instagram"
+      }
+    },
+    "allRightsReserved": "Restaurant Bossa Nova. Tous droits réservés."
   }
 }

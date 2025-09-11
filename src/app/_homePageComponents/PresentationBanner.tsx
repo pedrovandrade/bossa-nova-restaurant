@@ -1,7 +1,8 @@
 import { FC } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import restaurantOverview from '@assets/images/restaurant.jpg';
+import restaurantOverviewDesktop from '@assets/images/restaurant-overview-desktop.jpg';
+import restaurantOverviewMobile from '@assets/images/restaurant-overview-mobile.jpg';
 
 const PresentationBanner: FC = () => {
   const t = useTranslations('pages.home.presentationBanner');
@@ -19,14 +20,24 @@ const PresentationBanner: FC = () => {
 
       { /* Background image with fixed position to cover the entire banner area */ }
       <div className='w-full h-[calc(100vh-var(--spacing)*20)] [clip-path:inset(0_0_0_0)] z-[-1]'>
-        <div className='fixed top-0 left-0 w-full h-full'>
+        <div className='fixed top-20 left-0 w-full h-full'>
+          {/* Desktop view */}
           <Image
-            src={restaurantOverview}
+            src={restaurantOverviewDesktop}
             alt=""
             priority
-            layout='fill'
-            sizes='100vw'
+            fill
             objectFit='cover'
+            className='hidden md:block'
+          />
+          {/* Mobile view */}
+          <Image
+            src={restaurantOverviewMobile}
+            alt=""
+            priority
+            fill
+            objectFit='cover'
+            className='block md:hidden'
           />
         </div>
       </div>

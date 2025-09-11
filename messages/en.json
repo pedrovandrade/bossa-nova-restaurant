@@ -1,59 +1,82 @@
 {
-    "header": {
-        "title": "Bossa Nova Restaurant",
-        "nav": {
-            "home": "Home",
-            "menu": "Menu",
-            "about": "About",
-            "reservations": "Reservations"
-        },
-        "language": "Language"
+  "header": {
+    "title": "Bossa Nova Restaurant",
+    "nav": {
+      "home": "Home",
+      "menu": "Menu",
+      "about": "About",
+      "reservations": "Reservations"
     },
-    "pages": {
-      "home": {
-        "presentationBanner": {
-          "title": "Brazil at the heart of Toulouse",
-          "description": "Come discover our unique flavors and warm atmosphere"
-        },
-        "textImageContainers": {
-          "0": {
-            "image": {
-              "alt": "",
-              "height": 1024,
-              "rightAligned": false
-            },
-            "text": {
-              "title": "Your Brazilian restaurant in Toulouse",
-              "content": {
-                "0": "<p>Bossa Nova is the first restaurant 100% dedicated to Brazilian cuisine in Toulouse.</p>",
-                "1": "<p>We offer an authentic culinary experience, with dishes prepared from traditional Brazilian recipes.</p>",
-                "2": "<p>Our passionate team is here to help you discover the flavors of Brazil, in a friendly and welcoming atmosphere.</p>",
-                "3": "<reservationLink>Reserve a table</reservationLink>"
-              }
-            }
+    "language": "Language"
+  },
+  "pages": {
+    "home": {
+      "presentationBanner": {
+        "title": "Brazil at the heart of Toulouse",
+        "description": "Come discover our unique flavors and warm atmosphere"
+      },
+      "textImageContainers": {
+        "0": {
+          "image": {
+            "alt": "",
+            "height": 1024,
+            "rightAligned": false
           },
-          "1": {
-            "image": {
-              "alt": "",
-              "height": 1024,
-              "rightAligned": true
-            },
-            "text": {
-              "title": "Delicious menu",
-              "content": {
-                "0": "<p>Enjoy a variety of authentic Brazilian dishes, prepared with passion and fresh ingredients.</p>",
-                "1": "<p>From appetizers to desserts, each dish is an invitation to a culinary journey to the heart of Brazil.</p>",
-                "2": "<p>Our menu changes regularly to offer you even more culinary discoveries.</p>",
-                "3": "<menuLink>Discover our menu</menuLink>"
-              }
+          "text": {
+            "title": "Your Brazilian restaurant in Toulouse",
+            "content": {
+              "0": "<p>Bossa Nova is the first restaurant 100% dedicated to Brazilian cuisine in Toulouse.</p>",
+              "1": "<p>We offer an authentic culinary experience, with dishes prepared from traditional Brazilian recipes.</p>",
+              "2": "<p>Our passionate team is here to help you discover the flavors of Brazil, in a friendly and welcoming atmosphere.</p>",
+              "3": "<reservationLink>Reserve a table</reservationLink>"
+            }
+          }
+        },
+        "1": {
+          "image": {
+            "alt": "",
+            "height": 1024,
+            "rightAligned": true
+          },
+          "text": {
+            "title": "Delicious menu",
+            "content": {
+              "0": "<p>Enjoy a variety of authentic Brazilian dishes, prepared with passion and fresh ingredients.</p>",
+              "1": "<p>From appetizers to desserts, each dish is an invitation to a culinary journey to the heart of Brazil.</p>",
+              "2": "<p>Our menu changes regularly to offer you even more culinary discoveries.</p>",
+              "3": "<menuLink>Discover our menu</menuLink>"
             }
           }
         }
+      },
+      "instagramFeed": {
+        "title": "Follow us on Instagram",
+        "viewThisPostOnInstagram": "View this post on Instagram",
+        "aPostSharedBy": "A post shared by"
+      }
+    }
+  },
+  "footer": {
+    "contact": {
+      "title": "Address & Contact",
+      "address": "1 bis Rue de May, 31000 Toulouse",
+      "phone": "Phone:",
+      "email": "E-mail:"
+    },
+    "siteMap": {
+      "title": "Site Map",
+      "home": "Home",
+      "menu": "Menu",
+      "about": "About",
+      "reservations": "Reservations"
+    },
+    "followUs": {
+      "title": "Follow Us",
+      "ariaLabel": {
+        "facebook": "Go to our Facebook page",
+        "instagram": "Go to our Instagram page"
       }
     },
-    "footer": {
-        "contact": "Contact",
-        "privacy": "Privacy Policy",
-        "terms": "Terms of Use"
-    }
+    "allRightsReserved": "Bossa Nova Restaurant. All rights reserved."
+  }
 }

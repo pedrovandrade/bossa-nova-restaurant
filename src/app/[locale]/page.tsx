@@ -1,8 +1,9 @@
 import TextImageContainer, { TextImageContainerProps } from '@/app/_components/TextImageContainer/TextImageContainer';
-import PresentationBanner from '../_homePageComponents/PresentationBanner';
-import { useMessages } from 'next-intl';
+import PresentationBanner from '@/app/_homePageComponents/PresentationBanner';
+import { useMessages, useTranslations } from 'next-intl';
 import foodPhoto1 from '@assets/images/entree-plat-1.jpg';
 import foodPhoto2 from '@assets/images/entree-plat-2.jpg';
+import InstagramFeed from '@/app/_homePageComponents/InstagramFeed';
 
 type TextImageContainer = {
   image: {
@@ -48,6 +49,8 @@ export default function Home() {
     }
   );
 
+  const t = useTranslations('pages.home');
+
   return (
     <>
       <PresentationBanner />
@@ -55,6 +58,12 @@ export default function Home() {
         {containerData.map((data, index) => (
           <TextImageContainer key={index} image={data.image} text={data.text} />
         ))}
+      </div>
+      <div className='px-5 md:px-10 py-20 flex flex-col items-center w-full bg-orange-50'>
+        <h2 className='font-semibold text-3xl text-bossanova-cyan mb-6'>
+          {t('instagramFeed.title')}
+        </h2>
+        <InstagramFeed path='p/DOdu1maDNVM' />
       </div>
     </>
   );

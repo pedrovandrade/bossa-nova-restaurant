@@ -19,9 +19,9 @@ const HeaderNavMobile: FC<HeaderLanguageListProps> = ({ languageOptions, siteLin
 
   return (
     <nav className='block md:hidden'>
-      <DropdownMenu.Root modal={false}>
+      <DropdownMenu.Root modal={true}>
         <DropdownMenu.Trigger
-          className="text-sm hover:cursor-pointer hover:bg-bossanova-green focus:bg-bossanova-green rounded transition duration-300 p-2"
+          className="hover:cursor-pointer hover:bg-bossanova-green focus:bg-bossanova-green rounded transition duration-300 p-2"
         >
           <div className='w-8'>
             <BurgerMenu />
@@ -32,6 +32,8 @@ const HeaderNavMobile: FC<HeaderLanguageListProps> = ({ languageOptions, siteLin
             hideWhenDetached={true}
             align='start'
             className={[
+              'max-h-[calc(100vh-5.5rem)]',
+              'overflow-y-scroll',
               'bg-bossanova-cyan',
               'text-white',
               'p-1',
@@ -41,7 +43,6 @@ const HeaderNavMobile: FC<HeaderLanguageListProps> = ({ languageOptions, siteLin
               'animate-dropdown-menu-fade-in',
               'data-[state=closed]:animate-dropdown-menu-fade-out',
               'w-[calc(var(--radix-dropdown-menu-content-available-width)-0.5rem)]',
-              '',
             ].join(' ')}
           >
             {siteLinks?.map((item) => (

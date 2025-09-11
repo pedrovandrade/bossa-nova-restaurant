@@ -1,4 +1,5 @@
 import { Link } from '@/i18n/navigation';
+import { useTranslations } from 'next-intl';
 
 const siteLinks = [
   { href: '/', name: 'home' },
@@ -8,13 +9,15 @@ const siteLinks = [
 ];
 
 const SiteMap = () => {
+  const t = useTranslations('footer.siteMap');
+
   return (
     <nav>
       <ul className='space-y-2'>
         {siteLinks.map((link) => (
           <li key={link.name}>
             <Link href={link.href} className="hover:underline">
-              {link.name.charAt(0).toUpperCase() + link.name.slice(1)}
+              {t(link.name)}
             </Link>
           </li>
         ))}

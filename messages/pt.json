@@ -1,59 +1,82 @@
 {
-    "header": {
-        "title": "Restaurante Bossa Nova",
-        "nav": {
-            "home": "Início",
-            "menu": "Menu",
-            "about": "Sobre",
-            "reservations": "Reservas"
-        },
-        "language": "Idioma"
+  "header": {
+    "title": "Restaurante Bossa Nova",
+    "nav": {
+      "home": "Início",
+      "menu": "Menu",
+      "about": "Sobre",
+      "reservations": "Reservas"
     },
-    "pages": {
-      "home": {
-        "presentationBanner": {
-          "title": "O Brasil no coração de Toulouse",
-          "description": "Venha descobrir nossos sabores únicos e nossa atmosfera acolhedora"
-        },
-        "textImageContainers": {
-          "0": {
-            "image": {
-              "alt": "",
-              "height": 1024,
-              "rightAligned": false
-            },
-            "text": {
-              "title": "Seu restaurante brasileiro em Toulouse",
-              "content": {
-                "0": "<p>Bossa Nova é o primeiro restaurante 100% dedicado à culinária brasileira em Toulouse.</p>",
-                "1": "<p>Oferecemos uma experiência culinária autêntica, com pratos preparados a partir de receitas tradicionais brasileiras.</p>",
-                "2": "<p>Nosso time apaixonado está aqui para fazer você descobrir os sabores do Brasil, em um ambiente amigável e acolhedor.</p>",
-                "3": "<reservationLink>Reserve uma mesa</reservationLink>"
-              }
-            }
+    "language": "Idioma"
+  },
+  "pages": {
+    "home": {
+      "presentationBanner": {
+        "title": "O Brasil no coração de Toulouse",
+        "description": "Venha descobrir nossos sabores únicos e nossa atmosfera acolhedora"
+      },
+      "textImageContainers": {
+        "0": {
+          "image": {
+            "alt": "",
+            "height": 1024,
+            "rightAligned": false
           },
-          "1": {
-            "image": {
-              "alt": "",
-              "height": 1024,
-              "rightAligned": true
-            },
-            "text": {
-              "title": "Um menu saboroso",
-              "content": {
-                "0": "<p>Desfrute de uma variedade de pratos brasileiros autênticos, preparados com paixão e ingredientes frescos.</p>",
-                "1": "<p>Do aperitivo à sobremesa, cada prato é um convite a uma viagem culinária ao coração do Brasil.</p>",
-                "2": "<p>Nosso menu muda regularmente para oferecer sempre mais descobertas gustativas.</p>",
-                "3": "<menuLink>Descubra nosso menu</menuLink>"
-              }
+          "text": {
+            "title": "Seu restaurante brasileiro em Toulouse",
+            "content": {
+              "0": "<p>Bossa Nova é o primeiro restaurante 100% dedicado à culinária brasileira em Toulouse.</p>",
+              "1": "<p>Oferecemos uma experiência culinária autêntica, com pratos preparados a partir de receitas tradicionais brasileiras.</p>",
+              "2": "<p>Nosso time apaixonado está aqui para fazer você descobrir os sabores do Brasil, em um ambiente amigável e acolhedor.</p>",
+              "3": "<reservationLink>Reserve uma mesa</reservationLink>"
+            }
+          }
+        },
+        "1": {
+          "image": {
+            "alt": "",
+            "height": 1024,
+            "rightAligned": true
+          },
+          "text": {
+            "title": "Um menu saboroso",
+            "content": {
+              "0": "<p>Desfrute de uma variedade de pratos brasileiros autênticos, preparados com paixão e ingredientes frescos.</p>",
+              "1": "<p>Do aperitivo à sobremesa, cada prato é um convite a uma viagem culinária ao coração do Brasil.</p>",
+              "2": "<p>Nosso menu muda regularmente para oferecer sempre mais descobertas gustativas.</p>",
+              "3": "<menuLink>Descubra nosso menu</menuLink>"
             }
           }
         }
+      },
+      "instagramFeed": {
+        "title": "Siga-nos no Instagram",
+        "viewThisPostOnInstagram": "Ver esta publicação no Instagram",
+        "aPostSharedBy": "Uma publicação compartilhada por"
+      }
+    }
+  },
+  "footer": {
+    "contact": {
+      "title": "Endereço & Contato",
+      "address": "1 bis Rue de May, 31000 Toulouse",
+      "phone": "Telefone:",
+      "email": "E-mail:"
+    },
+    "siteMap": {
+      "title": "Mapa do Site",
+      "home": "Início",
+      "menu": "Menu",
+      "about": "Sobre",
+      "reservations": "Reservas"
+    },
+    "followUs": {
+      "title": "Siga-nos",
+      "ariaLabel": {
+        "facebook": "Ir para nossa página no Facebook",
+        "instagram": "Ir para nossa página no Instagram"
       }
     },
-    "footer": {
-        "contact": "Contato",
-        "privacy": "Política de Privacidade",
-        "terms": "Termos de Uso"
-    }
+    "allRightsReserved": "Restaurante Bossa Nova. Todos os direitos reservados."
+  }
 }
