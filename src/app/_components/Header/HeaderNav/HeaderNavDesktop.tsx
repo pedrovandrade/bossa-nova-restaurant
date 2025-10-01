@@ -1,8 +1,8 @@
 import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { FC } from 'react';
-import { HeaderLanguageListProps } from '@components/Header';
-import { HeaderLanguageSelector } from '@components/Header/HeaderLanguageSelector';
+import { HeaderLanguageListProps } from '@/components/Header';
+import { HeaderLanguageSelector } from '@/components/Header/HeaderLanguageSelector';
 
 const HeaderNavDesktop: FC<HeaderLanguageListProps> = ({ languageOptions, siteLinks }) => {
   const currentLocale = useLocale();

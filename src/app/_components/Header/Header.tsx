@@ -6,7 +6,7 @@ import HeaderTitle from './HeaderTitle';
 import HeaderIcon from './HeaderIcon';
 import { useLocale } from 'next-intl';
 import { usePathname } from 'next/navigation';
-import { FranceFlag, BrazilFlag, GreatBritainFlag } from '@components/_icons';
+import { FranceFlag, BrazilFlag, GreatBritainFlag } from '@/components/_icons';
 
 export type LanguageOption = {
     locale: string;

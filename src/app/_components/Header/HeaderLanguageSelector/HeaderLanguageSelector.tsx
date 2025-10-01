@@ -2,8 +2,8 @@ import { useTranslations } from 'next-intl';
 import { type FC } from 'react';
 import { DropdownMenu } from 'radix-ui';
 import HeaderLanguageList from './HeaderLanguageList';
-import { HeaderLanguageListProps } from '@components/Header';
-import Chevron from '@components/_icons/Chevron';
+import { HeaderLanguageListProps } from '@/components/Header';
+import Chevron from '@/components/_icons/Chevron';
 
 type HeaderLanguageSelectorProps = HeaderLanguageListProps & {
   currentLocale: string;

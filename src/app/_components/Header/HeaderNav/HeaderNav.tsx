@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { HeaderLanguageListProps } from '@components/Header';
+import { HeaderLanguageListProps } from '@/components/Header';
 import HeaderNavDesktop from './HeaderNavDesktop';
 import HeaderNavMobile from './HeaderNavMobile';
 

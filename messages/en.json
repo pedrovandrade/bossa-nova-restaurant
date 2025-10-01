@@ -54,6 +54,16 @@
         "viewThisPostOnInstagram": "View this post on Instagram",
         "aPostSharedBy": "A post shared by"
       }
+    },
+    "menu": {
+      "presentationBanner": {
+        "title": "Discover our menu",
+        "description": "Authentic Brazilian dishes prepared with passion"
+      },
+      "description": {
+        "0": "All our dishes are prepared with fresh, high-quality ingredients to offer you an unforgettable culinary experience.",
+        "1": "Our dish of the moment changes every 15 days, so don't hesitate to follow us on social media."
+      }
     }
   },
   "footer": {

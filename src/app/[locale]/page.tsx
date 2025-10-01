@@ -1,10 +1,12 @@
-import TextImageContainer, { TextImageContainerProps } from '@/app/_components/TextImageContainer/TextImageContainer';
-import PresentationBanner from '@/app/_homePageComponents/PresentationBanner';
+import TextImageContainer, { TextImageContainerProps } from '@/components/TextImageContainer/TextImageContainer';
+import PresentationBanner from '@/components/PresentationBanner';
 import { useMessages, useTranslations } from 'next-intl';
-import foodPhoto1 from '@assets/images/entree-plat-1.jpg';
-import foodPhoto2 from '@assets/images/entree-plat-2.jpg';
+import foodPhoto1 from '@/assets/images/entree-plat-1.jpg';
+import foodPhoto2 from '@/assets/images/entree-plat-2.jpg';
 import InstagramFeed from '@/app/_homePageComponents/InstagramFeed';
-import FadeInContainer from '@/app/_components/FadeInContainer';
+import FadeInContainer from '@/components/FadeInContainer';
+import restaurantOverviewDesktop from '@/assets/images/restaurant-overview-desktop.jpg';
+import restaurantOverviewMobile from '@/assets/images/restaurant-overview-mobile.jpg';
 
 type TextImageContainer = {
   image: {
@@ -54,15 +56,20 @@ export default function Home() {
 
   return (
     <>
-      <PresentationBanner />
-      <div className='px-5 md:px-10 py-20 flex flex-col gap-28 w-full bg-orange-50'>
+      <PresentationBanner
+        title={t('presentationBanner.title')}
+        description={t("presentationBanner.description")}
+        mainImageFile={restaurantOverviewDesktop}
+        mobileImageFile={restaurantOverviewMobile}
+      />
+      <div className='px-5 md:px-10 py-20 flex flex-col gap-28 w-full'>
         {containerData.map((data, index) => (
           <FadeInContainer key={index} direction={index % 2 === 0 ? 'left' : 'right'}>
             <TextImageContainer image={data.image} text={data.text} />
           </FadeInContainer>
         ))}
       </div>
-      <div className='px-5 md:px-10 py-20 flex flex-col items-center w-full bg-orange-50'>
+      <div className='px-5 md:px-10 py-20 flex flex-col items-center w-full'>
         <h2 className='font-semibold text-3xl text-bossanova-cyan mb-6'>
           {t('instagramFeed.title')}
         </h2>

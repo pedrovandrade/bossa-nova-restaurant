@@ -54,6 +54,16 @@
         "viewThisPostOnInstagram": "Voir cette publication sur Instagram",
         "aPostSharedBy": "Une publication partagée par"
       }
+    },
+    "menu": {
+      "presentationBanner": {
+        "title": "Découvrez notre menu",
+        "description": "Des plats brésiliens authentiques préparés avec passion"
+      },
+      "description": {
+        "0": "Tous nos plats sont préparés avec des ingrédients frais et de qualité, pour vous offrir une expérience culinaire inoubliable.",
+        "1": "Notre plat du moment change à chaque 15 jours, alors n'hésitez pas à nous suivre sur les réseaux sociaux."
+      }
     }
   },
   "footer": {

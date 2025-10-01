@@ -54,6 +54,16 @@
         "viewThisPostOnInstagram": "Ver esta publicação no Instagram",
         "aPostSharedBy": "Uma publicação compartilhada por"
       }
+    },
+    "menu": {
+      "presentationBanner": {
+        "title": "Descubra nosso menu",
+        "description": "Pratos brasileiros autênticos preparados com paixão"
+      },
+      "description": {
+        "0": "Todos os nossos pratos são preparados com ingredientes frescos e de qualidade, para oferecer a você uma experiência culinária inesquecível.",
+        "1": "Nosso prato do momento muda a cada 15 dias, então não hesite em nos seguir nas redes sociais."
+      }
     }
   },
   "footer": {

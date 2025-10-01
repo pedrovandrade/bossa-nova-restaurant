@@ -2,10 +2,10 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { type FC, useState } from 'react';
 import { DropdownMenu, Accordion } from 'radix-ui';
-import { BurgerMenu } from '@components/_icons';
-import { HeaderLanguageList } from '@components/Header/HeaderLanguageSelector';
-import { HeaderLanguageListProps } from '@components/Header';
-import Chevron from '@components/_icons/Chevron';
+import { BurgerMenu } from '@/components/_icons';
+import { HeaderLanguageList } from '@/components/Header/HeaderLanguageSelector';
+import { HeaderLanguageListProps } from '@/components/Header';
+import Chevron from '@/components/_icons/Chevron';
 
 const HeaderNavMobile: FC<HeaderLanguageListProps> = ({ languageOptions, siteLinks }) => {
 

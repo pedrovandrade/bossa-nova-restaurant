@@ -1,7 +1,7 @@
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import Image from 'next/image';
 import { FC } from 'react';
-import logoGuitar from '@assets/images/logo-guitar.png';
+import logoGuitar from '@/assets/images/logo-guitar.png';
 
 const HeaderIcon: FC = () => {
   return (
