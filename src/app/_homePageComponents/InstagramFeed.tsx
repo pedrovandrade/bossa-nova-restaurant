@@ -8,6 +8,14 @@ type InstagramFeedProps = {
   path?: string;
 };
 
+type WindowWithInstgrm = Window & typeof globalThis & {
+  instgrm?: {
+    Embeds: {
+      process: () => void;
+    };
+  };
+};
+
 const InstagramFeed: FC<InstagramFeedProps> = ({ path }) => {
   const url = `https://www.instagram.com/${path}/?utm_source=ig_embed&utm_campaign=loading`;
 
@@ -15,8 +23,8 @@ const InstagramFeed: FC<InstagramFeedProps> = ({ path }) => {
 
   useEffect(() => {
     // Ensure the Instagram script is loaded
-    if (typeof window !== 'undefined' && (window as any).instgrm) {
-      (window as any).instgrm.Embeds.process();
+    if (typeof window !== 'undefined' && (window as WindowWithInstgrm).instgrm) {
+      (window as WindowWithInstgrm).instgrm?.Embeds.process();
     }
   }, [path]);
 

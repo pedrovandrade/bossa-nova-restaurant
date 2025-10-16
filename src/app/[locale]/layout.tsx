@@ -7,8 +7,6 @@ import Footer from '@/components/Footer';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
-import Script from 'next/script';
-import Head from 'next/head';
 
 // const openSans = Open_Sans({
 //   variable: '--font-open-sans',
@@ -86,11 +84,6 @@ export default async function RootLayout({
     }
     return (
       <html lang={locale}>
-        <Head>
-          {/* <Script strategy='beforeInteractive' src='https://www.instagram.com/embed.js' /> */}
-          <script async src='https://www.instagram.com/embed.js'></script>
-        </Head>
-        {/* <body className={`${heebo.className} ${openSans.className} font-light antialiased`}> */}
         <body className={`${phenomena.className} ${feelingPassionate.variable} font-normal text-xl antialiased`}>
           <NextIntlClientProvider>
             <Header />
