@@ -1,144 +1,626 @@
-import { MenuDocumentPageProps } from '@/app/[locale]/menu/_components/Menu/MenuDocumentPage';
+import type { DrinkMenuPageData } from '@/app/_types/DrinkMenuPageData';
+import type { FoodMenuPageData } from '@/app/_types/FoodMenuPageData';
 import type { NextRequest } from 'next/server'
 
-// const menuPages: MenuDocumentPageProps[] = [
-//   {
-//     title: 'Entrées ou tapas à partager',
-//     category: 'starters',
-//     items: [
-//       {
-//         name: 'Pão de queijo',
-//         description: '3 petits pains moelleux et dorés à base de farine de manioc et de fromage.',
-//         price: 5
-//       },
-//       {
-//         name: 'Mini coxinhas vegetarianas',
-//         description: '6 croquettes au fromage emmental, poireau et oignon, enveloppées dans une pâte croustillante et dorée accompagnées de sa sauce Brésil (curry et ananas).',
-//         price: 7.5
-//       },
-//       {
-//         name: 'Coxinhas de frango',
-//         description: [
-//           '3 croquettes au poulet enveloppées dans une pâte croustillante et dorée.',
-//           'Sauce au choix : sauce Brésil (curry et ananas) ou sauce barbecue.'
-//         ],
-//         price: 7.5
-//       },
-//       {
-//         name: 'Coxinhas de carne',
-//         description: [
-//           '3 croquettes au bœuf enveloppées dans une pâte croustillante et dorée.',
-//           'Sauce au choix : sauce Brésil (curry et ananas) ou sauce barbecue.'
-//         ],
-//         price: 7.5
-//       },
-//       {
-//         name: 'Mandioca frita',
-//         description: [
-//           'Frites de manioc.',
-//           'Sauce au choix : sauce Brésil (curry et ananas) ou sauce barbecue.'
-//         ],
-//         price: 7.5
-//       },
-//       {
-//         name: 'Batata doce frita',
-//         description: [
-//           'Frites de patate douce.',
-//           'Sauce au choix : sauce Brésil (curry et ananas) ou sauce barbecue.'
-//         ],
-//         price: 5.5
-//       },
-//     ],
-//     footer: {
-//       notes: [],
-//       generalNote: 'La liste des allergènes présents dans nos plats est disponible sur demande.'
-//     }
-//   },
-//   {
-//     title: 'Plats',
-//     category: 'mainCourses',
-//     items: [
-//       {
-//         name: 'Menu enfant',
-//         description: [
-//           '- Tenders de poulet ou fillet de collin. Accompagnement : riz ou frites ou salade.',
-//           'Dessert : gâteau au chocolat ou deux boules de glace (demandez les saveurs disponibles).',
-//         ],
-//         price: 10
-//       },
-//       {
-//         name: 'Plat du moment',
-//         description: 'Decouvrez le plat du moment et son prix sur l\'ardoise',
-//         price: null
-//       },
-//       {
-//         name: 'Feijoada',
-//         description: 'Haricots noirs mijotés avec du jarret de bœuf, de l\'échine de porc et de la saucisse fumée servi avec du riz, de la farofa (farine de manioc croustillante), vinaigrette à la brésilienne et des tranches d\'orange.',
-//         price: 20
-//       },
-//       {
-//         name: 'Moqueca de peixe e camarão',
-//         description: [
-//           'Plat originaire de Bahia à base de dos de cabillaud, crevettes et légumes, cuisiné dans une sauce au lait de coco et dendê.',
-//           'Servi avec du riz et de la farofa (farine de manioc).',
-//         ],
-//         price: 23
-//       },
-//       {
-//         name: 'Moqueca vegana',
-//         description: [
-//           'Version vegane de la moqueca, préaprée avec de la banane plantain, des légumes frais, infusés des mêmes arômes riches de lait de coco et dendê.',
-//           'Servi avec du riz et de la farofa (farine de manioc).',
-//         ],
-//         price: 17
-//       },
-//       {
-//         name: 'Picanha de race Angus d\'exception*',
-//         description: [
-//           'Une délice pour les amoureux de la viande de bœuf, ce morceau de la pointe de la surlonge offre une tendreté exceptionnelle et une saveur riche, sublimée par sa couverture de gras persillé avec de la vinaigrette à la brésilienne, salade et farofa (farine de manioc croustillante).',
-//           'Accompagnement et sauce au choix : riz ou frites (classique ou patate douce).',
-//           'Sauce barbecue ou sauce Brésil (curry et ananas).',
-//         ],
-//         price: 26
-//       },
-//     ],
-//     footer: {
-//       notes: ['Viande origine Argentine'],
-//       generalNote: 'La liste des allergènes présents dans nos plats est disponible sur demande.'
-//     }
-//   },
-//   {
-//     title: 'Desserts',
-//     category: 'desserts',
-//     items: [
-//       {
-//         name: 'Mousse de maracuja',
-//         description: 'Mousse légère et acidulée aux fruits de la passion, base ganache au chocolat.',
-//         price: 7
-//       },
-//       {
-//         name: 'Pudim de leite',
-//         description: 'Flan crémeux et délicatement sucré au caramel.',
-//         price: 7
-//       },
-//       {
-//         name: 'Cheesecake',
-//         description: 'Gatêau au fromage frais, coulis au choix (fruits exotiques ou fruits rouges).',
-//         price: 5.5
-//       },
-//       {
-//         name: 'Petit gatêau e sorvete de doce de leite',
-//         description: 'Cœur coulant au chocolat avec sa boule de glace à la confiture de lait.',
-//         price: 6
-//       },
-//     ],
-//     footer: {
-//       notes: [],
-//       generalNote: 'La liste des allergènes présents dans nos plats est disponible sur demande.'
-//     }
-//   }
-// ];
-const menuPages: MenuDocumentPageProps[] = [
+export type MenuApiResponse = {
+  drinkPages: DrinkMenuPageData[];
+  foodPages: FoodMenuPageData[];
+};
+
+// type DrinkMenuPageData = {
+//   title: LocalizedText;
+//   items: {
+//     category: LocalizedText;
+//     note?: {
+//       text: LocalizedText,
+//       inline?: boolean,
+//     };
+//     drinks: {
+//       name: LocalizedText;
+//       description?: {
+//         text: LocalizedText | LocalizedTextArray,
+//         position?: 'top' | 'bottom' | 'inline',
+//         bold?: boolean,
+//       };
+//       price: number | null;
+//       inline?: boolean;
+//     }[];
+//   }[];
+// };
+
+const drinkPages: DrinkMenuPageData[] = [
+  {
+    title: {
+      fr: 'Boissons sans alcool',
+      pt: 'Bebidas sem álcool',
+      en: 'Non-alcoholic beverages',
+    },
+    items: [
+      {
+        category: {
+          fr: 'Mocktails',
+          pt: 'Mocktails',
+          en: 'Mocktails',
+        },
+        drinks: [
+          {
+            name: {
+              text: {
+                fr: 'Caipirinha classique sans alcool',
+                pt: 'Caipirinha clássica sem álcool',
+                en: 'Classic caipirinha without alcohol',
+              },
+              bold: true,
+            },
+            description: {
+              text: {
+                fr: '(citron vert, eua gazeuse, sucre de canne et glaçons)',
+                pt: '(limão verde, água com gás, açúcar de cana e gelo)',
+                en: '(lime, sparkling water, cane sugar and ice)',
+              },
+            },
+            price: 7,
+          },
+          {
+            name: {
+              text: {
+                fr: 'Caipirinha de maracuja sans alcool',
+                pt: 'Caipirinha de maracujá sem álcool',
+                en: 'Passion fruit caipirinha without alcohol',
+              },
+              bold: true,
+            },
+            description: {
+              text: {
+                fr: '(citron vert, fruit de la passion, eua gazeuse, sucre de canne et glaçons)',
+                pt: '(limão verde, maracujá, água com gás, açúcar de cana e gelo)',
+                en: '(lime, passion fruit, sparkling water, cane sugar and ice)',
+              },
+            },
+            price: 8,
+          },
+          {
+            name: {
+              text: {
+                fr: 'Maracuja sunset',
+                pt: 'Maracuja sunset',
+                en: 'Maracuja sunset',
+              },
+              bold: true,
+            },
+            description: {
+              text: {
+                fr: '(purée de fruit de la passion, jus d\'orange et sirop de grenadine)',
+                pt: '(purê de maracujá, suco de laranja e xarope de grenadine)',
+                en: '(passion fruit puree, orange juice and grenadine syrup)',
+              },
+            },
+            price: 7,
+          },
+        ],
+      },
+      {
+        category: {
+          fr: 'Softs',
+          pt: 'Softs',
+          en: 'Softs',
+        },
+        drinks: [
+          {
+            name: {
+              text: {
+                fr: 'Guaraná 33 cl',
+                pt: 'Guaraná 33 cl',
+                en: 'Guaraná 33 cl',
+              },
+            },
+            description: {
+              text: {
+                fr: 'Soda brésilien fabriqué à partir du fruit guarana, typique de l\'Amazonie.',
+                pt: 'Refrigerante brasileiro feito a partir do fruto guaraná, típico da Amazônia.',
+                en: 'Brazilian soda made from the guarana fruit, typical of the Amazon.',
+              },
+              small: true,
+            },
+            price: 4,
+          },
+          {
+            name: {
+              text: {
+                fr: 'Guaraná zero 33 cl',
+                pt: 'Guaraná zero 33 cl',
+                en: 'Guaraná zero 33 cl',
+              },
+            },
+            price: 4,
+          },
+          {
+            name: {
+              text: {
+                fr: 'Coca-cola 33 cl',
+                pt: 'Coca-cola 33 cl',
+                en: 'Coca-cola 33 cl',
+              },
+            },
+            price: 3.5,
+          },
+          {
+            name: {
+              text: {
+                fr: 'Coca-cola zero 33 cl',
+                pt: 'Coca-cola zero 33 cl',
+                en: 'Coca-cola zero 33 cl',
+              },
+            },
+            price: 3.5,
+          },
+          {
+            name: {
+              text: {
+                fr: 'Fusetea 25 cl',
+                pt: 'Fusetea 25 cl',
+                en: 'Fusetea 25 cl',
+              },
+            },
+            price: 3.5,
+          },
+          {
+            name: {
+              text: {
+                fr: 'Orangina 25 cl',
+                pt: 'Orangina 25 cl',
+                en: 'Orangina 25 cl',
+              },
+            },
+            price: 3.5,
+          },
+          {
+            name: {
+              text: {
+                fr: 'Sirop à la fraise',
+                pt: 'Xarope de morango',
+                en: 'Strawberry syrup',
+              },
+            },
+            price: 2.5,
+          },
+        ],
+      },
+      {
+        category: {
+          fr: 'Jus de fruits',
+          pt: 'Sucos',
+          en: 'Juices',
+        },
+        note: {
+          text: {
+            fr: '(non préssé sur place, mais toujours bien frais)',
+            pt: '(não espremido no local, mas sempre bem fresco)',
+            en: '(not pressed on site, but always fresh)',
+          },
+          inline: true,
+          bold: true,
+        },
+        drinks: [
+          {
+            name: {
+              text: {
+                fr: 'Jus d\'orange 25 cl',
+                pt: 'Suco de laranja 25 cl',
+                en: 'Orange juice 25 cl',
+              },
+            },
+            price: 3.5,
+          },
+          {
+            name: {
+              text: {
+                fr: 'Jus d\'ananas 25 cl',
+                pt: 'Suco de abacaxi 25 cl',
+                en: 'Pineapple juice 25 cl',
+              },
+            },
+            price: 3.5,
+          },
+        ],
+      },
+      {
+        category: {
+          fr: 'Eaux',
+          pt: 'Águas',
+          en: 'Waters',
+        },
+        drinks: [
+          {
+            name: {
+              text: {
+                fr: 'San Pellegrino 50 cl (eau pétillante)',
+                pt: 'San Pellegrino 50 cl (água com gás)',
+                en: 'San Pellegrino 50 cl (sparkling water)',
+              },
+            },
+            price: 3.5,
+          },
+          {
+            name: {
+              text: {
+                fr: 'Evian 50 cl',
+                pt: 'Evian 50 cl',
+                en: 'Evian 50 cl',
+              },
+            },
+            price: 3.5,
+          },
+        ],
+      },
+      {
+        category: {
+          fr: 'Café',
+          pt: 'Café',
+          en: 'Coffee',
+        },
+        drinks: [
+          {
+            name: {
+              text: {
+                fr: 'Café du Brésil',
+                pt: 'Café do Brasil',
+                en: 'Brazilian coffee',
+              },
+            },
+            price: 2,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: {
+      fr: 'Boissons alcoolisées',
+      pt: 'Bebidas alcoólicas',
+      en: 'Alcoholic beverages',
+    },
+    items: [
+      {
+        category: {
+          fr: 'Caipirinhas',
+          pt: 'Caipirinhas',
+          en: 'Caipirinhas',
+        },
+        drinks: [
+          {
+            name: {
+              text: {
+                fr: 'Classique',
+                pt: 'Clássica',
+                en: 'Classic',
+              },
+              bold: true,
+            },
+            description: {
+              text: {
+                fr: 'cachaça, citron et sucre de canne.',
+                pt: 'cachaça, limão e açúcar de cana.',
+                en: 'cachaça, lime and cane sugar.',
+              },
+              position: 'inline',
+            },
+            price: 10,
+          },
+          {
+            name: {
+              text: {
+                fr: 'Maracuja',
+                pt: 'Maracujá',
+                en: 'Passion fruit',
+              },
+              bold: true,
+            },
+            description: {
+              text: {
+                fr: 'cachaça, fruit de la passion, citron et sucre de canne.',
+                pt: 'cachaça, maracujá, limão e açúcar de cana.',
+                en: 'cachaça, passion fruit, lime and cane sugar.',
+              },
+              position: 'inline',
+            },
+            price: 11,
+          },
+        ],
+      },
+      {
+        category: {
+          fr: 'Caipiroska',
+          pt: 'Caipiroska',
+          en: 'Caipiroska',
+        },
+        drinks: [
+          {
+            name: {
+              text: {
+                fr: 'Classique',
+                pt: 'Clássica',
+                en: 'Classic',
+              },
+              bold: true,
+            },
+            description: {
+              text: {
+                fr: 'Vodka, citron et sucre de canne.',
+                pt: 'Vodka, limão e açúcar de cana.',
+                en: 'Vodka, lime and cane sugar.',
+              },
+              position: 'inline',
+            },
+            price: 10,
+          },
+          {
+            name: {
+              text: {
+                fr: 'Maracuja',
+                pt: 'Maracujá',
+                en: 'Passion fruit',
+              },
+              bold: true,
+            },
+            description: {
+              text: {
+                fr: 'Vodka, fruit de la passion, citron et sucre de canne.',
+                pt: 'Vodka, maracujá, limão e açúcar de cana.',
+                en: 'Vodka, passion fruit, lime and cane sugar.',
+              },
+              position: 'inline',
+            },
+            price: 11,
+          },
+        ],
+      },
+      {
+        category: {
+          fr: 'Bières',
+          pt: 'Cervejas',
+          en: 'Beers',
+        },
+        drinks: [
+          {
+            name: {
+              text: {
+                fr: 'Super Bock et Sagres',
+                pt: 'Super Bock e Sagres',
+                en: 'Super Bock and Sagres',
+              },
+            },
+            description: {
+              text: {
+                fr: 'Bières portugaises (selon disponibilité)',
+                pt: 'Cervejas portuguesas (conforme disponibilidade)',
+                en: 'Portuguese beers (according to availability)',
+              },
+              position: 'top',
+              bold: true,
+            },
+            price: 4.5,
+          },
+          {
+            name: {
+              text: {
+                fr: 'Brahma (blonde pilsen) PRAYA (blonde) et PRAYA (lager artisanale).',
+                pt: 'Brahma (pilsen clara) PRAYA (clara) e PRAYA (lager artesanal).',
+                en: 'Brahma (light pilsen) PRAYA (light) and PRAYA (craft lager).',
+              },
+            },
+            description: {
+              text: {
+                fr: 'Bières brésiliennes (selon disponibilité)',
+                pt: 'Cervejas brasileiras (conforme disponibilidade)',
+                en: 'Brazilian beers (according to availability)',
+              },
+              position: 'top',
+              bold: true,
+            },
+            price: 6.5,
+          },
+        ],
+      },
+      {
+        category: {
+          fr: 'Vin rouge brésilien',
+          pt: 'Vinho tinto brasileiro',
+          en: 'Brazilian red wine',
+        },
+        inline: true,
+        note: {
+          text: {
+            fr: 'Vin rouge brésilien selon arrivage et disponibilité.',
+            pt: 'Vinho tinto brasileiro conforme chegada e disponibilidade.',
+            en: 'Brazilian red wine according to arrival and availability.',
+          },
+          bold: true,
+        },
+        drinks: [
+          {
+            name: {
+              text: {
+                fr: 'Verre 12,5 cl',
+                pt: 'Taça 12,5 cl',
+                en: 'Glass 12.5 cl',
+              },
+            },
+            price: 5.5,
+          },
+          {
+            name: {
+              text: {
+                fr: 'Bouteille 75 cl',
+                pt: 'Garrafa 75 cl',
+                en: 'Bottle 75 cl',
+              },
+            },
+            price: 30,
+          },
+        ],
+      },
+      {
+        category: {
+          fr: 'Vin blanc',
+          pt: 'Vinho branco',
+          en: 'White wine',
+        },
+        inline: true,
+        note: {
+          text: {
+            fr: 'Vin blanc Costières de Nîmes',
+            pt: 'Vinho branco Costières de Nîmes',
+            en: 'White wine Costières de Nîmes',
+          },
+          bold: true,
+        },
+        drinks: [
+          {
+            name: {
+              text: {
+                fr: 'Verre 12,5 cl',
+                pt: 'Taça 12,5 cl',
+                en: 'Glass 12.5 cl',
+              },
+            },
+            price: 5,
+          },
+          {
+            name: {
+              text: {
+                fr: 'Bouteille 75 cl',
+                pt: 'Garrafa 75 cl',
+                en: 'Bottle 75 cl',
+              },
+            },
+            price: 24,
+          },
+        ],
+      },
+      {
+        category: {
+          fr: 'Vin rosé',
+          pt: 'Vinho rosé',
+          en: 'Rosé wine',
+        },
+        inline: true,
+        note: {
+          text: {
+            fr: 'Vin rosé Mas de Valériole, Bio',
+            pt: 'Vinho rosé Mas de Valériole, Bio',
+            en: 'Rosé wine Mas de Valériole, Organic',
+          },
+          bold: true,
+        },
+        drinks: [
+          {
+            name: {
+              text: {
+                fr: 'Verre 12,5 cl',
+                pt: 'Taça 12,5 cl',
+                en: 'Glass 12.5 cl',
+              },
+            },
+            price: 5,
+          },
+          {
+            name: {
+              text: {
+                fr: 'Bouteille 75 cl',
+                pt: 'Garrafa 75 cl',
+                en: 'Bottle 75 cl',
+              },
+            },
+            price: 24,
+          },
+        ],
+      },
+      {
+        category: {
+          fr: 'Digestifs',
+          pt: 'Digestivos',
+          en: 'Digestifs',
+        },
+        drinks: [
+          {
+            name: {
+              text: {
+                fr: 'Cachaça Ypioca 5 cl',
+                pt: 'Cachaça Ypioca 5 cl',
+                en: 'Cachaça Ypioca 5 cl',
+              },
+              bold: true,
+            },
+            price: 7,
+          },
+          {
+            name: {
+              text: {
+                fr: 'Vodka 5 cl',
+                pt: 'Vodka 5 cl',
+                en: 'Vodka 5 cl',
+              },
+              bold: true,
+            },
+            price: 7,
+          },
+          {
+            name: {
+              text: {
+                fr: 'Cachaça arrangée mangue et piment 5 cl',
+                pt: 'Cachaça aromatizada manga e pimenta 5 cl',
+                en: 'Cachaça flavored mango and pepper 5 cl',
+              },
+              bold: true,
+            },
+            price: 8.5,
+          },
+          {
+            name: {
+              text: {
+                fr: 'Cachaça vieillie Ypioca 150 5 cl',
+                pt: 'Cachaça envelhecida Ypioca 150 5 cl',
+                en: 'Aged cachaça Ypioca 150 5 cl',
+              },
+              bold: true,
+            },
+            description: {
+              text: {
+                fr: 'Distillée à partir de jus de canne à sucre, a été vieillie pendant six ans, trois ans en fûts de baume et trois ans en fûts de chêne, ce qui lui confère un goût et des saveurs incomparables.',
+                pt: 'Destilada a partir do suco de cana-de-açúcar, foi envelhecida por seis anos, três anos em barris de bálsamo e três anos em barris de carvalho, o que lhe confere um sabor e sabores incomparáveis.',
+                en: 'Distilled from sugarcane juice, it was aged for six years, three years in balsam barrels and three years in oak barrels, which gives it an incomparable taste and flavors.',
+              },
+              small: true,
+            },
+            price: 8.5,
+          },
+          {
+            name: {
+              text: {
+                fr: 'Cachaça Brazilian Kiss 5 cl',
+                pt: 'Cachaça Brazilian Kiss 5 cl',
+                en: 'Cachaça Brazilian Kiss 5 cl',
+              },
+              bold: true,
+            },
+            description: {
+              text: {
+                fr: 'Distillée de manière artisanale dans un alambic en cuivre à repasse, cette cachaça exceptionnelle est infusée avec le Jambu, une plante emblématique de l\'Amazonie, réputée pour ses vertus anesthésiante, rafraîchissante et aphrodisiaque.',
+                pt: 'Destilada artesanalmente em um alambique de cobre de repasse, esta excepcional cachaça é infundida com Jambu, uma planta emblemática da Amazônia, conhecida por suas propriedades anestésicas, refrescantes e afrodisíacas.',
+                en: 'Distilled artisanally in a copper pot still, this exceptional cachaça is infused with Jambu, an emblematic plant of the Amazon, known for its anesthetic, refreshing and aphrodisiac properties.',
+              },
+              small: true,
+            },
+            price: 8.5,
+          },
+        ],
+      },
+    ],
+  },
+];
+
+const foodPages: FoodMenuPageData[] = [
   {
     title: {
       fr: 'Entrées ou tapas à partager',
@@ -148,16 +630,24 @@ const menuPages: MenuDocumentPageProps[] = [
     category: 'starters',
     items: [
       {
-        name: 'Pão de queijo',
+        name: {
+          fr: 'Pain au fromage',
+          pt: 'Pão de queijo',
+          en: 'Cheese bread'
+        },
         description: {
           fr: '3 petits pains moelleux et dorés à base de farine de manioc et de fromage.',
           pt: '3 pãezinhos macios e dourados feitos com farinha de mandioca e queijo.',
           en: '3 soft and golden breads made with cassava flour and cheese.',
         },
-        price: 5
+        price: 6
       },
       {
-        name: 'Mini coxinhas vegetarianas',
+        name: {
+          fr: 'Mini coxinhas végétariennes',
+          pt:'Mini coxinhas vegetarianas',
+          en: 'Mini vegetarian coxinhas',
+        },
         description: {
           fr: '6 croquettes au fromage emmental, poireau et oignon, enveloppées dans une pâte croustillante et dorée accompagnées de sa sauce Brésil (curry et ananas).',
           pt: '6 croquetes de queijo emmental, alho-poró e cebola, envoltos em uma massa crocante e dourada, acompanhados de molho Brasil (curry e abacaxi).',
@@ -166,7 +656,11 @@ const menuPages: MenuDocumentPageProps[] = [
         price: 7.5
       },
       {
-        name: 'Coxinhas de frango',
+        name: {
+          fr: 'Coxinhas de poulet',
+          pt: 'Coxinhas de frango',
+          en: 'Chicken coxinhas',
+        },
         description: {
           fr: [
             '3 croquettes au poulet enveloppées dans une pâte croustillante et dorée.',
@@ -184,7 +678,11 @@ const menuPages: MenuDocumentPageProps[] = [
         price: 7.5
       },
       {
-        name: 'Coxinhas de carne',
+        name: {
+          fr: 'Coxinhas de viande',
+          pt: 'Coxinhas de carne',
+          en: 'Beef coxinhas',
+        },
         description: {
           fr: [
             '3 croquettes au bœuf enveloppées dans une pâte croustillante et dorée.',
@@ -202,36 +700,35 @@ const menuPages: MenuDocumentPageProps[] = [
         price: 7.5
       },
       {
-        name: 'Mandioca frita',
+        name: {
+          fr: 'Dadinhos de tapioca',
+          pt: 'Dadinhos de tapioca',
+          en: 'Tapioca cubes',
+        },
         description: {
-          fr: [
-            'Frites de manioc.',
-            'Sauce au choix : sauce Brésil (curry et ananas) ou sauce barbecue.'
-          ],
-          pt: [
-            'Mandioca frita.',
-            'Molho à escolha: molho Brasil (curry e abacaxi) ou molho barbecue.'
-          ],
-          en: [
-            'Fried cassava.',
-            'Sauce of your choice: Brazil sauce (curry and pineapple) or barbecue sauce.'
-          ],
+          fr: '4 petits cubes croustillants à base de tapioca et fromage, sauce aigre-douce.',
+          pt: '4 pequenos cubos crocantes feitos com tapioca e queijo, molho agridoce.',
+          en: '4 small crispy cubes made with tapioca and cheese, sweet and sour sauce.',
         },
         price: 7.5
       },
       {
-        name: 'Batata doce frita',
+        name: {
+          fr: 'Frites de patate douce ou classiques',
+          pt: 'Batata doce frita ou fritas',
+          en: 'Sweet or classic potato fries',
+        },
         description: {
           fr: [
-            'Frites de patate douce.',
+            'Frites de patates douces ou frite classiques.',
             'Sauce au choix : sauce Brésil (curry et ananas) ou sauce barbecue.'
           ],
           pt: [
-            'Batata doce frita.',
+            'Batata doce frita ou batatas fritas clássicas.',
             'Molho à escolha: molho Brasil (curry e abacaxi) ou molho barbecue.'
           ],
           en: [
-            'Fried sweet potato.',
+            'Sweet potato fries or classic fries.',
             'Sauce of your choice: Brazil sauce (curry and pineapple) or barbecue sauce.'
           ],
         },
@@ -256,25 +753,36 @@ const menuPages: MenuDocumentPageProps[] = [
     category: 'mainCourses',
     items: [
       {
-        name: 'Menu enfant',
+        name: {
+          fr: 'Menu enfant',
+          pt: 'Menu infantil',
+          en: 'Kids menu',
+        },
         description: {
           fr: [
             'Tenders de poulet ou fillet de collin. Accompagnement : riz ou fristes ou salade.',
+            'Ou demi-portion de feijoada.',
             'Dessert : gâteau au chocolat ou deux boules de glace (demandez les saveurs disponibles).',
           ],
           pt: [
             'Tenders de frango ou filé de collin. Acompanhamento: arroz ou fritas ou salada.',
+            'Ou meia porção de feijoada.',
             'Sobremesa: bolo de chocolate ou duas bolas de sorvete (pergunte pelos sabores disponíveis).',
           ],
           en: [
             'Chicken tenders or collin fillet. Side dish: rice or fries or salad.',
+            'Or half portion of feijoada.',
             'Dessert: chocolate cake or two scoops of ice cream (ask for available flavors).',
           ],
         },
         price: 10
       },
       {
-        name: 'Plat du moment',
+        name: {
+          fr: 'Plat du moment',
+          pt: 'Prato do momento',
+          en: 'Dish of the moment',
+        },
         description: {
           fr: 'Decouvrez le plat du moment et son prix sur l\'ardoise',
           pt: 'Descubra o prato do momento e seu preço no quadro',
@@ -283,7 +791,11 @@ const menuPages: MenuDocumentPageProps[] = [
         price: null
       },
       {
-        name: 'Feijoada',
+        name: {
+          fr: 'Feijoada',
+          pt: 'Feijoada',
+          en: 'Feijoada',
+        },
         description: {
           fr: 'Haricots noirs mijotés avec du jarret de bœuf, de l\'échine de porc et de la saucisse fumée servi avec du riz, de la farofa (farine de manioc croustillante), vinaigrette à la brésilienne et des tranches d\'orange.',
           pt: 'Feijão preto cozido com músculo bovino, lombo de porco e linguiça defumada, servido com arroz, farofa (farinha de mandioca crocante), vinagrete à brasileira e fatias de laranja.',
@@ -292,7 +804,11 @@ const menuPages: MenuDocumentPageProps[] = [
         price: 20
       },
       {
-        name: 'Moqueca de peixe e camarão',
+        name: {
+          fr: 'Moqueca de poisson et crevettes',
+          pt: 'Moqueca de peixe e camarão',
+          en: 'Fish and shrimp moqueca',
+        },
         description: {
           fr: [
             'Plat originaire de Bahia à base de dos de cabillaud, crevettes et légumes, cuisiné dans une sauce au lait de coco et dendê.',
@@ -310,7 +826,11 @@ const menuPages: MenuDocumentPageProps[] = [
         price: 23
       },
       {
-        name: 'Moqueca vegana',
+        name: {
+          fr: 'Moqueca vegane',
+          pt: 'Moqueca vegana',
+          en: 'Vegan moqueca',
+        },
         description: {
           fr: [
             'Version vegane de la moqueca, préaprée avec de la banane plantain, des légumes frais, infusés des mêmes arômes riches de lait de coco et dendê.',
@@ -328,7 +848,11 @@ const menuPages: MenuDocumentPageProps[] = [
         price: 17
       },
       {
-        name: 'Picanha de race Angus d\'exception*',
+        name: {
+          fr: 'Picanha de race Angus d\'exception*',
+          pt: 'Picanha de raça Angus excepcional*',
+          en: 'Exceptional Angus beef rump cap*',
+        },
         description: {
           fr: [
             'Une délice pour les amoureux de la viande de bœuf, ce morceau de la pointe de la surlonge offre une tendreté exceptionnelle et une saveur riche, sublimée par sa couverture de gras persillé avec de la vinaigrette à la brésilienne, salade et farofa (farine de manioc croustillante).',
@@ -346,7 +870,7 @@ const menuPages: MenuDocumentPageProps[] = [
             'Barbecue sauce or Brazil sauce (curry and pineapple).',
           ],
         },
-        price: 26
+        price: 28
       },
     ],
     footer: {
@@ -371,7 +895,11 @@ const menuPages: MenuDocumentPageProps[] = [
     category: 'desserts',
     items: [
       {
-        name: 'Mousse de maracuja',
+        name: {
+          fr: 'Mousse de maracuja',
+          pt: 'Mousse de maracujá',
+          en: 'Passion fruit mousse',
+        },
         description: {
           fr: 'Mousse légère et acidulée aux fruits de la passion, base ganache au chocolat.',
           pt: 'Mousse leve e azeda de maracujá, base de ganache de chocolate.',
@@ -380,7 +908,11 @@ const menuPages: MenuDocumentPageProps[] = [
         price: 7
       },
       {
-        name: 'Pudim de leite',
+        name: {
+          fr: 'Pudim de lait',
+          pt: 'Pudim de leite',
+          en: 'Milk flan',
+        },
         description: {
           fr: 'Flan crémeux et délicatement sucré au caramel.',
           pt: 'Pudim cremoso e delicadamente adoçado com caramelo.',
@@ -389,22 +921,17 @@ const menuPages: MenuDocumentPageProps[] = [
         price: 7
       },
       {
-        name: 'Cheesecake',
+        name: {
+          fr: 'Cheesecake',
+          pt: 'Cheesecake',
+          en: 'Cheesecake',
+        },
         description: {
           fr: 'Gatêau au fromage frais, coulis au choix (fruits exotiques ou fruits rouges).',
           pt: 'Bolo de queijo fresco, calda à escolha (frutas exóticas ou frutas vermelhas).',
           en: 'Fresh cheese cake, sauce of your choice (exotic fruits or red fruits).',
         },
         price: 5.5
-      },
-      {
-        name: 'Petit gatêau e sorvete de doce de leite',
-        description: {
-          fr: 'Cœur coulant au chocolat avec sa boule de glace à la confiture de lait.',
-          pt: 'Bolo de chocolate com recheio cremoso e uma bola de sorvete de doce de leite.',
-          en: 'Chocolate cake with creamy filling and a scoop of dulce de leche ice cream.',
-        },
-        price: 6
       },
     ],
     footer: {
@@ -419,8 +946,13 @@ const menuPages: MenuDocumentPageProps[] = [
 ];
 
 const GET = async (request: NextRequest) => {
+  const response: MenuApiResponse = {
+    drinkPages,
+    foodPages,
+  };
+
   return new Response(
-    JSON.stringify(menuPages),
+    JSON.stringify(response),
     { status: 200 }
   );
 };

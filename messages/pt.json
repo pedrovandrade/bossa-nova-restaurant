@@ -23,12 +23,11 @@
             "rightAligned": false
           },
           "text": {
-            "title": "Seu restaurante brasileiro em Toulouse",
+            "title": "Bossa Nova, uma vibe brasileira no centro de Toulouse",
             "content": {
-              "0": "<p>Bossa Nova é o primeiro restaurante 100% dedicado à culinária brasileira em Toulouse.</p>",
-              "1": "<p>Oferecemos uma experiência culinária autêntica, com pratos preparados a partir de receitas tradicionais brasileiras.</p>",
-              "2": "<p>Nosso time apaixonado está aqui para fazer você descobrir os sabores do Brasil, em um ambiente amigável e acolhedor.</p>",
-              "3": "<reservationLink>Reserve uma mesa</reservationLink>"
+              "0": "<p>Nossa cozinha se inspira nas tradições brasileiras, ricas em múltiplas influências: africanas, indígenas, europeias... Cada prato conta um pedaço dessa história mestiça, generosa e cheia de sabores.</p>",
+              "1": "<p>A atmosfera, por sua vez, se inspira nos botecos, esses pequenos bares populares do Brasil onde se compartilha uma bebida, alguns petiscos, uma boa caipirinha e um bom momento.</p>",
+              "3": "<menuLink>Descubra nosso menu</menuLink>"
             }
           }
         },
@@ -39,12 +38,12 @@
             "rightAligned": true
           },
           "text": {
-            "title": "Um menu saboroso",
+            "title": "Ambiente & música ao vivo",
             "content": {
-              "0": "<p>Desfrute de uma variedade de pratos brasileiros autênticos, preparados com paixão e ingredientes frescos.</p>",
-              "1": "<p>Do aperitivo à sobremesa, cada prato é um convite a uma viagem culinária ao coração do Brasil.</p>",
-              "2": "<p>Nosso menu muda regularmente para oferecer sempre mais descobertas gustativas.</p>",
-              "3": "<menuLink>Descubra nosso menu</menuLink>"
+              "0": "<p>No Bossa Nova, a música faz parte da alma do lugar.</p>",
+              "1": "<p>De vez em quando, organizamos shows ao vivo para fazer o salão vibrar ao ritmo do Brasil.</p>",
+              "2": "<p>Para saber quando será o próximo show, não deixe de seguir nossas redes sociais.</p>",
+              "3": "<reservationLink>Reserve sua mesa</reservationLink>"
             }
           }
         }
@@ -61,8 +60,9 @@
         "description": "Pratos brasileiros autênticos preparados com paixão"
       },
       "description": {
-        "0": "Todos os nossos pratos são preparados com ingredientes frescos e de qualidade, para oferecer a você uma experiência culinária inesquecível.",
-        "1": "Nosso prato do momento muda a cada 15 dias, então não hesite em nos seguir nas redes sociais."
+        "0": "Nosso cardápio é composto por pratos permanentes, mas também por sugestões efêmeras que variam conforme a estação e as chegadas. Para descobrir esses produtos do momento, convidamos você a consultar nossas publicações e nossos stories permanentes no Instagram.",
+        "1": "Aqui você encontrará o cardápio completo com todos os nossos pratos fixos.",
+        "2": "Em caso de alergias, por favor nos avise no momento da sua reserva."
       }
     }
   },

@@ -23,12 +23,11 @@
             "rightAligned": false
           },
           "text": {
-            "title": "Votre restaurant brésilien à Toulouse",
+            "title": "Bossa Nova, une vibe brésilienne en plein centre-ville de Toulouse",
             "content": {
-              "0": "<p>Bossa Nova c'est le premier restaurant 100% dédié à la cuisine brésilienne à Toulouse.</p>",
-              "1": "<p>Nous vous proposons une expérience culinaire authentique, avec des plats préparés à partir de recettes traditionnelles brésiliennes.</p>",
-              "2": "<p>Notre équipe passionnée est là pour vous faire découvrir les saveurs du Brésil, dans une ambiance conviviale et chaleureuse.</p>",
-              "3": "<reservationLink>Reservez une table</reservationLink>"
+              "0": "<p>Notre cuisine s’inspire des traditions brésiliennes, riches de multiples influences : africaines, indigènes, européennes… Chaque plat raconte un bout de cette histoire métissée, généreuse et pleine de saveurs.</p>",
+              "1": "<p>L’ambiance, elle, s’inspire des botecos, ces petits bars populaires du Brésil où l’on partage un verre, quelques petiscos, une bonne caipirinha et un bon moment.</p>",
+              "3": "<menuLink>Découvrez notre menu</menuLink>"
             }
           }
         },
@@ -39,12 +38,12 @@
             "rightAligned": true
           },
           "text": {
-            "title": "Un menu savoureux",
+            "title": "Ambiance & musique live",
             "content": {
-              "0": "<p>Savourez une variété de plats brésiliens authentiques, préparés avec passion et des ingrédients frais.</p>",
-              "1": "<p>De l'entrée au dessert, chaque plat est une invitation à un voyage culinaire au cœur du Brésil.</p>",
-              "2": "<p>Notre menu change régulièrement pour vous offrir toujours plus de découvertes gustatives.</p>",
-              "3": "<menuLink>Découvrez notre menu</menuLink>"
+              "0": "<p>Chez Bossa Nova, la musique fait partie de l’âme du lieu.</p>",
+              "1": "<p>De temps en temps, nous organisons des concerts live pour faire vibrer la salle au rythme du Brésil.</p>",
+              "2": "<p>Pour savoir quand aura lieu le prochain concert, pensez à vous abonner à nos réseaux sociaux.</p>",
+              "3": "<reservationLink>Reservez votre table</reservationLink>"
             }
           }
         }
@@ -61,8 +60,9 @@
         "description": "Des plats brésiliens authentiques préparés avec passion"
       },
       "description": {
-        "0": "Tous nos plats sont préparés avec des ingrédients frais et de qualité, pour vous offrir une expérience culinaire inoubliable.",
-        "1": "Notre plat du moment change à chaque 15 jours, alors n'hésitez pas à nous suivre sur les réseaux sociaux."
+        "0": "Notre carte se compose de plats permanents, mais aussi de suggestions éphémères qui varient selon la saison et les arrivages. Pour découvrir ces produits du moment, nous vous invitons à consulter nos publications et nos stories permanentes sur Instagram.",
+        "1": "Vous trouverez ici la carte complète avec l'ensemble de nos plats fixes.",
+        "2": "En cas d'allergies, merci de nous prévenir lors de votre réservation."
       }
     }
   },

@@ -12,13 +12,65 @@ const HeaderNavDesktop: FC<HeaderLanguageListProps> = ({ languageOptions, siteLi
   return (
     <nav className='hidden md:flex md:items-center md:justify-around md:w-full'>
       <ul className="flex space-x-4">
-        {siteLinks?.map((item) => (
-          <li key={item.name}>
-            <Link href={item.href} className="hover:underline">
-              {t(`nav.${item.name}`)}
-            </Link>
-          </li>
-        ))}
+        {siteLinks?.map((item) => {
+          const { pointColor } = item;
+          let pointColorClass = '';
+
+          switch (pointColor) {
+            case 'orange':
+              pointColorClass = 'before:bg-bossanova-orange';
+              break;
+            case 'cyan':
+              pointColorClass = 'before:bg-bossanova-cyan';
+              break;
+            case 'yellow':
+              pointColorClass = 'before:bg-bossanova-yellow';
+              break;
+            case 'green':
+              pointColorClass = 'before:bg-bossanova-green';
+              break;
+            case 'blue':
+              pointColorClass = 'before:bg-bossanova-blue';
+              break;
+            case 'pink':
+              pointColorClass = 'before:bg-bossanova-pink';
+              break;
+            case 'red':
+              pointColorClass = 'before:bg-bossanova-red';
+              break;
+            case 'white':
+              pointColorClass = 'before:bg-white';
+              break;
+            default:
+              break;
+          }
+          return (
+            <li key={item.name}>
+              <Link
+                href={item.href}
+                className={[
+                  'relative',
+                  'before:content-[" "]',
+                  'before:block',
+                  'before:relative',
+                  'before:mx-auto',
+                  'before:-bottom-full',
+                  'before:w-1',
+                  'before:h-1',
+                  'before:rounded-full',
+                  'before:transition-all',
+                  'before:duration-300',
+                  'hover:before:w-full',
+                  'focus:before:w-full',
+                  pointColorClass,
+                ].join(' ')}
+                locale={currentLocale}
+              >
+                {t(`nav.${item.name}`)}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
       <HeaderLanguageSelector
         languageOptions={languageOptions}

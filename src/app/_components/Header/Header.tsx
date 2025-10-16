@@ -20,6 +20,7 @@ export type HeaderLanguageListProps = {
   siteLinks?: {
     href: string;
     name: string;
+    pointColor?: string;
   }[];
 }
 
@@ -47,10 +48,10 @@ const languageOptions: LanguageOption[] = [
 ];
 
 const siteLinks = [
-  { href: '/', name: 'home' },
-  { href: '/menu', name: 'menu' },
-  { href: '/reservations', name: 'reservations' },
-  { href: '/about', name: 'about' },
+  { href: '/', name: 'home', pointColor: 'green' },
+  { href: '/menu', name: 'menu', pointColor: 'pink' },
+  { href: '/reservations', name: 'reservations', pointColor: 'red' },
+  { href: '/about', name: 'about', pointColor: 'blue' },
 ];
 
 return (

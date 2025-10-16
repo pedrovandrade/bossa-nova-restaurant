@@ -23,12 +23,12 @@
             "rightAligned": false
           },
           "text": {
-            "title": "Your Brazilian restaurant in Toulouse",
+            "title": "Bossa Nova, a Brazilian vibe in the city center of Toulouse",
             "content": {
               "0": "<p>Bossa Nova is the first restaurant 100% dedicated to Brazilian cuisine in Toulouse.</p>",
-              "1": "<p>We offer an authentic culinary experience, with dishes prepared from traditional Brazilian recipes.</p>",
-              "2": "<p>Our passionate team is here to help you discover the flavors of Brazil, in a friendly and welcoming atmosphere.</p>",
-              "3": "<reservationLink>Reserve a table</reservationLink>"
+              "1": "<p>We offer you an authentic culinary experience, with dishes prepared from traditional Brazilian recipes.</p>",
+              "2": "<p>Our passionate team is here to help you discover the flavors of Brazil, in a friendly and warm atmosphere.</p>",
+              "3": "<menuLink>Discover our menu</menuLink>"
             }
           }
         },
@@ -39,12 +39,12 @@
             "rightAligned": true
           },
           "text": {
-            "title": "Delicious menu",
+            "title": "Vibe & live music",
             "content": {
-              "0": "<p>Enjoy a variety of authentic Brazilian dishes, prepared with passion and fresh ingredients.</p>",
-              "1": "<p>From appetizers to desserts, each dish is an invitation to a culinary journey to the heart of Brazil.</p>",
-              "2": "<p>Our menu changes regularly to offer you even more culinary discoveries.</p>",
-              "3": "<menuLink>Discover our menu</menuLink>"
+              "0": "<p>At Bossa Nova, music is part of the soul of the place.</p>",
+              "1": "<p>From time to time, we organize live concerts to make the room vibrate to the rhythm of Brazil.</p>",
+              "2": "<p>To know when the next concert will take place, be sure to follow us on social media.</p>",
+              "3": "<reservationLink>Book your table</reservationLink>"
             }
           }
         }
@@ -61,8 +61,9 @@
         "description": "Authentic Brazilian dishes prepared with passion"
       },
       "description": {
-        "0": "All our dishes are prepared with fresh, high-quality ingredients to offer you an unforgettable culinary experience.",
-        "1": "Our dish of the moment changes every 15 days, so don't hesitate to follow us on social media."
+        "0": "Our menu consists of permanent dishes, but also of ephemeral suggestions that vary according to the season and arrivals. To discover these products of the moment, we invite you to check out our posts and our permanent stories on Instagram.",
+        "1": "Here you will find the complete menu with all our fixed dishes.",
+        "2": "In case of allergies, please let us know when you make your reservation."
       }
     }
   },

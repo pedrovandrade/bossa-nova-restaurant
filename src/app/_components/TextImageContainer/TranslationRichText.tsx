@@ -13,7 +13,7 @@ export default function TranslationRichText({ children }: Props) {
     <>
       {children({
         p: (chunks: ReactNode) => (
-          <p className='text-slate-700'>{chunks}</p>
+          <p className='text-slate-700 mb-4'>{chunks}</p>
         ),
         reservationLink: (chunks: ReactNode) => (
           <div className='mt-10'>

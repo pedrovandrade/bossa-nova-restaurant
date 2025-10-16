@@ -1,4 +1,6 @@
-import { FC } from 'react';
+'use client';
+
+import { FC, useEffect } from 'react';
 import Script from 'next/script';
 import { useTranslations } from 'next-intl';
 
@@ -11,8 +13,16 @@ const InstagramFeed: FC<InstagramFeedProps> = ({ path }) => {
 
   const t = useTranslations('pages.home.instagramFeed');
 
+  useEffect(() => {
+    // Ensure the Instagram script is loaded
+    if (typeof window !== 'undefined' && (window as any).instgrm) {
+      (window as any).instgrm.Embeds.process();
+    }
+  }, [path]);
+
   return (
     <div className="w-full h-full flex items-center justify-center">
+      <Script strategy='beforeInteractive' src='https://www.instagram.com/embed.js' />
       <blockquote
         className="instagram-media"
         data-instgrm-captioned
@@ -279,7 +289,6 @@ const InstagramFeed: FC<InstagramFeedProps> = ({ path }) => {
           </p>
         </div>
       </blockquote>
-      <Script async src="//www.instagram.com/embed.js" />
     </div>
   );
 };

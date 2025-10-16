@@ -1,36 +1,25 @@
 import { FC } from 'react';
-import { MenuHeaderIcon } from '@/app/_components/_icons';
-import { LocalizedText, LocalizedTextArray } from "@/types/LocalizedText";
+import { MenuHeaderIcon } from '@/components/_icons';
 import { useLocalized } from '@/hooks/language';
+import type { FoodMenuPageData } from '@/app/_types/FoodMenuPageData';
 
-// export type MenuDocumentPageProps = {
-//   title: string;
+// export type FoodPageProps = {
+//   title: LocalizedText;
 //   category: 'starters' | 'mainCourses' | 'desserts' | 'beverages';
 //   items: {
-//     name: string;
-//     description?: string | string[];
+//     name: LocalizedText;
+//     description?: LocalizedText | LocalizedTextArray;
 //     price: number | null;
 //   }[];
 //   footer: {
-//     notes?: string[];
-//     generalNote?: string;
+//     notes?: LocalizedTextArray;
+//     generalNote?: LocalizedText;
 //   };
+//   // foodPages?: FoodMenuPage[];
+//   // drinkPages?: DrinkMenuPage[];
 // };
-export type MenuDocumentPageProps = {
-  title: LocalizedText;
-  category: 'starters' | 'mainCourses' | 'desserts' | 'beverages';
-  items: {
-    name: string;
-    description?: LocalizedText | LocalizedTextArray;
-    price: number | null;
-  }[];
-  footer: {
-    notes?: LocalizedTextArray;
-    generalNote?: LocalizedText;
-  };
-};
 
-const MenuDocumentPage: FC<MenuDocumentPageProps> = ({ title, items, footer }) => {
+const FoodMenuPage: FC<FoodMenuPageData> = ({ title, items, footer }) => {
   const getLocalized = useLocalized();
   const footerNotes: string[] = getLocalized(footer?.notes || {}) as string[] || [];
   const footerGeneralNote: string = getLocalized(footer?.generalNote || {}) as string || '';
@@ -63,10 +52,12 @@ const MenuDocumentPage: FC<MenuDocumentPageProps> = ({ title, items, footer }) =
               priceFormatted = price % 1 === 0 ? price.toFixed(0) : price.toFixed(2);
             }
 
+            const itemName = getLocalized(item.name);
+
             return (
-              <li key={item.name + index} className="py-4">
+              <li key={index} className="py-4">
                 <div className="flex justify-between text-xl font-extrabold uppercase tracking-widest text-bossanova-orange">
-                  <span>{item.name}</span>
+                  <span>{itemName}</span>
                   { price && <span>{priceFormatted} euros</span> }
                 </div>
                 {descriptionText}
@@ -76,24 +67,11 @@ const MenuDocumentPage: FC<MenuDocumentPageProps> = ({ title, items, footer }) =
         </ul>
       </div>
 
-      {/* Footer Notes */}
-      {/* {(footer?.notes?.length || footer?.generalNote) && (
-        <div className="flex flex-col text-sm items-center mt-auto text-center">
-          {footer.notes?.map((note, index) => (
-            <div key={index} className="flex items-start">
-              <span className="mr-2 font-bold">*</span>
-              <span>{note}</span>
-            </div>
-          ))}
-          {footer.generalNote && (
-            <div className="mt-2 text-bossanova-cyan font-bold">{footer.generalNote}</div>
-          )}
-        </div>
-      )} */}
+      {/* Footer notes */}
       {(footerNotes?.length || footerGeneralNote) && (
         <div className="flex flex-col text-sm items-center mt-auto text-center">
           {footerNotes?.map((note, index) => (
-            <div key={index} className="flex items-start">
+            <div key={index} className="flex items-start text-bossanova-orange">
               <span className="mr-2 font-bold">*</span>
               <span>{note}</span>
             </div>
@@ -107,4 +85,4 @@ const MenuDocumentPage: FC<MenuDocumentPageProps> = ({ title, items, footer }) =
   );
 };
 
-export default MenuDocumentPage;
+export default FoodMenuPage;

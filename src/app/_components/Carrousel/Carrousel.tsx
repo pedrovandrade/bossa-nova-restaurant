@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useState, useRef, type FC } from 'react';
+import { ReactNode, useState, useRef, useEffect, type FC } from 'react';
 import ScrollButton from './ScrollButton';
 
 type CarrouselProps = {
@@ -14,6 +14,10 @@ const Carrousel: FC<CarrouselProps> = ({ items, containerClass }) => {
   const [dragging, setDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState(0);
 
+  // refs to keep window listeners so we can remove them later
+  const windowMouseMoveRef = useRef<((e: MouseEvent) => void) | undefined>(undefined);
+  const windowMouseUpRef = useRef<((e: MouseEvent) => void) | undefined>(undefined);
+
   const handlePrev = () => {
     setCurrent((prev) => (prev === 0 ? items.length - 1 : prev - 1));
     setDragOffset(0);
@@ -23,11 +27,37 @@ const Carrousel: FC<CarrouselProps> = ({ items, containerClass }) => {
     setDragOffset(0);
   };
 
+  const removeWindowListeners = () => {
+    if (windowMouseMoveRef.current) {
+      window.removeEventListener('mousemove', windowMouseMoveRef.current);
+      windowMouseMoveRef.current = undefined;
+    }
+    if (windowMouseUpRef.current) {
+      window.removeEventListener('mouseup', windowMouseUpRef.current);
+      windowMouseUpRef.current = undefined;
+    }
+  };
+
   // Handle drag start
   const handleDragStart = (clientX: number) => {
     dragStartX.current = clientX;
     setDragging(true);
     setDragOffset(0);
+
+    // attach window listeners so we keep receiving move/up even outside the component
+    windowMouseMoveRef.current = (ev: MouseEvent) => {
+      // only proceed if dragging is active
+      if (dragStartX.current === null) return;
+      handleDragMove(ev.clientX);
+    };
+
+    windowMouseUpRef.current = (ev: MouseEvent) => {
+      removeWindowListeners();
+      handleDragEnd(ev.clientX);
+    };
+
+    window.addEventListener('mousemove', windowMouseMoveRef.current);
+    window.addEventListener('mouseup', windowMouseUpRef.current);
   };
 
   // Handle drag move
@@ -38,7 +68,14 @@ const Carrousel: FC<CarrouselProps> = ({ items, containerClass }) => {
 
   // Handle drag end
   const handleDragEnd = (clientX: number) => {
-    if (!dragging || dragStartX.current === null) return;
+    if (!dragging || dragStartX.current === null) {
+      removeWindowListeners();
+      dragStartX.current = null;
+      setDragOffset(0);
+      setDragging(false);
+      return;
+    }
+
     const delta = clientX - dragStartX.current;
     if (Math.abs(delta) > 50) {
       if (delta < 0) {
@@ -47,14 +84,25 @@ const Carrousel: FC<CarrouselProps> = ({ items, containerClass }) => {
         handlePrev();
       }
     }
+
     setDragging(false);
     setDragOffset(0);
     dragStartX.current = null;
+    removeWindowListeners();
   };
 
-  // Mouse events
-  const handleMouseDown = (e: React.MouseEvent) => handleDragStart(e.clientX);
-  const handleMouseUp = (e: React.MouseEvent) => handleDragEnd(e.clientX);
+  // Mouse events (only start drag on left button)
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (e.button !== 0) return; // only left button
+    // prevent text selection while dragging
+    e.preventDefault();
+    handleDragStart(e.clientX);
+  };
+  const handleMouseUp = (e: React.MouseEvent) => {
+    // only treat left-button up as drag end
+    if (e.button !== 0) return;
+    handleDragEnd(e.clientX);
+  };
   const handleMouseMove = (e: React.MouseEvent) => {
     if (dragging) handleDragMove(e.clientX);
   };
@@ -66,6 +114,14 @@ const Carrousel: FC<CarrouselProps> = ({ items, containerClass }) => {
     if (dragging) handleDragMove(e.touches[0].clientX);
   };
 
+  // If component unmounts while listeners still attached, remove them
+  useEffect(() => {
+    return () => {
+      removeWindowListeners();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className='relative'>
       {/* Forward and backward buttons */}
@@ -73,10 +129,14 @@ const Carrousel: FC<CarrouselProps> = ({ items, containerClass }) => {
       <ScrollButton direction='next' onClick={handleNext} />
 
       <div
-        className={`overflow-hidden shadow-2xl ${containerClass}`}
+        className={`overflow-hidden shadow-2xl ${containerClass ?? ''}`}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
+        onMouseLeave={(e) => {
+          // treat leaving the carousel as a mouseup (end drag)
+          if (dragging) handleDragEnd((e as React.MouseEvent).clientX);
+        }}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
         onTouchMove={handleTouchMove}

@@ -1,4 +1,4 @@
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { type FC, useState } from 'react';
 import { DropdownMenu, Accordion } from 'radix-ui';
@@ -10,6 +10,9 @@ import Chevron from '@/components/_icons/Chevron';
 const HeaderNavMobile: FC<HeaderLanguageListProps> = ({ languageOptions, siteLinks }) => {
 
   const t = useTranslations('header');
+  const currentLocale = useLocale();
+  const currentLanguage = languageOptions.find(lang => lang.locale === currentLocale);
+
   const [accordionTabSelected, setAccordionTabSelected] = useState<string | undefined>('');
 
   const onLanguageSelectorOpenChange = (e: Event) => {
@@ -21,7 +24,7 @@ const HeaderNavMobile: FC<HeaderLanguageListProps> = ({ languageOptions, siteLin
     <nav className='block md:hidden'>
       <DropdownMenu.Root modal={true}>
         <DropdownMenu.Trigger
-          className="hover:cursor-pointer hover:bg-bossanova-green focus:bg-bossanova-green rounded transition duration-300 p-2"
+          className='hover:cursor-pointer hover:bg-bossanova-green focus:bg-bossanova-green rounded transition duration-300 p-2'
         >
           <div className='w-8'>
             <BurgerMenu />
@@ -48,10 +51,10 @@ const HeaderNavMobile: FC<HeaderLanguageListProps> = ({ languageOptions, siteLin
             {siteLinks?.map((item) => (
               <DropdownMenu.Item
                 key={item.name}
-                className="hover:bg-bossanova-green focus:bg-bossanova-green rounded w-full px-8 py-4 font-medium"
+                className='hover:bg-bossanova-green focus:bg-bossanova-green rounded w-full px-8 py-4 font-medium'
                 asChild
               >
-                <Link href={item.href} className="flex items-center">
+                <Link href={item.href} className='flex items-center'>
                   {t(`nav.${item.name}`)}
                 </Link>
               </DropdownMenu.Item>
@@ -62,11 +65,14 @@ const HeaderNavMobile: FC<HeaderLanguageListProps> = ({ languageOptions, siteLin
               asChild
             >
               <Accordion.Root type='single' value={accordionTabSelected} collapsible asChild>
-                <Accordion.Item value='value-1' className="w-full">
+                <Accordion.Item value='value-1' className='w-full'>
                   <Accordion.Trigger
-                    className="flex justify-between group-focus:bg-bossanova-green hover:cursor-pointer hover:bg-bossanova-green focus:bg-bossanova-green rounded p-2 w-full px-8 py-4 font-medium"
+                    className='flex justify-between group-focus:bg-bossanova-green hover:cursor-pointer hover:bg-bossanova-green focus:bg-bossanova-green rounded p-2 w-full px-8 py-4 font-medium'
                   >
-                    <p>{t('language')}</p>
+                    <div className='flex items-center gap-6'>
+                      <div className='w-5'>{currentLanguage?.icon}</div>
+                      <p>{t('language')}</p>
+                    </div>
                     <Chevron className='group-data-[state=open]:rotate-180' />
                   </Accordion.Trigger>
                   <Accordion.Content
