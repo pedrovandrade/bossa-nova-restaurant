@@ -25,10 +25,9 @@
           "text": {
             "title": "Bossa Nova, a Brazilian vibe in the city center of Toulouse",
             "content": {
-              "0": "<p>Bossa Nova is the first restaurant 100% dedicated to Brazilian cuisine in Toulouse.</p>",
-              "1": "<p>We offer you an authentic culinary experience, with dishes prepared from traditional Brazilian recipes.</p>",
-              "2": "<p>Our passionate team is here to help you discover the flavors of Brazil, in a friendly and warm atmosphere.</p>",
-              "3": "<menuLink>Discover our menu</menuLink>"
+              "0": "<p>Our cuisine is inspired by Brazilian traditions, rich in multiple influences: African, Indigenous, European... Each dish tells a piece of this mixed, generous and flavorful story.</p>",
+              "1": "<p>The atmosphere, on the other hand, is inspired by botecos, those small popular bars in Brazil where you share a drink, some petiscos, a good caipirinha and a good time.</p>",
+              "2": "<menuPageLink>Discover our menu</menuPageLink>"
             }
           }
         },
@@ -44,7 +43,7 @@
               "0": "<p>At Bossa Nova, music is part of the soul of the place.</p>",
               "1": "<p>From time to time, we organize live concerts to make the room vibrate to the rhythm of Brazil.</p>",
               "2": "<p>To know when the next concert will take place, be sure to follow us on social media.</p>",
-              "3": "<reservationLink>Book your table</reservationLink>"
+              "3": "<reservationPageLink>Book your table</reservationPageLink>"
             }
           }
         }
@@ -64,6 +63,50 @@
         "0": "Our menu consists of permanent dishes, but also of ephemeral suggestions that vary according to the season and arrivals. To discover these products of the moment, we invite you to check out our posts and our permanent stories on Instagram.",
         "1": "Here you will find the complete menu with all our fixed dishes.",
         "2": "In case of allergies, please let us know when you make your reservation."
+      }
+    },
+    "reservations": {
+      "presentationBanner": {
+        "title": "Book your table",
+        "description": "We look forward to welcoming you to Bossa Nova!"
+      },
+      "textImageContainers": {
+        "0": {
+          "image": {
+            "alt": "",
+            "height": 1024,
+            "rightAligned": false
+          },
+          "text": {
+            "title": "Book a table",
+            "content": {
+              "0": "<p>You can book a table with <reservationLink>our Google Maps booking space</reservationLink>.</p>"
+            }
+          }
+        },
+        "1": {
+          "image": {
+            "alt": "",
+            "height": 1024,
+            "rightAligned": true
+          },
+          "text": {
+            "title": "Private events",
+            "content": {
+              "0": "<p>Looking for a unique venue to host your private event?</p>",
+              "1": "<p>Bossa Nova offers you the possibility to privatize the restaurant for your special occasions: birthdays, anniversaries, business events, etc.</p>",
+              "2": "<p>To know more about our options or to organize your event, contact us by :</p>",
+              "3": "<p>Phone: <telephoneLink></telephoneLink></p>",
+              "4": "<p>E-mail: <emailLink>bossanovatoulouse@gmail.com</emailLink></p>"
+            }
+          }
+        }
+      }
+    },
+    "about": {
+      "presentationBanner": {
+        "title": "About Us",
+        "description": "Discover the history and philosophy of Bossa Nova"
       }
     }
   },

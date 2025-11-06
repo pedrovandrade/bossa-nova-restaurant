@@ -25,9 +25,9 @@
           "text": {
             "title": "Bossa Nova, une vibe brésilienne en plein centre-ville de Toulouse",
             "content": {
-              "0": "<p>Notre cuisine s’inspire des traditions brésiliennes, riches de multiples influences : africaines, indigènes, européennes… Chaque plat raconte un bout de cette histoire métissée, généreuse et pleine de saveurs.</p>",
-              "1": "<p>L’ambiance, elle, s’inspire des botecos, ces petits bars populaires du Brésil où l’on partage un verre, quelques petiscos, une bonne caipirinha et un bon moment.</p>",
-              "3": "<menuLink>Découvrez notre menu</menuLink>"
+              "0": "<p>Notre cuisine s'inspire des traditions brésiliennes, riches de multiples influences : africaines, indigènes, européennes… Chaque plat raconte un bout de cette histoire métissée, généreuse et pleine de saveurs.</p>",
+              "1": "<p>L'ambiance, elle, s'inspire des botecos, ces petits bars populaires du Brésil où l'on partage un verre, quelques petiscos, une bonne caipirinha et un bon moment.</p>",
+              "2": "<menuPageLink>Découvrez notre menu</menuPageLink>"
             }
           }
         },
@@ -40,10 +40,10 @@
           "text": {
             "title": "Ambiance & musique live",
             "content": {
-              "0": "<p>Chez Bossa Nova, la musique fait partie de l’âme du lieu.</p>",
+              "0": "<p>Chez Bossa Nova, la musique fait partie de l'âme du lieu.</p>",
               "1": "<p>De temps en temps, nous organisons des concerts live pour faire vibrer la salle au rythme du Brésil.</p>",
               "2": "<p>Pour savoir quand aura lieu le prochain concert, pensez à vous abonner à nos réseaux sociaux.</p>",
-              "3": "<reservationLink>Reservez votre table</reservationLink>"
+              "3": "<reservationPageLink>Reservez votre table</reservationPageLink>"
             }
           }
         }
@@ -63,6 +63,50 @@
         "0": "Notre carte se compose de plats permanents, mais aussi de suggestions éphémères qui varient selon la saison et les arrivages. Pour découvrir ces produits du moment, nous vous invitons à consulter nos publications et nos stories permanentes sur Instagram.",
         "1": "Vous trouverez ici la carte complète avec l'ensemble de nos plats fixes.",
         "2": "En cas d'allergies, merci de nous prévenir lors de votre réservation."
+      }
+    },
+    "reservations": {
+      "presentationBanner": {
+        "title": "Réservez votre table",
+        "description": "Nous avons hâte de vous accueillir au Bossa Nova"
+      },
+      "textImageContainers": {
+        "0": {
+          "image": {
+            "alt": "",
+            "height": 1024,
+            "rightAligned": false
+          },
+          "text": {
+            "title": "Reservez une table",
+            "content": {
+              "0": "<p>Vous pouvez réserver une table avec <reservationLink>notre espace de reservation du Google Maps</reservationLink>.</p>"
+            }
+          }
+        },
+        "1": {
+          "image": {
+            "alt": "",
+            "height": 1024,
+            "rightAligned": true
+          },
+          "text": {
+            "title": "Privatisation",
+            "content": {
+              "0": "<p>Vous voudriez vivre des soirées brésiliennes ?</p>",
+              "1": "<p>Que ce soit pour un anniversaire, un repas d'équipe, une fête entre amis ou tout simplement une belle occasion à célébrer, nous vous proposons de privatiser notre restaurant pour vivre un moment chaleureux, festif… et 100 % brésilien.</p>",
+              "2": "<p>Pour plus d'infos ou pour organiser votre événement, contactez-nous par :</p>",
+              "3": "<p>Téléphone : <telephoneLink></telephoneLink></p>",
+              "4": "<p>E-mail : <emailLink>bossanovatoulouse@gmail.com</emailLink></p>"
+            }
+          }
+        }
+      }
+    },
+    "about": {
+      "presentationBanner": {
+        "title": "À propos de nous",
+        "description": "Découvrez l'histoire et la philosophie du Bossa Nova"
       }
     }
   },

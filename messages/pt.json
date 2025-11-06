@@ -27,7 +27,7 @@
             "content": {
               "0": "<p>Nossa cozinha se inspira nas tradições brasileiras, ricas em múltiplas influências: africanas, indígenas, europeias... Cada prato conta um pedaço dessa história mestiça, generosa e cheia de sabores.</p>",
               "1": "<p>A atmosfera, por sua vez, se inspira nos botecos, esses pequenos bares populares do Brasil onde se compartilha uma bebida, alguns petiscos, uma boa caipirinha e um bom momento.</p>",
-              "3": "<menuLink>Descubra nosso menu</menuLink>"
+              "2": "<menuPageLink>Descubra nosso menu</menuPageLink>"
             }
           }
         },
@@ -43,7 +43,7 @@
               "0": "<p>No Bossa Nova, a música faz parte da alma do lugar.</p>",
               "1": "<p>De vez em quando, organizamos shows ao vivo para fazer o salão vibrar ao ritmo do Brasil.</p>",
               "2": "<p>Para saber quando será o próximo show, não deixe de seguir nossas redes sociais.</p>",
-              "3": "<reservationLink>Reserve sua mesa</reservationLink>"
+              "3": "<reservationPageLink>Reserve sua mesa</reservationPageLink>"
             }
           }
         }
@@ -63,6 +63,50 @@
         "0": "Nosso cardápio é composto por pratos permanentes, mas também por sugestões efêmeras que variam conforme a estação e as chegadas. Para descobrir esses produtos do momento, convidamos você a consultar nossas publicações e nossos stories permanentes no Instagram.",
         "1": "Aqui você encontrará o cardápio completo com todos os nossos pratos fixos.",
         "2": "Em caso de alergias, por favor nos avise no momento da sua reserva."
+      }
+    },
+    "reservations": {
+      "presentationBanner": {
+        "title": "Reserve sua mesa",
+        "description": "Garanta seu lugar no Bossa Nova com facilidade"
+      },
+      "textImageContainers": {
+        "0": {
+          "image": {
+            "alt": "",
+            "height": 1024,
+            "rightAligned": false
+          },
+          "text": {
+            "title": "Reserve uma mesa",
+            "content": {
+              "0": "<p>Você pode reservar sua mesa de através do <reservationLink>nosso espaço para reservas online no Google Maps</reservationLink></p>."
+            }
+          }
+        },
+        "1": {
+          "image": {
+            "alt": "",
+            "height": 1024,
+            "rightAligned": true
+          },
+          "text": {
+            "title": "Privatização",
+            "content": {
+              "0": "<p>Você gostaria de viver noites brasileiras?</p>",
+              "1": "<p>O Bossa Nova pode ser privatizado para eventos especiais, como aniversários, festas de empresa ou encontros entre amigos.</p>",
+              "2": "<p>Para mais informações ou para organizar seu evento, entre em contato conosco por:</p>",
+              "3": "<p>Telefone: <telephoneLink></telephoneLink></p>",
+              "4": "<p>E-mail: <emailLink>bossanovatoulouse@gmail.com</emailLink></p>"
+            }
+          }
+        }
+      }
+    },
+    "about": {
+      "presentationBanner": {
+        "title": "Sobre o Bossa Nova",
+        "description": "Conheça nossa história e nossa paixão pela culinária brasileira"
       }
     }
   },

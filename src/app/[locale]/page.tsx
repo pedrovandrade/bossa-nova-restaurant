@@ -1,4 +1,4 @@
-import TextImageContainer, { TextImageContainerProps } from '@/components/TextImageContainer/TextImageContainer';
+import TextImageContainer, { TextImageContainerProps } from '@/components/TextImageContainer';
 import PresentationBanner from '@/components/PresentationBanner';
 import { useMessages, useTranslations } from 'next-intl';
 import foodPhoto1 from '@/assets/images/entree-plat-1.jpg';
@@ -8,7 +8,7 @@ import FadeInContainer from '@/components/FadeInContainer';
 import restaurantOverviewDesktop from '@/assets/images/restaurant-overview-desktop.jpg';
 import restaurantOverviewMobile from '@/assets/images/restaurant-overview-mobile.jpg';
 
-type TextImageContainer = {
+type TextImageContainerParams = {
   image: {
     file: string,
     alt?: string,
@@ -24,7 +24,7 @@ type TextImageContainer = {
 
 export default function Home() {
   const messages = useMessages();
-  const textImageContainers = messages.pages.home.textImageContainers as {[key: string]: TextImageContainer};
+  const textImageContainers = messages.pages.home.textImageContainers as {[key: string]: TextImageContainerParams};
 
   const imageFiles = [
     foodPhoto1,

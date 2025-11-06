@@ -1,13 +1,18 @@
+'use client';
+
 import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { FC } from 'react';
 import { HeaderLanguageListProps } from '@/components/Header';
 import { HeaderLanguageSelector } from '@/components/Header/HeaderLanguageSelector';
+import { usePathname } from 'next/navigation';
 
 const HeaderNavDesktop: FC<HeaderLanguageListProps> = ({ languageOptions, siteLinks }) => {
   const currentLocale = useLocale();
 
   const t = useTranslations('header');
+
+  const pathname = usePathname();
 
   return (
     <nav className='hidden md:flex md:items-center md:justify-around md:w-full'>
@@ -44,6 +49,10 @@ const HeaderNavDesktop: FC<HeaderLanguageListProps> = ({ languageOptions, siteLi
             default:
               break;
           }
+
+          const itemRoute = item.href === '/' ? `/${currentLocale}` : `/${currentLocale}${item.href}`;
+          const pointGrowthClass = pathname === itemRoute ? 'before:w-full' : 'hover:before:w-full';
+
           return (
             <li key={item.name}>
               <Link
@@ -60,8 +69,8 @@ const HeaderNavDesktop: FC<HeaderLanguageListProps> = ({ languageOptions, siteLi
                   'before:rounded-full',
                   'before:transition-all',
                   'before:duration-300',
-                  'hover:before:w-full',
-                  'focus:before:w-full',
+                  'hover:bg-bossanova-blue/50',
+                  pointGrowthClass,
                   pointColorClass,
                 ].join(' ')}
                 locale={currentLocale}

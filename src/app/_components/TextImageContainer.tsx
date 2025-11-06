@@ -1,7 +1,7 @@
-import { FC, PropsWithChildren } from 'react';
+import { type FC } from 'react';
 import Image, { type StaticImageData } from 'next/image';
 import { useTranslations } from 'next-intl';
-import TranslationRichText from './TranslationRichText';
+import I18nRichTextProcessor, { RichTextParams } from './I18nRichTextProcessor';
 
 export type ContainerImageData = {
   file: StaticImageData | string,
@@ -16,14 +16,15 @@ export type ContainerTextData = {
   key: string,
   title: string,
   content?: string[],
+  params?: RichTextParams,
 };
 
-export type TextImageContainerProps = PropsWithChildren & {
+export type TextImageContainerProps = {
   image: ContainerImageData,
   text: ContainerTextData,
 };
 
-const TextImageContainer: FC<TextImageContainerProps> = ({ image, text, children }) => {
+const TextImageContainer: FC<TextImageContainerProps> = ({ image, text }) => {
   const [orderImage, orderText] = image.rightAligned ? ['order-1 md:order-2', 'order-1'] : ['order-2 md:order-1', 'order-2'];
   const t = useTranslations(text.prefix);
 
@@ -42,11 +43,10 @@ const TextImageContainer: FC<TextImageContainerProps> = ({ image, text, children
           {text.title}
         </h2>
         {text?.content?.map((contentKey) => (
-          <TranslationRichText key={`contentKey-${contentKey}`}>
+          <I18nRichTextProcessor key={`contentKey-${contentKey}`} params={text.params}>
             {(tags) => t.rich(contentKey, tags)}
-          </TranslationRichText>
+          </I18nRichTextProcessor>
         ))}
-        {children}
       </section>
     </div>
   );
