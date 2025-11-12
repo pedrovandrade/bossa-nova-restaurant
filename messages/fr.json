@@ -9,6 +9,10 @@
     },
     "language": "Langue"
   },
+  "carrousel": {
+    "previous": "Précédent",
+    "next": "Suivant"
+  },
   "pages": {
     "home": {
       "presentationBanner": {
@@ -94,7 +98,7 @@
             "title": "Privatisation",
             "content": {
               "0": "<p>Vous voudriez vivre des soirées brésiliennes ?</p>",
-              "1": "<p>Que ce soit pour un anniversaire, un repas d'équipe, une fête entre amis ou tout simplement une belle occasion à célébrer, nous vous proposons de privatiser notre restaurant pour vivre un moment chaleureux, festif… et 100 % brésilien.</p>",
+              "1": "<p>Que ce soit pour un anniversaire, un repas d'équipe, une fête entre amis ou tout simplement une belle occasion à célébrer, nous vous proposons de privatiser notre restaurant pour vivre un moment chaleureux, festif… et 100% brésilien.</p>",
               "2": "<p>Pour plus d'infos ou pour organiser votre événement, contactez-nous par :</p>",
               "3": "<p>Téléphone : <telephoneLink></telephoneLink></p>",
               "4": "<p>E-mail : <emailLink>bossanovatoulouse@gmail.com</emailLink></p>"
@@ -107,6 +111,13 @@
       "presentationBanner": {
         "title": "À propos de nous",
         "description": "Découvrez l'histoire et la philosophie du Bossa Nova"
+      },
+      "textParagraphs": {
+        "0": "<p>Le Bossa Nova, c'est avant tout une histoire d'amour : celle d'un couple franco-brésilien, et celle d'un pays haut en couleur, le Brésil.</p>",
+        "1": "<p>Portés depuis toujours par l'amour de sa culture, de ses plats généreux et de ses musiques entraînantes, nous avons eu envie d'ouvrir un lieu qui nous ressemble.</p>",
+        "3": "<p>Ici, la cuisine, la musique et le partage se mêlent pour créer une expérience unique.</p>",
+        "4": "<p>Bienvenue dans notre univers.</p>",
+        "5": "<p>Bem-vindo ao Bossa Nova.</p>"
       }
     }
   },

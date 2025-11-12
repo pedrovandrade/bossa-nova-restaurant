@@ -9,6 +9,10 @@
     },
     "language": "Idioma"
   },
+  "carrousel": {
+    "previous": "Anterior",
+    "next": "Próximo"
+  },
   "pages": {
     "home": {
       "presentationBanner": {
@@ -94,7 +98,7 @@
             "title": "Privatização",
             "content": {
               "0": "<p>Você gostaria de viver noites brasileiras?</p>",
-              "1": "<p>O Bossa Nova pode ser privatizado para eventos especiais, como aniversários, festas de empresa ou encontros entre amigos.</p>",
+              "1": "<p>Seja para um aniversário, um jantar de équipe, uma festa entre amigos ou simplesmente uma boa ocasião para celebrar, nós propomos privatizar nosso restaurante para viver um momento caloroso, festivo... e 100% brasileiro</p>",
               "2": "<p>Para mais informações ou para organizar seu evento, entre em contato conosco por:</p>",
               "3": "<p>Telefone: <telephoneLink></telephoneLink></p>",
               "4": "<p>E-mail: <emailLink>bossanovatoulouse@gmail.com</emailLink></p>"
@@ -107,6 +111,13 @@
       "presentationBanner": {
         "title": "Sobre o Bossa Nova",
         "description": "Conheça nossa história e nossa paixão pela culinária brasileira"
+      },
+      "textParagraphs": {
+        "0": "<p>O Bossa Nova é, antes de tudo, uma história de amor: a de um casal franco-brasileiro, e a de um país cheio de cores, o Brasil.</p>",
+        "1": "<p>Movidos desde sempre pelo amor à sua cultura, aos seus pratos generosos e às suas músicas contagiantes, tivemos vontade de abrir um lugar que se parecesse conosco.</p>",
+        "3": "<p>Aqui, a cozinha, a música e o compartilhamento se misturam para criar uma experiência única.</p>",
+        "4": "<p>Bem-vindo ao nosso universo.</p>",
+        "5": "<p>Bem-vindo ao Bossa Nova.</p>"
       }
     }
   },

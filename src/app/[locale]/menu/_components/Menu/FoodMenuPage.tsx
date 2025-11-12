@@ -25,7 +25,7 @@ const FoodMenuPage: FC<FoodMenuPageData> = ({ title, items, footer }) => {
   const footerGeneralNote: string = getLocalized(footer?.generalNote || {}) as string || '';
 
   return (
-    <section className="flex flex-col justify-between w-full bg-white pl-10 md:pl-20 pr-10 md:pr-30 py-7 text-bossanova-cyan">
+    <section className="flex flex-col justify-between w-full bg-white pl-7 md:pl-20 pr-7 md:pr-30 py-7 text-bossanova-cyan">
       <div>
         <div className='flex justify-center max-h-20 mb-4'>
           <MenuHeaderIcon />

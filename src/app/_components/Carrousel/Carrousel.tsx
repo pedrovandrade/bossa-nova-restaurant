@@ -8,6 +8,8 @@ type CarrouselProps = {
   containerClass?: string,
 };
 
+const SCROLL_MARGIN = 80; // px offset above carousel when scrolling
+
 const Carrousel: FC<CarrouselProps> = ({ items, containerClass }) => {
   const [current, setCurrent] = useState(0);
   const dragStartX = useRef<number | null>(null);
@@ -18,13 +20,27 @@ const Carrousel: FC<CarrouselProps> = ({ items, containerClass }) => {
   const windowMouseMoveRef = useRef<((e: MouseEvent) => void) | undefined>(undefined);
   const windowMouseUpRef = useRef<((e: MouseEvent) => void) | undefined>(undefined);
 
+  // ref to the visible carousel wrapper to scroll to
+  const carouselRef = useRef<HTMLDivElement | null>(null);
+
+  const scrollToCarouselTop = (margin = SCROLL_MARGIN) => {
+    if (typeof window === 'undefined' || !carouselRef.current) return;
+    const rect = carouselRef.current.getBoundingClientRect();
+    const target = Math.max(0, window.scrollY + rect.top - margin);
+    window.scrollTo({ top: target, behavior: 'smooth' });
+  };
+
   const handlePrev = () => {
     setCurrent((prev) => (prev === 0 ? items.length - 1 : prev - 1));
     setDragOffset(0);
+    // scroll to carousel top when changing page
+    scrollToCarouselTop();
   };
   const handleNext = () => {
     setCurrent((prev) => (prev === items.length - 1 ? 0 : prev + 1));
     setDragOffset(0);
+    // scroll to carousel top when changing page
+    scrollToCarouselTop();
   };
 
   const removeWindowListeners = () => {
@@ -119,7 +135,6 @@ const Carrousel: FC<CarrouselProps> = ({ items, containerClass }) => {
     return () => {
       removeWindowListeners();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -130,6 +145,7 @@ const Carrousel: FC<CarrouselProps> = ({ items, containerClass }) => {
 
       <div
         className={`overflow-hidden shadow-2xl ${containerClass ?? ''}`}
+        ref={carouselRef}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}

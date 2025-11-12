@@ -1,11 +1,10 @@
 'use client';
 
 import { useTranslations, useLocale } from 'next-intl';
-import { Link } from '@/i18n/navigation';
+import { Link, usePathname } from '@/i18n/navigation';
 import { FC } from 'react';
 import { HeaderLanguageListProps } from '@/components/Header';
 import { HeaderLanguageSelector } from '@/components/Header/HeaderLanguageSelector';
-import { usePathname } from 'next/navigation';
 
 const HeaderNavDesktop: FC<HeaderLanguageListProps> = ({ languageOptions, siteLinks }) => {
   const currentLocale = useLocale();
@@ -50,8 +49,7 @@ const HeaderNavDesktop: FC<HeaderLanguageListProps> = ({ languageOptions, siteLi
               break;
           }
 
-          const itemRoute = item.href === '/' ? `/${currentLocale}` : `/${currentLocale}${item.href}`;
-          const pointGrowthClass = pathname === itemRoute ? 'before:w-full' : 'hover:before:w-full';
+          const pointGrowthClass = pathname === item.href ? 'before:w-full' : 'hover:before:w-full';
 
           return (
             <li key={item.name}>

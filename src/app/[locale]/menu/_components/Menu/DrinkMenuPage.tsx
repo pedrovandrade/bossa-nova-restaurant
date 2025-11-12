@@ -7,7 +7,7 @@ const DrinkMenuPage: FC<DrinkMenuPageData> = ({ title, items }) => {
   const getLocalized = useLocalized();
 
   return (
-    <section className='flex flex-col justify-between w-full bg-white pl-10 md:pl-20 pr-10 md:pr-30 py-7 text-bossanova-cyan'>
+    <section className='flex flex-col justify-between w-full bg-white pl-7 md:pl-20 pr-7 md:pr-30 py-7 text-bossanova-cyan'>
       <div>
         <div className='flex justify-center max-h-20 mb-4'>
           <MenuHeaderIcon />
@@ -77,22 +77,22 @@ const DrinkMenuPage: FC<DrinkMenuPageData> = ({ title, items }) => {
                         {/* Drink name (and description if description is inline)*/}
                         {descriptionIsInline ?
                           <div>
-                              <span className={name.bold ? 'font-extrabold' : ''}>
+                            <span className={name.bold ? 'font-extrabold' : ''}>
                               {drinkName}
                             </span>
                             {': '}
                             <span>{descriptionText}</span>
                           </div>
                           :
-                          <span className={name.bold ? 'font-extrabold' : ''}>
+                          <div className={name.bold ? 'font-extrabold' : ''}>
                             {drinkName}
-                          </span>
+                          </div>
                         }
                         {/* Drink price */}
                         {price &&
-                          <span className='font-extrabold'>
+                          <div className='font-extrabold inline-flex min-w-15 justify-end'>
                             {priceFormatted} euros
-                          </span>
+                          </div>
                         }
                       </div>
                       {/* Drink description (if not inline) */}

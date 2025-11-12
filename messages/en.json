@@ -9,6 +9,10 @@
     },
     "language": "Language"
   },
+  "carrousel": {
+    "previous": "Previous",
+    "next": "Next"
+  },
   "pages": {
     "home": {
       "presentationBanner": {
@@ -93,8 +97,8 @@
           "text": {
             "title": "Private events",
             "content": {
-              "0": "<p>Looking for a unique venue to host your private event?</p>",
-              "1": "<p>Bossa Nova offers you the possibility to privatize the restaurant for your special occasions: birthdays, anniversaries, business events, etc.</p>",
+              "0": "<p>Do you want to experience a typical Brazilian night?</p>",
+              "1": "<p>Be that a birthday, a team dinner or simply a good occasion to celebrate, we propose you to privatize our restaurant for a warming, lively and 100% Brazilian moment.</p>",
               "2": "<p>To know more about our options or to organize your event, contact us by :</p>",
               "3": "<p>Phone: <telephoneLink></telephoneLink></p>",
               "4": "<p>E-mail: <emailLink>bossanovatoulouse@gmail.com</emailLink></p>"
@@ -107,6 +111,13 @@
       "presentationBanner": {
         "title": "About Us",
         "description": "Discover the history and philosophy of Bossa Nova"
+      },
+      "textParagraphs": {
+        "0": "<p>Bossa Nova is above all a love story: that of a Franco-Brazilian couple, and that of a colorful country, Brazil.</p>",
+        "1": "<p>Always driven by the love of its culture, its generous dishes and its catchy music, we wanted to open a place that resembles us.</p>",
+        "3": "<p>Here, cuisine, music and sharing come together to create a unique experience.</p>",
+        "4": "<p>Welcome to our universe.</p>",
+        "5": "<p>Bem-vindo ao Bossa Nova.</p>"
       }
     }
   },

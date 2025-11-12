@@ -67,7 +67,7 @@ const MenuPage: FC = () => {
         mobileImageFile={reservationImageMobile}
         heightPercent={60}
       />
-      <div className="mx-auto my-16 w-screen md:w-auto">
+      <div className='mx-auto my-16 w-screen md:w-auto'>
         <div className='px-5 md:px-10 py-20 flex flex-col gap-28 w-full'>
           {containerData.map((data, index) => {
             return (
