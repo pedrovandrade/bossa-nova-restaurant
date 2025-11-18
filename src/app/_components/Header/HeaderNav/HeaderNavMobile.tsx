@@ -102,7 +102,6 @@ const HeaderNavMobile: FC<HeaderLanguageListProps> = ({ languageOptions, siteLin
                       '-left-1',
                       'before:-left-5',
                       'before:content-[" "]',
-                      // 'before:block',
                       'before:relative',
                       'before:w-1',
                       'before:h-1',

@@ -30,7 +30,7 @@ const AboutPage: FC = () => {
       <div className='px-5 md:px-0 py-20 flex flex-col gap-1 w-full max-w-xl'>
         {paragraphKeys.map((paragraphKey) => (
           <FadeInContainer key={`paragraphKey-${paragraphKey}`}>
-            <I18nRichTextProcessor>
+            <I18nRichTextProcessor className='mb-4'>
               {(tags) => t.rich(paragraphKey, tags)}
             </I18nRichTextProcessor>
           </FadeInContainer>

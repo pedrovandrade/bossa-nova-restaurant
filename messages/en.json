@@ -13,6 +13,51 @@
     "previous": "Previous",
     "next": "Next"
   },
+  "cookies": {
+    "banner": {
+      "title": "Cookies... or bolachas ?",
+      "descriptionShort": {
+        "0": "<p>Our website uses cookies to enhance your browsing experience. To learn more, please refer to our <privacyPolicyLink>privacy policy</privacyPolicyLink>.</p>"
+      },
+      "description": {
+        "0": "<p>Our website uses cookies to enhance your browsing experience and analyze traffic.</p>",
+        "1": "<p>Some cookies are necessary for the proper functioning of the site and cannot be disabled.</p>",
+        "2": "<p>Other cookies, such as those related to statistics or social media, are optional and require your consent.</p>",
+        "3": "<p>You can at any time accept or refuse the use of these cookies by modifying your preferences via the banner or your browser settings.</p>",
+        "4": "<p>To learn more, please refer to our <privacyPolicyLink>privacy policy</privacyPolicyLink>.</p>"
+      },
+      "buttons": {
+        "acceptAll": "Accept all",
+        "refuseAll": "Refuse all",
+        "managePreferences": "Manage your preferences"
+      }
+    },
+    "modal": {
+      "title": "Cookies preferences",
+      "closeButtonAriaLabel": "Close the cookies preferences window",
+      "cookieList": {
+        "necessary": {
+          "title": "Necessary",
+          "ariaLabel": "Necessary cookies enabled",
+          "description": "Required for the proper functioning of the site."
+        },
+        "analytics": {
+          "title": "Analytics",
+          "ariaLabel": "Analytics cookies",
+          "description": "[Optional] They help us analyze site usage."
+        },
+        "external": {
+          "title": "External",
+          "ariaLabel": "External cookies",
+          "description": "[Optional] Collected by third-party sites (Google Maps, Instagram) when a functionality from these sites is executed. If disabled, third-party site functionalities will also be disabled."
+        }
+      },
+      "buttons": {
+        "savePreferences": "Save preferences",
+        "cancel": "Cancel"
+      }
+    }
+  },
   "pages": {
     "home": {
       "presentationBanner": {

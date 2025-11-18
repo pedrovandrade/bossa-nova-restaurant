@@ -30,7 +30,7 @@ const InstagramFeed: FC<InstagramFeedProps> = ({ path }) => {
 
   return (
     <div className="w-full h-full flex items-center justify-center">
-      <Script strategy='beforeInteractive' src='https://www.instagram.com/embed.js' />
+      <Script src='https://www.instagram.com/embed.js' />
       <blockquote
         className="instagram-media"
         data-instgrm-captioned

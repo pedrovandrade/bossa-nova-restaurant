@@ -1,32 +1,10 @@
-import type { DrinkMenuPageData } from '@/app/_types/DrinkMenuPageData';
-import type { FoodMenuPageData } from '@/app/_types/FoodMenuPageData';
-import type { NextRequest } from 'next/server'
+import type { DrinkMenuPageData } from '@/types/DrinkMenuPageData';
+import type { FoodMenuPageData } from '@/types/FoodMenuPageData';
 
 export type MenuApiResponse = {
   drinkPages: DrinkMenuPageData[];
   foodPages: FoodMenuPageData[];
 };
-
-// type DrinkMenuPageData = {
-//   title: LocalizedText;
-//   items: {
-//     category: LocalizedText;
-//     note?: {
-//       text: LocalizedText,
-//       inline?: boolean,
-//     };
-//     drinks: {
-//       name: LocalizedText;
-//       description?: {
-//         text: LocalizedText | LocalizedTextArray,
-//         position?: 'top' | 'bottom' | 'inline',
-//         bold?: boolean,
-//       };
-//       price: number | null;
-//       inline?: boolean;
-//     }[];
-//   }[];
-// };
 
 const drinkPages: DrinkMenuPageData[] = [
   {
@@ -760,7 +738,7 @@ const foodPages: FoodMenuPageData[] = [
         },
         description: {
           fr: [
-            'Tenders de poulet ou fillet de collin. Accompagnement : riz ou fristes ou salade.',
+            'Tenders de poulet ou fillet de collin. Accompagnement : riz ou frites ou salade.',
             'Ou demi-portion de feijoada.',
             'Dessert : gâteau au chocolat ou deux boules de glace (demandez les saveurs disponibles).',
           ],
@@ -945,7 +923,7 @@ const foodPages: FoodMenuPageData[] = [
   }
 ];
 
-const GET = async (request: NextRequest) => {
+const GET = async () => {
   const response: MenuApiResponse = {
     drinkPages,
     foodPages,

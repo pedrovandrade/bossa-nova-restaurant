@@ -13,6 +13,51 @@
     "previous": "Précédent",
     "next": "Suivant"
   },
+  "cookies": {
+    "banner": {
+      "title": "Cookies... ou bolachas ?",
+      "descriptionShort": {
+        "0": "<p>Notre site utilise des cookies afin d'améliorer votre expérience de navigation. Pour savoir plus, consultez notre <privacyPolicyLink>politique de confidentialité</privacyPolicyLink>.</p>"
+      },
+      "description": {
+        "0": "<p>Notre site utilise des cookies afin d'améliorer votre expérience de navigation et d'analyser la fréquentation.</p>",
+        "1": "<p>Certains cookies sont nécessaires au bon fonctionnement du site et ne peuvent pas être désactivés.</p>",
+        "2": "<p>D'autres cookies, tels que ceux liés aux statistiques ou aux réseaux sociaux, sont optionnels et nécessitent votre accord.</p>",
+        "3": "<p>Vous pouvez à tout moment accepter ou refuser l'utilisation de ces cookies en modifiant vos préférences via la bannière ou les paramètres de votre navigateur.</p>",
+        "4": "<p>Pour savoir plus, consultez notre <privacyPolicyLink>politique de confidentialité</privacyPolicyLink>.</p>"
+      },
+      "buttons": {
+        "acceptAll": "Tout accépter",
+        "refuseAll": "Tout réfuser",
+        "managePreferences": "Gérér vos préférences"
+      }
+    },
+    "modal": {
+      "title": "Préférences de cookies",
+      "closeButtonAriaLabel": "Fermer la fenêtre des préférences de cookies",
+      "cookieList": {
+        "necessary": {
+          "title": "Nécéssaires",
+          "ariaLabel": "Cookies nécéssaires activés",
+          "description": "Requis pour le fonctionnement du site."
+        },
+        "analytics": {
+          "title": "Analytiques",
+          "ariaLabel": "Cookies analytiques",
+          "description": "[Optionnel] Ils nous aident à analyser l'utilisation du site."
+        },
+        "external": {
+          "title": "Extérieurs",
+          "ariaLabel": "Cookies extérieurs",
+          "description": "[Optionnel] Collectés par des sites tiers (Google Maps, Instagram) lorsqu'une fonctionnalité tiers est exécutée dans le site. Si désactivé, les fonctionnalités des sites tiers seront aussi désactivées."
+        }
+      },
+      "buttons": {
+        "savePreferences": "Sauvegarder les préférences",
+        "cancel": "Annuler"
+      }
+    }
+  },
   "pages": {
     "home": {
       "presentationBanner": {

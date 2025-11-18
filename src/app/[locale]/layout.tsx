@@ -4,6 +4,7 @@ import localFont from 'next/font/local';
 import '@/app/globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import CookieConsent from '@/components/CookieConsent';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
@@ -91,6 +92,7 @@ export default async function RootLayout({
               {children}
             </main>
             <Footer />
+            <CookieConsent />
           </NextIntlClientProvider>
         </body>
       </html>

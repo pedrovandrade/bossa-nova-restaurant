@@ -13,6 +13,51 @@
     "previous": "Anterior",
     "next": "Próximo"
   },
+  "cookies": {
+    "banner": {
+      "title": "Cookies... ou bolachas ?",
+      "descriptionShort": {
+        "0": "<p>Nosso site utilisa cookies de terceiros para melhorar sua experiência de nevagação. Para saber mais, consulte nossa <privacyPolicyLink>política de dados</privacyPolicyLink>.</p>"
+      },
+      "description": {
+        "0": "<p>Nosso site utilisa cookies de terceiros para melhorar sua experiência de nevagação e analisar o tráfego.</p>",
+        "1": "<p>Alguns cookies são necessários ao bom funcionamento do site e não podem ser desativados.</p>",
+        "2": "<p>Outros cookies, como os relacionados a estatísticas ou redes sociais, são opcionais e necessitam de seu consentimento.</p>",
+        "3": "<p>Você pode a qualquer momento aceitar ou recusar o uso desses cookies modificando suas preferências através do banner ou das configurações de seu navegador.</p>",
+        "4": "<p>Para saber mais, consulte nossa <privacyPolicyLink>política de dados</privacyPolicyLink>.</p>"
+      },
+      "buttons": {
+        "acceptAll": "Aceitar tudo",
+        "refuseAll": "Recusar tudo",
+        "managePreferences": "Gerir suas preferências"
+      }
+    },
+    "modal": {
+      "title": "Preferências de cookies",
+      "closeButtonAriaLabel": "Fechar a janela de preferências de cookies",
+      "cookieList": {
+        "necessary": {
+          "title": "Necessários",
+          "ariaLabel": "Cookies necessários ativados",
+          "description": "Necessários ao bom funcionamento do site."
+        },
+        "analytics": {
+          "title": "Analíticos",
+          "ariaLabel": "Cookies analíticos",
+          "description": "[Opcional] Eles nos ajudam a analisar o uso do site."
+        },
+        "external": {
+          "title": "Exteriores",
+          "ariaLabel": "Cookies exteriores",
+          "description": "[Opcional] Coletados por sites terçeiros (Google Maps, Instagram) quando uma funcionalidade desses sites está em execução. Se desativado, as funcionalidades de sites terçeiros também serão desativadas."
+        }
+      },
+      "buttons": {
+        "savePreferences": "Salvar preferências",
+        "cancel": "Cancelar"
+      }
+    }
+  },
   "pages": {
     "home": {
       "presentationBanner": {
