@@ -100,7 +100,8 @@
       "instagramFeed": {
         "title": "Follow us on Instagram",
         "viewThisPostOnInstagram": "View this post on Instagram",
-        "aPostSharedBy": "A post shared by"
+        "aPostSharedBy": "A post shared by",
+        "mustAcceptCookies": "To view this post, please accept external cookies by clicking here."
       }
     },
     "menu": {
@@ -178,13 +179,21 @@
       "home": "Home",
       "menu": "Menu",
       "about": "About",
-      "reservations": "Reservations"
+      "reservations": "Reservations",
+      "cookieSettings": "Cookie Settings",
+      "privacy-policy": "Privacy Policy"
     },
     "followUs": {
       "title": "Follow Us",
       "ariaLabel": {
         "facebook": "Go to our Facebook page",
         "instagram": "Go to our Instagram page"
+      }
+    },
+    "maps": {
+      "placeholder": {
+        "mustAcceptCookies": "To view the map, please accept external cookies by clicking here.",
+        "altText": "Google Maps background map"
       }
     },
     "allRightsReserved": "Bossa Nova Restaurant. All rights reserved."

@@ -54,6 +54,8 @@ export default function Home() {
 
   const t = useTranslations('pages.home');
 
+  const instagramFeedUrl = 'https://www.instagram.com/p/DOdu1maDNVM';
+
   return (
     <>
       <PresentationBanner
@@ -73,7 +75,7 @@ export default function Home() {
         <h2 className='font-semibold text-3xl text-bossanova-cyan mb-6'>
           {t('instagramFeed.title')}
         </h2>
-        <InstagramFeed path='p/DOdu1maDNVM' />
+        <InstagramFeed url={instagramFeedUrl} />
       </div>
     </>
   );

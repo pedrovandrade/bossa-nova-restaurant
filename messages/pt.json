@@ -100,7 +100,8 @@
       "instagramFeed": {
         "title": "Siga-nos no Instagram",
         "viewThisPostOnInstagram": "Ver esta publicação no Instagram",
-        "aPostSharedBy": "Uma publicação compartilhada por"
+        "aPostSharedBy": "Uma publicação compartilhada por",
+        "mustAcceptCookies": "Para ver esta publicação, por favor aceite os cookies exteriores clicando aqui."
       }
     },
     "menu": {
@@ -178,13 +179,21 @@
       "home": "Início",
       "menu": "Menu",
       "about": "Sobre",
-      "reservations": "Reservas"
+      "reservations": "Reservas",
+      "cookieSettings": "Configurações de Cookies",
+      "privacy-policy": "Política de Privacidade"
     },
     "followUs": {
       "title": "Siga-nos",
       "ariaLabel": {
         "facebook": "Ir para nossa página no Facebook",
         "instagram": "Ir para nossa página no Instagram"
+      }
+    },
+    "maps": {
+      "placeholder": {
+        "mustAcceptCookies": "Para ver o mapa, por favor aceite os cookies exteriores clicando aqui.",
+        "altText": "Mapa de fundo do Google Maps"
       }
     },
     "allRightsReserved": "Restaurante Bossa Nova. Todos os direitos reservados."

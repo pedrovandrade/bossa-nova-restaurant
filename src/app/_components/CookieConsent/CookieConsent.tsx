@@ -30,6 +30,9 @@ const writeConsent = (prefs: CookiePreferences) => {
   const d = new Date();
   d.setDate(d.getDate() + COOKIE_EXPIRE_DAYS);
   document.cookie = `${COOKIE_NAME}=${v}; expires=${d.toUTCString()}; path=/; SameSite=Lax`;
+
+  // notify other parts of the app that consent changed
+  window.dispatchEvent(new CustomEvent('cookieConsentUpdated', { detail: prefs }));
 };
 
 const defaultPreferences = (): CookiePreferences => ({
@@ -47,6 +50,10 @@ const CookieConsent: FC = () => {
     const existing = readConsent();
     setPrefs(existing);
     if (existing) setLocalPrefs(existing);
+
+    const onOpen = () => setOpenModal(true);
+    window.addEventListener('openCookiePreferences', onOpen);
+    return () => window.removeEventListener('openCookiePreferences', onOpen);
   }, []);
 
   const acceptAll = () => {
@@ -69,14 +76,6 @@ const CookieConsent: FC = () => {
   };
 
   const confirmPreferences = () => {
-    // quick shortcut: toggle all on if none selected
-    if (!localPrefs.analytics && !localPrefs.external) {
-      setLocalPrefs({ necessary: true, analytics: true, external: true });
-      writeConsent({ necessary: true, analytics: true, external: true });
-      setPrefs({ necessary: true, analytics: true, external: true });
-      setOpenModal(false);
-      return;
-    }
     writeConsent(localPrefs);
     setPrefs(localPrefs);
     setOpenModal(false);

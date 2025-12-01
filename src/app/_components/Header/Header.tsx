@@ -55,7 +55,7 @@ const siteLinks = [
 ];
 
 return (
-  <header className='fixed w-full h-20 flex bg-bossanova-cyan justify-between text-white z-50 shadow-md shadow-black/25'>
+  <header className='fixed w-full h-20 flex bg-bossanova-cyan justify-between text-white z-100 shadow-md shadow-black/25'>
     <div className='w-5/7 md:w-1/2 flex items-center justify-between md:justify-around'>
       <HeaderTitle />
       <HeaderIcon />
