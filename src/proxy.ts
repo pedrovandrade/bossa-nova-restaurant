@@ -1,7 +1,7 @@
 import createMiddleware from 'next-intl/middleware';
 import { NextRequest } from 'next/server';
  
-export default async function middleware(request: NextRequest) {
+export default async function proxy(request: NextRequest) {
   // Step 1: Use the incoming request (example)
   const defaultLocale = 'fr'; // Default locale
  
