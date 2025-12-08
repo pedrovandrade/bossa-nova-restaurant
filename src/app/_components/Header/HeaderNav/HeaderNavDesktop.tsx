@@ -5,6 +5,7 @@ import { Link, usePathname } from '@/i18n/navigation';
 import { FC } from 'react';
 import { HeaderLanguageListProps } from '@/components/Header';
 import { HeaderLanguageSelector } from '@/components/Header/HeaderLanguageSelector';
+import { getPointColorClass } from './HeaderNav';
 
 const HeaderNavDesktop: FC<HeaderLanguageListProps> = ({ languageOptions, siteLinks }) => {
   const currentLocale = useLocale();
@@ -18,38 +19,9 @@ const HeaderNavDesktop: FC<HeaderLanguageListProps> = ({ languageOptions, siteLi
       <ul className="flex space-x-4">
         {siteLinks?.map((item) => {
           const { pointColor } = item;
-          let pointColorClass = '';
-
-          switch (pointColor) {
-            case 'orange':
-              pointColorClass = 'before:bg-bossanova-orange';
-              break;
-            case 'cyan':
-              pointColorClass = 'before:bg-bossanova-cyan';
-              break;
-            case 'yellow':
-              pointColorClass = 'before:bg-bossanova-yellow';
-              break;
-            case 'green':
-              pointColorClass = 'before:bg-bossanova-green';
-              break;
-            case 'blue':
-              pointColorClass = 'before:bg-bossanova-blue';
-              break;
-            case 'pink':
-              pointColorClass = 'before:bg-bossanova-pink';
-              break;
-            case 'red':
-              pointColorClass = 'before:bg-bossanova-red';
-              break;
-            case 'white':
-              pointColorClass = 'before:bg-white';
-              break;
-            default:
-              break;
-          }
-
+          const pointColorClass = getPointColorClass(pointColor || '');
           const pointGrowthClass = pathname === item.href ? 'before:w-full' : 'hover:before:w-full';
+          const fontWeightClass = pathname === item.href ? 'font-semibold' : 'font-medium';
 
           return (
             <li key={item.name}>
@@ -67,9 +39,9 @@ const HeaderNavDesktop: FC<HeaderLanguageListProps> = ({ languageOptions, siteLi
                   'before:rounded-full',
                   'before:transition-all',
                   'before:duration-300',
-                  'hover:bg-bossanova-blue/50',
                   pointGrowthClass,
                   pointColorClass,
+                  fontWeightClass,
                 ].join(' ')}
                 locale={currentLocale}
               >

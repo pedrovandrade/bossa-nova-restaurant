@@ -8,6 +8,7 @@ import { BurgerMenu } from '@/components/_icons';
 import { HeaderLanguageList } from '@/components/Header/HeaderLanguageSelector';
 import { HeaderLanguageListProps } from '@/components/Header';
 import Chevron from '@/components/_icons/Chevron';
+import { getPointColorClass } from './HeaderNav';
 
 const HeaderNavMobile: FC<HeaderLanguageListProps> = ({ languageOptions, siteLinks }) => {
 
@@ -21,6 +22,7 @@ const HeaderNavMobile: FC<HeaderLanguageListProps> = ({ languageOptions, siteLin
     e.preventDefault();
     setAccordionTabSelected((prevValue) => prevValue === 'value-1' ? '' : 'value-1');
   };
+  const langSelectPointColorClass = getPointColorClass('yellow');
 
   const pathname = usePathname();
 
@@ -54,38 +56,9 @@ const HeaderNavMobile: FC<HeaderLanguageListProps> = ({ languageOptions, siteLin
           >
             {siteLinks?.map((item) => {
               const { pointColor } = item;
-              let pointColorClass = '';
-
-              switch (pointColor) {
-                case 'orange':
-                  pointColorClass = 'before:bg-bossanova-orange';
-                  break;
-                case 'cyan':
-                  pointColorClass = 'before:bg-bossanova-cyan';
-                  break;
-                case 'yellow':
-                  pointColorClass = 'before:bg-bossanova-yellow';
-                  break;
-                case 'green':
-                  pointColorClass = 'before:bg-bossanova-green';
-                  break;
-                case 'blue':
-                  pointColorClass = 'before:bg-bossanova-blue';
-                  break;
-                case 'pink':
-                  pointColorClass = 'before:bg-bossanova-pink';
-                  break;
-                case 'red':
-                  pointColorClass = 'before:bg-bossanova-red';
-                  break;
-                case 'white':
-                  pointColorClass = 'before:bg-white';
-                  break;
-                default:
-                  break;
-              }
-
+              const pointColorClass = getPointColorClass(pointColor || '');
               const pointGrowthClass = pathname === item.href ? 'before:h-6' : 'hover:before:h-6';
+              const fontWeightClass = pathname === item.href ? 'font-semibold' : 'font-medium';
 
               return (
                 <DropdownMenu.Item
@@ -108,9 +81,9 @@ const HeaderNavMobile: FC<HeaderLanguageListProps> = ({ languageOptions, siteLin
                       'before:rounded-full',
                       'before:transition-all',
                       'before:duration-300',
-                      'hover:bg-bossanova-blue/50',
                       pointColorClass,
-                      pointGrowthClass
+                      pointGrowthClass,
+                      fontWeightClass,
                     ].join(' ')}
                   >
                     {t(`nav.${item.name}`)}
@@ -120,19 +93,37 @@ const HeaderNavMobile: FC<HeaderLanguageListProps> = ({ languageOptions, siteLin
             })}
             <DropdownMenu.Item
               onSelect={onLanguageSelectorOpenChange}
-              className='group focus:first:bg-bossanova-green'
+              className='group/item focus:first:bg-bossanova-green'
               asChild
             >
               <Accordion.Root type='single' value={accordionTabSelected} collapsible asChild>
                 <Accordion.Item value='value-1' className='w-full'>
                   <Accordion.Trigger
-                    className='flex justify-between group-focus:bg-bossanova-green hover:cursor-pointer hover:bg-bossanova-green focus:bg-bossanova-green rounded p-2 w-full px-8 py-4 font-medium'
+                    className='group/trigger flex justify-between group-focus/item:bg-bossanova-green hover:cursor-pointer hover:bg-bossanova-green focus:bg-bossanova-green rounded p-2 w-full px-8 py-4 font-medium'
                   >
                     <div className='flex items-center gap-6'>
-                      <p>{t('language')}</p>
+                      <p className={[
+                          'flex',
+                          'items-center',
+                          'relative',
+                          '-left-1',
+                          'before:-left-5',
+                          'before:content-[" "]',
+                          'before:relative',
+                          'before:w-1',
+                          'before:h-1',
+                          'before:rounded-full',
+                          'before:transition-all',
+                          'before:duration-300',
+                          'group-data-[state=open]/trigger:before:h-6',
+                          langSelectPointColorClass,
+                        ].join(' ')}
+                      >
+                        {t('language')}
+                      </p>
                       <div className='w-5'>{currentLanguage?.icon}</div>
                     </div>
-                    <Chevron className='group-data-[state=open]:rotate-180' />
+                    <Chevron className='group-data-[state=open]/trigger:rotate-180' />
                   </Accordion.Trigger>
                   <Accordion.Content
                     className={[

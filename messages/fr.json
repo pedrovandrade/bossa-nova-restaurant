@@ -165,6 +165,51 @@
         "4": "<p>Bienvenue dans notre univers.</p>",
         "5": "<p>Bem-vindo ao Bossa Nova.</p>"
       }
+    },
+    "privacyPolicy": {
+      "0": "<h1>Politique de Confidentialité et Charte de Protection des Données Personnelles</h1>",
+      "1": "<h2>Introduction</h2>",
+      "2": "<p>Bienvenue sur le site web du restaurant <strong>Bossa Nova</strong>, SARL immatriculée au SIRET <strong>94060380600016</strong>, situé au <strong>1 bis Rue de May, 31000 Toulouse</strong>. Nous sommes engagés à protéger la vie privée et les données personnelles de nos utilisateurs. Cette politique explique comment nous collectons, utilisons, partageons et protégeons vos informations lorsque vous utilisez notre site web, conformément au <rgpdLink>Règlement Général sur la Protection des Données (RGPD)</rgpdLink>.</p>",
+      "3": "<h2>Responsable du traitement des données</h2>",
+      "4": "<p>Le responsable du traitement des données personnelles est la SARL <strong>Bossa Nova</strong>, dont le siège social est situé au <strong>1 bis Rue de May, 31000 Toulouse</strong>. Pour toute question concernant vos données personnelles, vous pouvez nous contacter par e-mail à <emailLink>bossanovatoulouse@gmail.com</emailLink> ou par téléphone au <telephoneLink>+33 05 67 68 64 79</telephoneLink>.</p>",
+
+      "5": "<h2>Données personnelles collectées</h2>",
+      "6": "<p>Nous pouvons collecter les données suivantes :</p>",
+      "7": "<ul><li><strong>Données de contact</strong> : si vous nous contactez via le formulaire de contact ou par e-mail, nous collectons votre nom, adresse e-mail, numéro de téléphone et le contenu de votre message.</li><li><strong>Données de navigation</strong> : informations techniques (adresse IP, type de navigateur, pages visitées, durée de la visite) via des cookies, sous réserve de votre consentement.</li><li><strong>Données de localisation</strong> : si vous acceptez l’affichage de la carte Google Maps intégrée sur notre site.</li></ul>",
+
+      "8": "<h2>Utilisation des cookies et technologies similaires</h2>",
+      "9": "<p>Notre site utilise des cookies et des technologies tierces (Google Maps, Instagram) pour améliorer votre expérience. Vous pouvez accepter ou refuser ces cookies à tout moment en cliquant sur le lien <strong>« Paramètres des cookies »</strong> dans le pied de page. Si vous refusez l’utilisation de cookies externes, les contenus provenant de sites tiers (comme les cartes ou les publications sociales) ne s’afficheront pas.</p>",
+
+      "10": "<h2>Réservations en ligne</h2>",
+      "11": "<p>Les réservations sont gérées via le système de réservations intégré à <googleMapsDataLink>Google Maps</googleMapsDataLink>. Les informations que vous saisissez (nom, prénom, numéro de téléphone, e-mail, date et heure de réservation) sont traitées directement par Google, conformément à leur <googleMapsDataLink>politique de confidentialité</googleMapsDataLink>.</p>",
+
+      "12": "<h2>Finalités du traitement des données</h2>",
+      "13": "<p>Vos données sont utilisées pour :</p>",
+      "14": "<ul><li>Répondre à vos demandes (réservations, questions, commentaires) ;</li><li>Améliorer notre site et nos services ;</li><li>Afficher du contenu personnalisé (si vous acceptez les cookies tiers) ;</li><li>Respecter nos obligations légales.</li></ul>",
+
+      "15": "<h2>Partage des données</h2>",
+      "16": "<p>Nous ne vendons ni ne louons vos données personnelles. Vos informations peuvent être partagées avec :</p>",
+      "17": "<ul><li>Nos prestataires techniques (hébergeur Vercel, services de paiement, etc.) ;</li><li>Les autorités compétentes, si la loi l’exige ;</li><li><googleMapsDataLink>Google Maps</googleMapsDataLink> et <instagramDataLink>Instagram</instagramDataLink> si vous acceptez les cookies tiers.</li></ul>",
+
+      "18": "<h2>Hébergement du site et sécurité des données</h2>",
+      "19": "<p>Nous mettons en œuvre des mesures techniques et organisationnelles pour protéger vos données contre toute perte, altération ou accès non autorisé.</p><p>Notre site est hébergé dans des serveurs de la société Vercel, qui applique des normes de sécurité élevées.</p>",
+
+      "20": "<h2>Droits des utilisateurs</h2>",
+      "21": "<p>Conformément à la RGPD, vous disposez des droits suivants :</p>",
+      "22": "<ul><li>Droit d’accès, de rectification, d’effacement et à la portabilité de vos données ;</li><li>Droit de limiter ou de vous opposer au traitement de vos données ;</li><li>Droit de retirer votre consentement à tout moment.</li></ul>",
+      "23": "<p>Pour exercer ces droits, contactez-nous à <emailLink>bossanovatoulouse@gmail.com</emailLink>.</p>",
+
+      "24": "<h2>Conservation des données</h2>",
+      "25": "<p>Vos données sont conservées pendant la durée nécessaire à la réalisation des finalités pour lesquelles elles ont été collectées, conformément aux obligations légales.</p>",
+
+      "26": "<h2>Modifications de la politique de confidentialité</h2>",
+      "27": "<p>Cette politique peut être mise à jour. Nous vous invitons à la consulter régulièrement. La date de dernière mise à jour est indiquée en bas de page.</p>",
+
+      "28": "<h2>Contact</h2>",
+      "29": "<p>Pour toute question ou demande concernant cette politique, contactez-nous :</p>",
+      "30": "<ul><li>Par e-mail : <emailLink>bossanovatoulouse@gmail.com</emailLink></li><li>Par téléphone : <telephoneLink>+33 05 67 68 64 79</telephoneLink></li><li>Par courrier : 1 bis Rue de May, 31000 Toulouse</li></ul>",
+
+      "31": "<p>Dernière mise à jour : décembre 2025</p>"
     }
   },
   "footer": {

@@ -28,7 +28,6 @@ const MapLocation: FC<MapLocationProps> = ({ query }) => {
   const updateConsentState = () => {
     const consent = readConsentCookie();
     const allowed = !!consent && Boolean((consent as CookiePreferences).external);
-    console.log('updateConsentState called!! allowed:', allowed);
     setHasEmbedConsent(allowed);
   };
 

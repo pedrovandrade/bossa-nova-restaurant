@@ -1,3 +1,4 @@
-import HeaderNav from './HeaderNav';
+import HeaderNav, { getPointColorClass } from './HeaderNav';
 
 export default HeaderNav;
+export { getPointColorClass };

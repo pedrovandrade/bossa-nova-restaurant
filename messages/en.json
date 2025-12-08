@@ -165,6 +165,52 @@
         "4": "<p>Welcome to our universe.</p>",
         "5": "<p>Bem-vindo ao Bossa Nova.</p>"
       }
+    },
+    "privacyPolicy": {
+      "0": "<h1>Privacy policy and personal data protection chart</h1>",
+      "1": "<h2>Introduction</h2>",
+      "2": "<p>Welcome to the website of <strong>Bossa Nova</strong>, a limited liability company (SARL) registered under SIRET number <strong>94060380600016</strong>, located at <strong>1 bis Rue de May, 31000 Toulouse, France</strong>. We are committed to protecting the privacy and personal data of our users. This policy explains how we collect, use, share, and protect your information when you use our website, in compliance with the <rgpdLink>General Data Protection Regulation (GDPR)</rgpdLink>.</p>",
+
+      "3": "<h2>Data controller</h2>",
+      "4": "<p>The data controller is the SARL <strong>Bossa Nova</strong>, whose registered office is located at <strong>1 bis Rue de May, 31000 Toulouse, France</strong>. For any questions regarding your personal data, you can contact us by email at <emailLink>bossanovatoulouse@gmail.com</emailLink> or by phone at <telephoneLink>+33 05 67 68 64 79</telephoneLink>.</p>",
+
+      "5": "<h2>Personal data collected</h2>",
+      "6": "<p>We may collect the following data:</p>",
+      "7": "<ul><li><strong>Contact information</strong>: If you contact us via the contact form or by email, we collect your name, email address, phone number, and the content of your message.</li><li><strong>Navigation data</strong>: Technical information (IP address, browser type, pages visited, visit duration) via cookies, subject to your consent.</li><li><strong>Location data</strong>: If you accept the display of the embedded Google Maps map on our site.</li></ul>",
+
+      "8": "<h2>Use of cookies and similar technologies</h2>",
+      "9": "<p>Our website uses cookies and third-party technologies (Google Maps, Instagram) to enhance your experience. You can accept or refuse these cookies at any time by clicking on the <strong>“Cookies Settings”</strong> link in the footer. If you refuse the use of third-party cookies, content from external sites (such as maps or social media posts) will not be displayed.</p>",
+
+      "10": "<h2>Online reservations</h2>",
+      "11": "<p>Reservations are managed through the reservation system integrated with <googleMapsDataLink>Google Maps</googleMapsDataLink>. The information you provide (name, surname, phone number, email, date and time of reservation) is processed directly by Google, in accordance with their <googleMapsDataLink>privacy policy</googleMapsDataLink>.</p>",
+
+      "12": "<h2>Purpose of data processing</h2>",
+      "13": "<p>Your data is used for the following purposes:</p>",
+      "14": "<ul><li>To respond to your requests (reservations, questions, comments);</li><li>To improve our website and services;</li><li>To display personalized content (if you accept third-party cookies);</li><li>To comply with our legal obligations.</li></ul>",
+
+      "15": "<h2>Data sharing</h2>",
+      "16": "<p>We do not sell or rent your personal data. Your information may be shared with:</p>",
+      "17": "<ul><li>Our technical service providers (hosting provider Vercel, payment services, etc.);</li><li>Competent authorities, if required by law;</li><li><googleMapsDataLink>Google Maps</googleMapsDataLink> and <instagramDataLink>Instagram</instagramDataLink> if you accept third-party cookies.</li></ul>",
+
+      "18": "<h2>Website hosting and data security</h2>",
+      "19": "<p>We implement technical and organizational measures to protect your data against loss, alteration, or unauthorized access.</p><p>Our website is hosted in servers from Vercel company, which applies high security standards.</p>",
+
+      "20": "<h2>User rights</h2>",
+      "21": "<p>Under the GDPR, you have the following rights:</p>",
+      "22": "<ul><li>Right to access, rectify, erase, and port your data;</li><li>Right to restrict or object to the processing of your data;</li><li>Right to withdraw your consent at any time.</li></ul>",
+      "23": "<p>To exercise these rights, please contact us at <emailLink>bossanovatoulouse@gmail.com</emailLink>.</p>",
+
+      "24": "<h2>Data retention</h2>",
+      "25": "<p>Your data is retained for as long as necessary to fulfill the purposes for which it was collected, in accordance with legal requirements.</p>",
+
+      "26": "<h2>Changes to the privacy policy</h2>",
+      "27": "<p>This policy may be updated. We encourage you to review it regularly. The date of the last update is indicated at the bottom of the page.</p>",
+
+      "28": "<h2>Contact</h2>",
+      "29": "<p>For any questions or requests regarding this policy, please contact us:</p>",
+      "30": "<ul><li>By email: <emailLink>bossanovatoulouse@gmail.com</emailLink></li><li>By phone: <telephoneLink>+33 05 67 68 64 79</telephoneLink></li><li>By mail: 1 bis Rue de May, 31000 Toulouse, France</li></ul>",
+
+      "31": "<p>Last updated: December 2025</p>"
     }
   },
   "footer": {

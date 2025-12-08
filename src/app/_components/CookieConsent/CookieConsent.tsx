@@ -24,34 +24,34 @@ const readConsent = (): CookiePreferences | null => {
   }
 };
 
-const writeConsent = (prefs: CookiePreferences) => {
+const writeConsent = (preferences: CookiePreferences) => {
   if (typeof document === 'undefined') return;
-  const v = encodeURIComponent(JSON.stringify(prefs));
+  const v = encodeURIComponent(JSON.stringify(preferences));
   const d = new Date();
   d.setDate(d.getDate() + COOKIE_EXPIRE_DAYS);
   document.cookie = `${COOKIE_NAME}=${v}; expires=${d.toUTCString()}; path=/; SameSite=Lax`;
 
   // notify other parts of the app that consent changed
-  window.dispatchEvent(new CustomEvent('cookieConsentUpdated', { detail: prefs }));
+  window.dispatchEvent(new CustomEvent('cookieConsentUpdated', { detail: preferences }));
 };
 
-const defaultPreferences = (): CookiePreferences => ({
+const defaultPreferences: CookiePreferences = {
   necessary: true,
   analytics: false,
   external: false,
-});
+};
 
 const CookieConsent: FC = () => {
-  const [prefs, setPrefs] = useState<CookiePreferences | null>(null);
-  const [openModal, setOpenModal] = useState(false);
-  const [localPrefs, setLocalPrefs] = useState<CookiePreferences>(defaultPreferences());
+  const [preferences, setPreferences] = useState<CookiePreferences | null>(defaultPreferences);
+  const [localPrefs, setLocalPrefs] = useState<CookiePreferences>(defaultPreferences);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const existing = readConsent();
-    setPrefs(existing);
+    setPreferences(existing);
     if (existing) setLocalPrefs(existing);
 
-    const onOpen = () => setOpenModal(true);
+    const onOpen = () => setIsModalOpen(true);
     window.addEventListener('openCookiePreferences', onOpen);
     return () => window.removeEventListener('openCookiePreferences', onOpen);
   }, []);
@@ -59,29 +59,29 @@ const CookieConsent: FC = () => {
   const acceptAll = () => {
     const p: CookiePreferences = { necessary: true, analytics: true, external: true };
     writeConsent(p);
-    setPrefs(p);
-    setOpenModal(false);
+    setPreferences(p);
+    setIsModalOpen(false);
   };
 
   const refuseAll = () => {
     const p: CookiePreferences = { necessary: true, analytics: false, external: false };
     writeConsent(p);
-    setPrefs(p);
-    setOpenModal(false);
+    setPreferences(p);
+    setIsModalOpen(false);
   };
 
   const openPreferences = () => {
-    setLocalPrefs((prev) => (prefs ? prefs : prev));
-    setOpenModal(true);
+    setLocalPrefs((prev) => (preferences ? preferences : prev));
+    setIsModalOpen(true);
   };
 
   const confirmPreferences = () => {
     writeConsent(localPrefs);
-    setPrefs(localPrefs);
-    setOpenModal(false);
+    setPreferences(localPrefs);
+    setIsModalOpen(false);
   };
 
-  const closeModal = () => setOpenModal(false);
+  const closeModal = () => setIsModalOpen(false);
 
   const setCookiePreference = (name: string, value: boolean) => {
     setLocalPrefs((p) => ({ ...p, [name]: value }))
@@ -90,14 +90,14 @@ const CookieConsent: FC = () => {
   return (
     <>
       {/* Banner */}
-      {!prefs && <CookieConsentBanner
+      {!preferences && <CookieConsentBanner
         onAcceptAll={acceptAll}
         onRefuseAll={refuseAll}
         onOpenPreferences={openPreferences}
       />}
 
       {/* Modal / Popin */}
-      {openModal && (
+      {isModalOpen && (
         <CookieConsentModal
           closeModal={closeModal}
           localPreferences={localPrefs}

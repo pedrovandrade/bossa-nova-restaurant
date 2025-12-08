@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-// import { Open_Sans, Heebo } from 'next/font/google';
+import { Open_Sans, Heebo } from 'next/font/google';
 import localFont from 'next/font/local';
 import '@/app/globals.css';
 import Header from '@/components/Header';
@@ -9,15 +9,15 @@ import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 
-// const openSans = Open_Sans({
-//   variable: '--font-open-sans',
-//   subsets: ['latin'],
-// });
+const openSans = Open_Sans({
+  variable: '--font-open-sans',
+  subsets: ['latin'],
+});
 
-// const heebo = Heebo({
-//   variable: '--font-heebo',
-//   subsets: ['latin'],
-// });
+const heebo = Heebo({
+  variable: '--font-heebo',
+  subsets: ['latin'],
+});
 
 const phenomena = localFont({
   src: [
@@ -85,7 +85,7 @@ export default async function RootLayout({
     }
     return (
       <html lang={locale}>
-        <body className={`${phenomena.className} ${feelingPassionate.variable} font-normal text-xl antialiased`}>
+        <body className={`${openSans.variable} ${heebo.variable} ${phenomena.className} ${feelingPassionate.variable} font-normal text-xl antialiased`}>
           <NextIntlClientProvider>
             <Header />
             <main className='flex flex-col min-h-screen row-start-2 items-center sm:items-start pt-20 overflow-hidden bg-orange-50'>
