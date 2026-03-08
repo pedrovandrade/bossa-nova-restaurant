@@ -1,6 +1,7 @@
 {
   "header": {
     "title": "Bossa Nova Restaurant",
+    "logoAriaLabel": "Allez à la page d'accueil",
     "nav": {
       "home": "Accueil",
       "menu": "Menu",
@@ -113,7 +114,8 @@
         "0": "Notre carte se compose de plats permanents, mais aussi de suggestions éphémères qui varient selon la saison et les arrivages. Pour découvrir ces produits du moment, nous vous invitons à consulter nos publications et nos stories permanentes sur Instagram.",
         "1": "Vous trouverez ici la carte complète avec l'ensemble de nos plats fixes.",
         "2": "En cas d'allergies, merci de nous prévenir lors de votre réservation."
-      }
+      },
+      "lastUpdated": "Dernière mise à jour :"
     },
     "reservations": {
       "presentationBanner": {
@@ -165,6 +167,27 @@
         "4": "<p>Bienvenue dans notre univers.</p>",
         "5": "<p>Bem-vindo ao Bossa Nova.</p>"
       }
+    },
+    "login": {
+      "title": "Connexion à l'espace administrateur",
+      "form": {
+        "labels": {
+          "email": "E-mail",
+          "password": "Mot de passe"
+        },
+        "errors": {
+          "email": {
+            "valueMissing": "L'e-mail est requis",
+            "typeMismatch": "Merci d'entrer un e-mail au bon format (ex. : user@example.com)"
+          },
+          "password": {
+            "valueMissing": "Le mot de passe est requis",
+            "tooShort": "Le mot de passe doit comporter au moins 8 caractères, dont une majuscule, une minuscule et un chiffre"
+          }
+        },
+        "submitButton": "Se connecter"
+      },
+      "forgotPasswordLink": "Mot de passe oublié ?"
     },
     "privacyPolicy": {
       "0": "<h1>Politique de Confidentialité et Charte de Protection des Données Personnelles</h1>",

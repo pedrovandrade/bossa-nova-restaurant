@@ -59,7 +59,7 @@ const CookieConsentModal: FC<CookieConsentModalProps> = ({
         <button
           aria-label={t('closeButtonAriaLabel')}
           onClick={closeModal}
-          className='absolute top-3 right-3 p-1 rounded hover:bg-gray-100'
+          className='absolute top-3 h-8 w-8 text-gray-500 right-3 p-1 rounded hover:bg-gray-100'
         >
           <Cross />
         </button>

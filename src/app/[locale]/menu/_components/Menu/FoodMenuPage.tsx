@@ -3,22 +3,6 @@ import { MenuHeaderIcon } from '@/components/_icons';
 import { useLocalized } from '@/hooks/language';
 import type { FoodMenuPageData } from '@/app/_types/FoodMenuPageData';
 
-// export type FoodPageProps = {
-//   title: LocalizedText;
-//   category: 'starters' | 'mainCourses' | 'desserts' | 'beverages';
-//   items: {
-//     name: LocalizedText;
-//     description?: LocalizedText | LocalizedTextArray;
-//     price: number | null;
-//   }[];
-//   footer: {
-//     notes?: LocalizedTextArray;
-//     generalNote?: LocalizedText;
-//   };
-//   // foodPages?: FoodMenuPage[];
-//   // drinkPages?: DrinkMenuPage[];
-// };
-
 const FoodMenuPage: FC<FoodMenuPageData> = ({ title, items, footer }) => {
   const getLocalized = useLocalized();
   const footerNotes: string[] = getLocalized(footer?.notes || {}) as string[] || [];

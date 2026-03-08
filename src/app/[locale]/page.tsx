@@ -7,6 +7,7 @@ import InstagramFeed from '@/app/_homePageComponents/InstagramFeed';
 import FadeInContainer from '@/components/FadeInContainer';
 import restaurantOverviewDesktop from '@/assets/images/restaurant-overview-desktop.jpg';
 import restaurantOverviewMobile from '@/assets/images/restaurant-overview-mobile.jpg';
+import OpeningHours from '@/app/_homePageComponents/OpeningHours';
 
 type TextImageContainerParams = {
   image: {
@@ -71,6 +72,7 @@ export default function Home() {
           </FadeInContainer>
         ))}
       </div>
+      <OpeningHours/>
       <div className='px-5 md:px-10 py-20 flex flex-col items-center w-full'>
         <h2 className='font-semibold text-3xl text-bossanova-cyan mb-6'>
           {t('instagramFeed.title')}

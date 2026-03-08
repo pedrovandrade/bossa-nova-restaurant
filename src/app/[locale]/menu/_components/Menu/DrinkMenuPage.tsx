@@ -81,7 +81,15 @@ const DrinkMenuPage: FC<DrinkMenuPageData> = ({ title, items }) => {
                               {drinkName}
                             </span>
                             {': '}
-                            <span>{descriptionText}</span>
+                            <span
+                              className={[
+                              'my-1',
+                              description?.bold ? 'font-extrabold' : 'font-normal',
+                              description?.small ? 'text-xs' : 'text-sm',
+                            ].join(' ')}
+                            >
+                              {descriptionText}
+                            </span>
                           </div>
                           :
                           <div className={name.bold ? 'font-extrabold' : ''}>

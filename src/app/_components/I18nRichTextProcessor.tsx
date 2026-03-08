@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react';
 import { Link } from '@/i18n/navigation';
-import PencilTrace from '@/components/_icons/PencilTrace';
+import { PencilTrace } from '@/components/_icons';
  
 // These tags are available
 type Tag =

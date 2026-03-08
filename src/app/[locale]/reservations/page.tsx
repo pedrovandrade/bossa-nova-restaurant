@@ -22,7 +22,7 @@ type TextImageContainerParams = {
   },
 };
 
-const MenuPage: FC = () => {
+const ReservationsPage: FC = () => {
   const messages = useMessages();
   const textImageContainers = messages.pages.reservations.textImageContainers as {[key: string]: TextImageContainerParams};
 
@@ -82,4 +82,4 @@ const MenuPage: FC = () => {
   );
 };
 
-export default MenuPage;
+export default ReservationsPage;

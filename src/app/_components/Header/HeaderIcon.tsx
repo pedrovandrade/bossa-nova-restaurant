@@ -1,21 +1,14 @@
 import { Link } from '@/i18n/navigation';
-import Image from 'next/image';
 import { FC } from 'react';
-import logoGuitar from '@/assets/images/logo-guitar.png';
+import { BossaNovaLogoHorizontal } from '@/components/_icons';
+import { useTranslations } from 'next-intl';
 
 const HeaderIcon: FC = () => {
+  const t = useTranslations();
   return (
-    <div>
-      <Link href={'/'}>
-        <Image
-          src={logoGuitar}
-          alt='Go to home page'
-          height={40}
-          width={80}
-          className='w-20 min-w-20'
-        />
-      </Link>
-    </div>
+    <Link href={'/'} aria-label={t('header.logoAriaLabel')}>
+      <BossaNovaLogoHorizontal />
+    </Link>
   );
 }
 

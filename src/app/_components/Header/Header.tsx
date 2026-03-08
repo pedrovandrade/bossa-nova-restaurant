@@ -2,7 +2,6 @@
 
 import { FC, JSX } from 'react';
 import HeaderNav from './HeaderNav';
-import HeaderTitle from './HeaderTitle';
 import HeaderIcon from './HeaderIcon';
 import { useLocale } from 'next-intl';
 import { usePathname } from 'next/navigation';
@@ -56,8 +55,7 @@ const siteLinks = [
 
 return (
   <header className='fixed w-full h-20 flex bg-bossanova-cyan justify-between text-white z-100 shadow-md shadow-black/25'>
-    <div className='w-5/7 md:w-1/2 flex items-center justify-between md:justify-around'>
-      <HeaderTitle />
+    <div className='w-5/7 md:w-1/2 flex items-center justify-between md:justify-around px-3'>
       <HeaderIcon />
     </div>
     <div className='w-2/7 md:w-1/2 flex items-center justify-end mx-3'>

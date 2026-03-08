@@ -1,7 +1,11 @@
+import { LocalizedText } from '@/types/LocalizedText';
+
 /**
  * Represents the content of a drink menu page.
  */
 type DrinkMenuPageData = {
+  /** Date when the page was last updated. */
+  lastUpdated: Date;
   /** Localized page title (e.g. "Boissons"). */
   title: LocalizedText;
   /** List of drink categories on the page. */
@@ -39,8 +43,8 @@ type DrinkMenuPageData = {
         /** Render the description in a smaller font. */
         small?: boolean;
       };
-      /** Numeric price in euros, or null when not applicable. */
-      price: number | null;
+      /** Numeric price in euros. */
+      price?: number;
     }[];
   }[];
 };

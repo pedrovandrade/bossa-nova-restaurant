@@ -1,7 +1,11 @@
+import { LocalizedText, LocalizedTextArray } from '@/types/LocalizedText';
+
 /**
  * Represents the content of a food menu page.
  */
 type FoodMenuPageData = {
+  /** Date when the page was last updated. */
+  lastUpdated: Date;
   /** Localized page title (e.g. `"Plats"`). */
   title: LocalizedText;
   /** Category identifier for the page. */
@@ -10,10 +14,10 @@ type FoodMenuPageData = {
   items: {
     /** Localized item name. */
     name: LocalizedText;
-    /** Localized item description or array of localized texts. */
-    description?: LocalizedText | LocalizedTextArray;
-    /** Numeric price in euros, or null when not applicable. */
-    price: number | null;
+    /** Localized item description as an array of localized texts. */
+    description?: LocalizedTextArray;
+    /** Numeric price in euros. */
+    price?: number;
   }[];
   /** Footer content for the page (notes and general note). */
   footer: {

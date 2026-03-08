@@ -39,6 +39,9 @@
       "@/components/*": [
         "src/app/_components/*"
       ],
+      "@/database/*": [
+        "src/app/_database/*"
+      ],
       "@/types/*": [
         "src/app/_types/*"
       ],

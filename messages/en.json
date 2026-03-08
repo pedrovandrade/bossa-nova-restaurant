@@ -1,6 +1,7 @@
 {
   "header": {
     "title": "Bossa Nova Restaurant",
+    "logoAriaLabel": "Go to home page",
     "nav": {
       "home": "Home",
       "menu": "Menu",
@@ -113,7 +114,8 @@
         "0": "Our menu consists of permanent dishes, but also of ephemeral suggestions that vary according to the season and arrivals. To discover these products of the moment, we invite you to check out our posts and our permanent stories on Instagram.",
         "1": "Here you will find the complete menu with all our fixed dishes.",
         "2": "In case of allergies, please let us know when you make your reservation."
-      }
+      },
+      "lastUpdated": "Last updated:"
     },
     "reservations": {
       "presentationBanner": {
@@ -165,6 +167,27 @@
         "4": "<p>Welcome to our universe.</p>",
         "5": "<p>Bem-vindo ao Bossa Nova.</p>"
       }
+    },
+    "login": {
+      "title": "Admin Area Login",
+      "form": {
+        "labels": {
+          "email": "Email",
+          "password": "Password"
+        },
+        "errors": {
+          "email": {
+            "valueMissing": "Email is required",
+            "typeMismatch": "Please enter an email in the correct format (e.g., user@example.com)"
+          },
+          "password": {
+            "valueMissing": "Password is required",
+            "tooShort": "Password must be at least 8 characters long, including an uppercase letter, a lowercase letter, and a number"
+          }
+        },
+        "submitButton": "Log In"
+      },
+      "forgotPasswordLink": "Forgot your password?"
     },
     "privacyPolicy": {
       "0": "<h1>Privacy policy and personal data protection chart</h1>",

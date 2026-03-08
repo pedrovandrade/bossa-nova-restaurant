@@ -1,6 +1,7 @@
 {
   "header": {
     "title": "Restaurante Bossa Nova",
+    "logoAriaLabel": "Ir para a página inicial",
     "nav": {
       "home": "Início",
       "menu": "Menu",
@@ -113,7 +114,8 @@
         "0": "Nosso cardápio é composto por pratos permanentes, mas também por sugestões efêmeras que variam conforme a estação e as chegadas. Para descobrir esses produtos do momento, convidamos você a consultar nossas publicações e nossos stories permanentes no Instagram.",
         "1": "Aqui você encontrará o cardápio completo com todos os nossos pratos fixos.",
         "2": "Em caso de alergias, por favor nos avise no momento da sua reserva."
-      }
+      },
+      "lastUpdated": "Última atualização:"
     },
     "reservations": {
       "presentationBanner": {
@@ -165,6 +167,27 @@
         "4": "<p>Bem-vindo ao nosso universo.</p>",
         "5": "<p>Bem-vindo ao Bossa Nova.</p>"
       }
+    },
+    "login": {
+      "title": "Conexão ao espaço administrador",
+      "form": {
+        "labels": {
+          "email": "E-mail",
+          "password": "Senha"
+        },
+        "errors": {
+          "email": {
+            "valueMissing": "E-mail obrigatório",
+            "typeMismatch": "Por favor, insira um e-mail no formato correto (ex.: user@example.com)"
+          },
+          "password": {
+            "valueMissing": "Senha obrigatória",
+            "tooShort": "A senha deve ter pelo menos 8 caracteres, incluindo uma letra maiúscula, uma letra minúscula e um número"
+          }
+        },
+        "submitButton": "Conectar"
+      },
+      "forgotPasswordLink": "Esqueceu sua senha?"
     },
     "privacyPolicy": {
       "0": "<h1>Política de privacidade e cartilha de proteção de dados pessoais</h1>",

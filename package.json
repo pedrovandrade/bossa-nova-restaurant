@@ -3,12 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "db:create:dev": "dotenvx run --env-file=.env.development npx tsx src/app/_database/scripts/createDB.ts",
+    "db:create:prod": "dotenvx run --env-file=.env.production npx tsx src/app/_database/scripts/createDB.ts",
+    "db:script:execute:dev": "dotenvx run --env-file=.env.development npx tsx src/app/_database/scripts/${SCRIPT_NAME}.ts",
+    "db:script:execute:prod": "dotenvx run --env-file=.env.production npx tsx src/app/_database/scripts/${SCRIPT_NAME}.ts",
     "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
+      "build": "next build",
+      "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "mongodb": "^7.0.0",
+    "mongoose": "^9.1.5",
     "next": "^16.0.7",
     "next-intl": "^4.5.8",
     "radix-ui": "^1.4.2",
@@ -16,6 +22,7 @@
     "react-dom": "19.1.0"
   },
   "devDependencies": {
+    "@dotenvx/dotenvx": "^1.52.0",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
@@ -25,6 +32,7 @@
     "eslint-config-next": "15.4.2",
     "eslint-config-prettier": "^10.1.8",
     "tailwindcss": "^4",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }
