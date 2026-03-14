@@ -55,11 +55,8 @@ const InstagramFeed: FC<InstagramFeedProps> = ({ url }) => {
     };
   }, []);
 
-  // While we don't know consent yet you can return null or a placeholder.
-  if (hasEmbedConsent === null) return null;
-
   if (!hasEmbedConsent) {
-    return <PostPlaceholder url={url} hasConsent={hasEmbedConsent} />;
+    return <PostPlaceholder url={url} hasConsent={Boolean(hasEmbedConsent)} />;
   }
 
   // consent granted -> show embed + placeholder until iframe fires onLoad

@@ -30,11 +30,7 @@ async function onDatabaseConnection<T>(
     return result;
   } catch (err) {
     console.error('Database connection / operation error:', err);
-    return null;
-  } finally {
-    mongoose.disconnect().catch((err) => {
-      console.error('Error disconnecting from database:', err);
-    });
+    process.exit(1);
   }
 }
 

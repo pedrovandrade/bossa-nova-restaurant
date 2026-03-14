@@ -5,6 +5,7 @@ import MapLocation from './MapLocation';
 import FooterItem from './FooterItem';
 import FollowUs from './FollowUs';
 import { useTranslations } from 'next-intl';
+import OpeningHoursFooter from './OpeningHoursFooter';
 
 type FooterItemData = {
   title: string,
@@ -20,6 +21,11 @@ const Footer: FC = () => {
       title: t('contact.title'),
       id: 'footer-contact',
       component: <AddressAndContact />,
+    },
+    {
+      title: t('openingHours'),
+      id: 'footer-opening-hours',
+      component: <OpeningHoursFooter />,
     },
     {
       title: t('siteMap.title'),
@@ -50,11 +56,14 @@ const Footer: FC = () => {
           <MapLocation query='Bossa Nova Restaurant Toulouse' />
         </div>
       </div>
-      <div className='w-full flex justify-center items-center'>
-        <p className='text-sm'>
+      <p className='w-full flex gap-2 justify-center items-center text-sm'>
+        <span>
           &copy; {new Date().getFullYear()} {t('allRightsReserved')}
-        </p>
-      </div>
+        </span>
+        <span>
+          {t('madeBy')} <a className='underline' target='_blank' href='https://www.linkedin.com/in/pedro-v-andrade/'>Pedro Andrade</a>.
+        </span>
+      </p>
     </footer>
   );
 };

@@ -1,6 +1,5 @@
 import TextImageContainer, { TextImageContainerProps } from '@/components/TextImageContainer';
 import PresentationBanner from '@/components/PresentationBanner';
-import { useMessages, useTranslations } from 'next-intl';
 import foodPhoto1 from '@/assets/images/entree-plat-1.jpg';
 import foodPhoto2 from '@/assets/images/entree-plat-2.jpg';
 import InstagramFeed from '@/app/_homePageComponents/InstagramFeed';
@@ -8,6 +7,8 @@ import FadeInContainer from '@/components/FadeInContainer';
 import restaurantOverviewDesktop from '@/assets/images/restaurant-overview-desktop.jpg';
 import restaurantOverviewMobile from '@/assets/images/restaurant-overview-mobile.jpg';
 import OpeningHours from '@/app/_homePageComponents/OpeningHours';
+import { getMessages, getTranslations } from 'next-intl/server';
+import { MarketingData } from '@/types/MarketingData';
 
 type TextImageContainerParams = {
   image: {
@@ -23,8 +24,8 @@ type TextImageContainerParams = {
   },
 };
 
-export default function Home() {
-  const messages = useMessages();
+export default async function Home() {
+  const messages = await getMessages();
   const textImageContainers = messages.pages.home.textImageContainers as {[key: string]: TextImageContainerParams};
 
   const imageFiles = [
@@ -53,9 +54,12 @@ export default function Home() {
     }
   );
 
-  const t = useTranslations('pages.home');
+  const t = await getTranslations('pages.home');
 
-  const instagramFeedUrl = 'https://www.instagram.com/p/DOdu1maDNVM';
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/marketing`);
+  const marketingData: MarketingData = await response.json();
+  const isInstagramActive = marketingData.instagram.active;
+  const instagramFeedUrl = marketingData.instagram.url;
 
   return (
     <>
@@ -73,12 +77,14 @@ export default function Home() {
         ))}
       </div>
       <OpeningHours/>
-      <div className='px-5 md:px-10 py-20 flex flex-col items-center w-full'>
-        <h2 className='font-semibold text-3xl text-bossanova-cyan mb-6'>
-          {t('instagramFeed.title')}
-        </h2>
-        <InstagramFeed url={instagramFeedUrl} />
-      </div>
+      {isInstagramActive &&
+        <div className='px-5 md:px-10 py-20 flex flex-col items-center w-full'>
+          <h2 className='font-semibold text-3xl text-bossanova-cyan mb-6'>
+            {t('instagramFeed.title')}
+          </h2>
+          <InstagramFeed url={instagramFeedUrl} />
+        </div>
+      }
     </>
   );
 }

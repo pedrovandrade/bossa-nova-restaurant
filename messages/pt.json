@@ -14,6 +14,20 @@
     "previous": "Anterior",
     "next": "Próximo"
   },
+  "openingHours": {
+    "title": "Horários de funcionamento",
+    "closed": "Fechado",
+    "unavailable": "Horários indisponíveis",
+    "weekdays": {
+      "monday": "Segunda",
+      "tuesday": "Terça",
+      "wednesday": "Quarta",
+      "thursday": "Quinta",
+      "friday": "Sexta",
+      "saturday": "Sábado",
+      "sunday": "Domingo"
+    }
+  },
   "cookies": {
     "banner": {
       "title": "Cookies... ou bolachas ?",
@@ -243,6 +257,7 @@
       "phone": "Telefone:",
       "email": "E-mail:"
     },
+    "openingHours": "Horários",
     "siteMap": {
       "title": "Mapa do Site",
       "home": "Início",
@@ -250,7 +265,8 @@
       "about": "Sobre",
       "reservations": "Reservas",
       "cookieSettings": "Configurações de Cookies",
-      "privacy-policy": "Política de Privacidade"
+      "privacy-policy": "Política de Privacidade",
+      "administration": "Administração"
     },
     "followUs": {
       "title": "Siga-nos",
@@ -265,6 +281,7 @@
         "altText": "Mapa de fundo do Google Maps"
       }
     },
-    "allRightsReserved": "Restaurante Bossa Nova. Todos os direitos reservados."
+    "allRightsReserved": "Restaurante Bossa Nova. Todos os direitos reservados.",
+    "madeBy": "Feito por"
   }
 }

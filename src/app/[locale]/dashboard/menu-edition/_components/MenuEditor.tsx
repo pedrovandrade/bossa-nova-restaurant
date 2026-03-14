@@ -50,7 +50,6 @@ const MenuEditor: FC = () => {
     const fetchMenuData = async () => {
       try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/menu`);
-        console.log(`Fetch menu data response: ${response.status} ${response.statusText}`);
         if (!response.ok) {
           throw new Error(`Failed to fetch menu data: ${response.statusText}, status ${response.status}`);
         }

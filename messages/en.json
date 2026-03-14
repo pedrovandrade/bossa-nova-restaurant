@@ -14,6 +14,20 @@
     "previous": "Previous",
     "next": "Next"
   },
+  "openingHours": {
+    "title": "Opening hours",
+    "closed": "Closed",
+    "unavailable": "Hours unavailable",
+    "weekdays": {
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday"
+    }
+  },
   "cookies": {
     "banner": {
       "title": "Cookies... or bolachas ?",
@@ -243,6 +257,7 @@
       "phone": "Phone:",
       "email": "E-mail:"
     },
+    "openingHours": "Opening hours",
     "siteMap": {
       "title": "Site Map",
       "home": "Home",
@@ -250,7 +265,8 @@
       "about": "About",
       "reservations": "Reservations",
       "cookieSettings": "Cookie Settings",
-      "privacy-policy": "Privacy Policy"
+      "privacy-policy": "Privacy Policy",
+      "administration": "Administration"
     },
     "followUs": {
       "title": "Follow Us",
@@ -265,6 +281,7 @@
         "altText": "Google Maps background map"
       }
     },
-    "allRightsReserved": "Bossa Nova Restaurant. All rights reserved."
+    "allRightsReserved": "Bossa Nova Restaurant. All rights reserved.",
+    "madeBy": "Made by"
   }
 }

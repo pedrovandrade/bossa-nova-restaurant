@@ -17,9 +17,7 @@ const EmbededPost: FC<EmbededPostProps> = ({ url, isLoaded, onLoad }) => {
       rd: baseUrl,
       rp: `/${currentLocale}`,
     });
-    // const hashData = '#%7B%22ci%22%3A0%2C%22os%22%3A564.2000000000116%2C%22ls%22%3A309.6000000000349%2C%22le%22%3A433%7D';
-    const hashData = '';
-    const src = `${url}/embed/captioned/?${queryParams.toString()}${hashData}`;
+    const src = `${url}/embed/captioned/?${queryParams.toString()}`;
   
     return (
       <iframe

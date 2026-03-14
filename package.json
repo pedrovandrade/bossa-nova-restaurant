@@ -8,8 +8,8 @@
     "db:script:execute:dev": "dotenvx run --env-file=.env.development npx tsx src/app/_database/scripts/${SCRIPT_NAME}.ts",
     "db:script:execute:prod": "dotenvx run --env-file=.env.production npx tsx src/app/_database/scripts/${SCRIPT_NAME}.ts",
     "dev": "next dev --turbopack",
-      "build": "next build",
-      "start": "next start",
+    "build": "next build",
+    "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {

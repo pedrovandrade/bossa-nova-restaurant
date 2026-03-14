@@ -10,6 +10,7 @@ const siteLinks = [
   { href: '/reservations', name: 'reservations' },
   { href: '/about', name: 'about' },
   { href: '/privacy-policy', name: 'privacy-policy' },
+  { href: '/dashboard', name: 'administration' },
 ];
 
 const SiteMap: FC = () => {

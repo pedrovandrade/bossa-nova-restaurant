@@ -11,7 +11,21 @@ export type GetMenuResponse = {
   lastUpdated?: string;
 };
 
+type MongoObj<T> = T & {
+  _id?: string,
+  __v?: number,
+};
+
 const DB_NAME = process.env.DB_NAME;
+
+const cleanupFields = (list: MongoObj<Record<string, unknown>>[]): Record<string, unknown>[] => (
+  list.map((elem) => {
+    const copy = {...elem};
+    delete copy._id;
+    delete copy.__v;
+    return copy;
+  })
+);
 
 /**
  * Fetch the menu data from the database as a view combining drinkPages and foodPages.
@@ -34,8 +48,8 @@ const getMenu = async (): Promise<GetMenuResponse | null> => {
 
     // Ensure the returned object matches GetMenuResponse shape as best-effort
     return {
-      drinkPages: Array.isArray(menu.drinkPages) ? menu.drinkPages : [],
-      foodPages: Array.isArray(menu.foodPages) ? menu.foodPages : [],
+      drinkPages: Array.isArray(menu.drinkPages) ? cleanupFields(menu.drinkPages) as DrinkMenuPageData[] : [],
+      foodPages: Array.isArray(menu.foodPages) ? cleanupFields(menu.foodPages) as FoodMenuPageData[] : [],
       lastUpdated: menu.lastUpdated,
     };
   };
