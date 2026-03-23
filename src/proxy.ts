@@ -1,7 +1,10 @@
+import { authConfig } from '@/auth.config';
+import NextAuth from 'next-auth';
 import createMiddleware from 'next-intl/middleware';
 import { NextRequest } from 'next/server';
- 
-export default async function proxy(request: NextRequest) {
+
+export default NextAuth(authConfig).auth((request: NextRequest) => {
+// export default auth((request: NextRequest, context) => {
   // Step 1: Use the incoming request (example)
   const defaultLocale = 'fr'; // Default locale
  
@@ -13,8 +16,8 @@ export default async function proxy(request: NextRequest) {
   const response = handleI18nRouting(request);
  
   return response;
-}
- 
+});
+
 export const config = {
   // Match only internationalized pathnames
   matcher: ['/', '/(fr|en|pt)/:path*']

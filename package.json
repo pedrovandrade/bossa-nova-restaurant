@@ -13,18 +13,22 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "mongodb": "^7.0.0",
     "mongoose": "^9.1.5",
     "next": "^16.0.7",
+    "next-auth": "^5.0.0-beta.30",
     "next-intl": "^4.5.8",
     "radix-ui": "^1.4.2",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@dotenvx/dotenvx": "^1.52.0",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/bcrypt": "^6.0.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

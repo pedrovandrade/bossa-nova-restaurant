@@ -1,4 +1,6 @@
+'use client';
 
+import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Form } from 'radix-ui';
 import type {
@@ -7,6 +9,7 @@ import type {
   HTMLInputTypeAttribute,
   JSX
 } from 'react';
+import { OpenEye, TracedEye } from '@/app/_components/_icons';
 
 type LoginFormInputProps = {
   name: string;
@@ -19,6 +22,8 @@ type LoginFormInputProps = {
 };
 
 const LoginFormInput: FC<LoginFormInputProps> = ({ name, type, validators, icon }) => {
+  const [showPassword, setShowPassword] = useState(false);
+
   let autoCompleteValue: HTMLInputAutoCompleteAttribute = '';
 
   const t = useTranslations('pages.login.form.labels');
@@ -35,14 +40,20 @@ const LoginFormInput: FC<LoginFormInputProps> = ({ name, type, validators, icon 
       autoCompleteValue = 'off';
   }
 
+  const toggleShowPassword = () => setShowPassword((s) => !s);
+
+  const isPassword = type === 'password';
+  const inputType = isPassword ? (showPassword ? 'text' : 'password') : type;
+
   return (
     <Form.Field name={name} className='w-full'>
       <div className={[
           'flex',
           'grow',
           'items-center',
-          'rounded-xl',
+          'rounded-3xl',
           'border',
+          'border-slate-400',
           'px-3',
         ].join(' ')}
       >
@@ -56,16 +67,18 @@ const LoginFormInput: FC<LoginFormInputProps> = ({ name, type, validators, icon 
           <Form.Control
             id={name}
             name={name}
-            type={type}
+            type={inputType}
             autoComplete={autoCompleteValue}
             placeholder=' '
             required={Boolean(validators?.required?.value)}
             className={[
               'peer',
               'w-full',
-              'pt-7',
-              'pb-2',
+              'pt-8',
+              'pb-3',
               'outline-none',
+              'text-2xl',
+              isPassword ? 'pr-12' : '',
             ].join(' ')}
           />
           <Form.Label
@@ -73,22 +86,40 @@ const LoginFormInput: FC<LoginFormInputProps> = ({ name, type, validators, icon 
             className={[
               'pointer-events-none',
               'absolute',
-              'left-3',
+              'left-0',
               'top-1/2',
               '-translate-y-1/2',
-              'text-lg',
+              'text-2xl',
               'text-gray-500',
               'transition-all',
               'peer-focus:top-2',
-              'peer-focus:text-sm',
+              'peer-focus:text-base',
               'peer-focus:-translate-y-0',
               'peer-not-placeholder-shown:top-2',
-              'peer-not-placeholder-shown:text-sm',
+              'peer-not-placeholder-shown:text-base',
               'peer-not-placeholder-shown:-translate-y-0',
             ].join(' ')}
           >
             {label}
           </Form.Label>
+
+          {isPassword && (
+            <button
+              type="button"
+              onClick={toggleShowPassword}
+              aria-pressed={showPassword}
+              aria-label={showPassword ? 'Hide password' : 'Show password'}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 hover:text-gray-800"
+            >
+              {showPassword ? (
+                // eye with diagonal trace (hidden)
+                <TracedEye />
+              ) : (
+                // open eye
+                <OpenEye />
+              )}
+            </button>
+          )}
         </div>
       </div>
 

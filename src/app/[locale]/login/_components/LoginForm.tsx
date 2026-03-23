@@ -1,15 +1,43 @@
-import { type FC } from 'react';
+'use client';
+
+import { FormEvent, useState, type FC } from 'react';
 import * as Form from '@radix-ui/react-form';
 import LoginFormInput from './LoginFormInput';
 import { useTranslations } from 'next-intl';
 import { Key, Mail } from '@/components/_icons';
+import { useRouter } from 'next/navigation';
 
-type Props = {
-  action: (formData: FormData) => Promise<void>;
-};
-
-const LoginForm: FC<Props> = ({ action }) => {
+const LoginForm: FC = () => {
   const t = useTranslations('pages.login.form');
+  const router = useRouter();
+
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isPending, setIsPending] = useState(false);
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsPending(true);
+
+    setErrorMessage('');
+ 
+    const formData = new FormData(event.currentTarget);
+    const email = formData.get('email');
+    const password = formData.get('password');
+ 
+    const response = await fetch('/api/auth', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
+    setIsPending(false);
+ 
+    if (response.ok) {
+      router.refresh();
+    } else {
+      const { error } = await response.json();
+      setErrorMessage(error);
+    }
+  };
 
   return (
     <div className={[
@@ -20,8 +48,6 @@ const LoginForm: FC<Props> = ({ action }) => {
         'grow',
         'justify-center',
         'items-center',
-        'border',
-        'border-slate-400',
         'px-8',
         'sm:px-16',
         'w-full',
@@ -32,8 +58,7 @@ const LoginForm: FC<Props> = ({ action }) => {
     >
       <Form.Root
         className='flex flex-col gap-5 w-full'
-        action={action}
-        method='POST'
+        onSubmit={handleSubmit}
         noValidate
       >
         {/* Email field */}
@@ -62,14 +87,16 @@ const LoginForm: FC<Props> = ({ action }) => {
               value: true,
               message: t('errors.password.valueMissing'),
             },
-            minLength: {
-              value: 6,
-              message: t('errors.password.tooShort'),
-            },
           }}
         />
+          {errorMessage && (
+            <>
+              <p className="text-xl text-red-500">{errorMessage}</p>
+            </>
+          )}
           <Form.Submit
-            className='bg-bossanova-cyan hover:bg-bossanova-cyan/95 text-white font-bold p-3 rounded-full'
+            className='bg-bossanova-cyan hover:bg-bossanova-cyan/95 text-white font-bold p-4 rounded-full'
+            aria-disabled={isPending}
           >
             {t('submitButton')}
           </Form.Submit>

@@ -1,6 +1,9 @@
-import { Calendar, ForkKnife, Megaphone } from '@/components/_icons';
+import { Calendar, ForkKnife, Megaphone, SignOut } from '@/components/_icons';
 import { type FC, JSX } from 'react';
 import { Link } from '@/i18n/navigation';
+import { signOut } from '@/auth';
+import { CurrentLocale } from '@/types/LocalizedText';
+import { useLocale } from 'next-intl';
 
 type DashboardItem = {
   name: string;
@@ -26,25 +29,64 @@ const Dashboard: FC = () => {
       icon: <Megaphone width={60} height={60} />,
     },
   ];
+
+  const currentLocale = useLocale() as CurrentLocale;
+
   return (
-    <div className='p-8'>
-      <h1 className='text-3xl font-bold mb-6'>Dashboard</h1>
-      <p>Welcome to your dashboard! This is a protected page.</p>
-      <ul className='flex flex-col md:flex-row gap-6 mt-6'>
+    <div className='p-8 w-full'>
+      <h1 className='text-3xl text-center font-bold mb-6 uppercase'>
+        Dashboard
+      </h1>
+      <ul className='flex flex-col md:flex-row justify-center gap-6 mt-6'>
         {dashboardItems.map((item) => (
-          <li
-            key={item.href}
-            className='p-4 rounded-lg hover:bg-gray-100 transition-colors'
-          >
+          <li key={item.href}>
             <Link
               href={item.href}
-              className='text-bossanova-cyan hover:underline flex flex-col items-center'
+              className={[
+                'p-4',
+                'rounded-lg',
+                'text-bossanova-cyan',
+                'hover:underline',
+                'hover:bg-gray-100',
+                'transition-colors',
+                'flex',
+                'flex-col',
+                'items-center',
+              ].join(' ')}
             >
-              <div className='flex items-center justify-center p-6'>{item.icon}</div>
-              <p>{item.name}</p>
+              <span className='flex items-center justify-center p-6'>{item.icon}</span>
+              <span>{item.name}</span>
             </Link>
           </li>
         ))}
+        <li>
+            <form
+              action={async () => {
+                'use server';
+                await signOut({ redirectTo: `/${currentLocale}/login` });
+            }}>
+              <button
+                type='submit'
+                className={[
+                  'p-4',
+                  'rounded-lg',
+                  'text-bossanova-cyan',
+                  'hover:underline',
+                  'hover:cursor-pointer',
+                  'hover:bg-gray-100',
+                  'transition-colors',
+                  'flex',
+                  'flex-col',
+                  'items-center'
+                ].join(' ')}
+              >
+                <span className='flex items-center justify-center p-6'>
+                  <SignOut width={60} height={60} />
+                </span>
+                <span>{'Log-out'}</span>
+              </button>
+            </form>
+        </li>
       </ul>
     </div>
   );

@@ -14,6 +14,9 @@ import Megaphone from './Megaphone';
 import Pencil from './Pencil';
 import PencilTrace from './PencilTrace';
 import CheckMark from './CheckMark';
+import SignOut from './SignOut';
+import OpenEye from './OpenEye';
+import TracedEye from './TracedEye';
 
 export {
   BrazilFlag,
@@ -30,6 +33,9 @@ export {
   Mail,
   Megaphone,
   MenuHeaderIcon,
+  OpenEye,
   Pencil,
   PencilTrace,
+  SignOut,
+  TracedEye,
 };

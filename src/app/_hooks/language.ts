@@ -1,5 +1,5 @@
-import { type CurrentLocale, LocalizedText, LocalizedTextArray } from "@/types/LocalizedText";
-import { useLocale } from "next-intl";
+import { type CurrentLocale, LocalizedText, LocalizedTextArray } from '@/types/LocalizedText';
+import { useLocale } from 'next-intl';
 
 type GetLocalizedFunction = (textData: LocalizedText | LocalizedTextArray) => string | string[] | undefined;
 
