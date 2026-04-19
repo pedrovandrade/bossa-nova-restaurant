@@ -2,16 +2,24 @@ import mongoose from 'mongoose';
 import { FoodPageSchema } from '@/database/schemas/menu/FoodPageSchema';
 import { foodPages } from '@/database/seed/foodPagesSeed';
 
-const MONGODB_URI = process.env.MONGODB_URI;
-const DB_NAME = process.env.DB_NAME || 'bossa_nova_restaurant';
+let databasePassword = process.env.DB_PASSWORD || '';
+databasePassword = encodeURIComponent(databasePassword);
+
+let databaseUri = process.env.MONGODB_URI;
+if (!databaseUri) {
+  throw new Error('MONGODB_URI environment variable is not set');
+}
+databaseUri = databaseUri.replace('<DB_PASSWORD>', databasePassword);
+
+const dbName = process.env.DB_NAME || 'bossa_nova_restaurant';
 
 async function run() {
-  if (!MONGODB_URI) {
+  if (!databaseUri) {
     console.error('MONGODB_URI is not set');
     process.exit(1);
   }
 
-  await mongoose.connect(MONGODB_URI, { dbName: DB_NAME });
+  await mongoose.connect(databaseUri, { dbName });
   try {
     const { db } = mongoose.connection;
     if (!db) {

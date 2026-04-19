@@ -1,10 +1,13 @@
 import { useMessages, useTranslations } from 'next-intl';
 import { FC } from 'react';
+import { Dialog } from '@ark-ui/react/dialog';
+import { Portal } from '@ark-ui/react/portal';
 import I18nRichTextProcessor from '@/components/I18nRichTextProcessor';
 import { Cookie } from '@/components/_icons';
 import FadeInContainer from '@/components/FadeInContainer';
 
 type CookieConsentBannerProps = {
+  isOpen?: boolean,
   onAcceptAll: () => void,
   onRefuseAll: () => void,
   onOpenPreferences: () => void,
@@ -15,7 +18,7 @@ type BannerButtonData = {
   onClick: () => void,
 };
 
-const CookieConsentBanner: FC<CookieConsentBannerProps> = ({ onAcceptAll, onRefuseAll, onOpenPreferences }) => {
+const CookieConsentBanner: FC<CookieConsentBannerProps> = ({ isOpen, onAcceptAll, onRefuseAll, onOpenPreferences }) => {
 
   const messages = useMessages();
   const paragraphMap = messages.cookies.banner.description as {[key: string]: string};
@@ -39,14 +42,20 @@ const CookieConsentBanner: FC<CookieConsentBannerProps> = ({ onAcceptAll, onRefu
   ];
 
   return (
-    <div className='fixed w-full bottom-0 z-[9999]'>
-      <div className='bg-white/95 backdrop-blur-sm border border-gray-200 shadow-[0_0_35px_rgba(0,0,0,0.55)] px-8 md:px-15 pt-8 pb-8 md:pb-15'>
-        <section className='max-w-7xl mx-auto flex flex-col items-start gap-4'>
-          <div className='w-15 text-bossanova-green'><Cookie /></div>
-          <h2 className='text-2xl text-bossanova-cyan font-bold'>{t('title')}</h2>
-          <div className='flex flex-col xl:flex-row items-center md:items-end justify-center gap-6'>
-            <div className='flex-1 text-base md:text-lg text-gray-800'>
-              {paragraphKeys.map((paragraphKey) => (
+    <Dialog.Root
+      open={isOpen}
+    >
+      <Portal>
+        <Dialog.Backdrop className='fixed inset-0 z-[10000] bg-black/40' />
+        <Dialog.Positioner className='fixed w-full z-[10000] bottom-0'>
+          <Dialog.Content className='bg-white/95 backdrop-blur-sm border border-gray-200 shadow-[0_0_35px_rgba(0,0,0,0.55)] px-8 md:px-15 pt-8 pb-8 md:pb-15'>
+            <div className='w-15 text-bossanova-green'><Cookie /></div>
+            <Dialog.Title className='text-2xl text-bossanova-cyan font-bold'>
+              {t('title')}
+            </Dialog.Title>
+            <div className='flex flex-col xl:flex-row items-center md:items-end justify-center gap-6'>
+             <div className='flex-1 text-base md:text-lg text-gray-800'>
+               {paragraphKeys.map((paragraphKey) => (
                 <FadeInContainer key={`paragraphKey-${paragraphKey}`}>
                   <I18nRichTextProcessor>
                     {(tags) => t.rich(`description.${paragraphKey}`, tags)}
@@ -70,9 +79,10 @@ const CookieConsentBanner: FC<CookieConsentBannerProps> = ({ onAcceptAll, onRefu
               })}
             </div>
           </div>
-        </section>
-      </div>
-    </div>
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Portal>
+    </Dialog.Root>
   );
 };
 

@@ -203,6 +203,98 @@
       },
       "forgotPasswordLink": "Forgot your password?"
     },
+    "dashboard": {
+      "title": "Dashboard",
+      "items": {
+        "menu": "Menu",
+        "openingHours": "Opening hours",
+        "marketing": "Marketing",
+        "logout": "Log-out"
+      },
+      "pages": {
+        "openingHours": {
+          "title": "Opening hours",
+          "caption": "Table to edit opening hours for each weekday. Use the toggles to mark a day open or closed and add / remove time spans.",
+          "tableHeaders": {
+            "weekday": "Weekday",
+            "openingHours": "Opening hours",
+            "status": "status"
+          },
+          "weekdays": {
+            "monday": "Monday",
+            "tuesday": "Tuesday",
+            "wednesday": "Wednesday",
+            "thursday": "Thursday",
+            "friday": "Friday",
+            "saturday": "Saturday",
+            "sunday": "Sunday"
+          },
+          "errors": {
+            "hourMissed": "Start and end times must be provided",
+            "startAfterEnd": "Start time must be earlier than end time",
+            "hoursOverlap": "Cannot start a time slot before the previous one ends",
+            "validationFailed": "There are validation errors in the form",
+            "globalMessage": "Please correct the form errors before saving"
+          },
+          "open": "Open",
+          "closed": "Closed",
+          "from": "from",
+          "to": "to",
+          "add": "Add",
+          "saveChanges": "Save",
+          "discardChanges": "Discard"
+        },
+        "marketing": {
+          "title": "Marketing",
+          "errorMessage": "Failed to load the marketing data",
+          "editionForm": {
+            "saveChanges": "Save changes",
+            "discardChanges": "Discard changes",
+            "instagramFeedEditor": {
+              "title": "Instagram feed editor",
+              "switch": {
+                "enabledLabel": "Feed enabled",
+                "disabledLabel": "Feed disabled",
+                "enabledAriaLabel": "Instagram Feed active",
+                "disabledAriaLabel": "Instagram Feed inactive"
+              },
+              "inputLabel": "Instagram post URL",
+              "previewButtonLabel": "See preview",
+              "errors": {
+                "invalidUrl": "Invalid instagram URL",
+                "badOrigin": "instagram URL must have origin https://www.instagram.com",
+                "notAPost": "The URL must point to an Instagram post with path /p/{post-code}"
+              }
+            },
+            "popinEditor": {
+              "title": "Popin editor",
+              "switch": {
+                "enabledLabel": "Popin enabled",
+                "disabledLabel": "Popin disabled",
+                "enabledAriaLabel": "Popin active",
+                "disabledAriaLabel": "Popin inactive"
+              },
+              "imagePreview": {
+                "title": "Image preview",
+                "noImageUploaded": "No image uploaded",
+                "uploadImage": "Upload image"
+              },
+              "imageDescriptionTitle": "Image description (for accessibility)",
+              "errors": {
+                "tooManyFiles": "Too many files. Only one file is allowed.",
+                "fileInvalidType": "Invalid file type. Please upload an image.",
+                "fileTooLarge": "File is too large. Please upload a smaller image.",
+                "fileTooSmall": "File is too small. Please upload a larger image.",
+                "fileInvalid": "Invalid file. Please try again.",
+                "fileExists": "File already exists. Please choose a different file.",
+                "noEmptyDescription": "Description cannot be empty.",
+                "default": "Unknown error occurred while uploading this file."
+              }
+            }
+          }
+        }
+      }
+    },
     "privacyPolicy": {
       "0": "<h1>Privacy policy and personal data protection chart</h1>",
       "1": "<h2>Introduction</h2>",

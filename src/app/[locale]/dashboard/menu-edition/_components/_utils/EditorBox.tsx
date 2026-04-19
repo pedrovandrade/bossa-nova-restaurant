@@ -95,7 +95,6 @@ const EditorBox: FC<EditorBoxProps> = ({
         </div>
       </div>
   ) : (
-    // <div>
       <div className={'border border-dashed border-gray-200 ' + className || ''}>
         { readContent }
         <button
@@ -121,7 +120,6 @@ const EditorBox: FC<EditorBoxProps> = ({
           <Pencil />
         </button>
       </div>
-    // </div>
   )
   );
 };

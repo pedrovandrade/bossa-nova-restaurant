@@ -2,14 +2,22 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 import { UserSchema } from '@/database/schemas/UserSchema';
 
-const MONGODB_URI = process.env.MONGODB_URI;
-const DB_NAME = process.env.MONGODB_DB || process.env.DB_NAME || 'bossa_nova_restaurant';
+let databasePassword = process.env.DB_PASSWORD || '';
+databasePassword = encodeURIComponent(databasePassword);
+
+let databaseUri = process.env.MONGODB_URI;
+if (!databaseUri) {
+  throw new Error('MONGODB_URI environment variable is not set');
+}
+databaseUri = databaseUri.replace('<DB_PASSWORD>', databasePassword);
+
+const dbName = process.env.DB_NAME || 'bossa_nova_restaurant';
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 const AUTH_SECRET = process.env.AUTH_SECRET;
 const COLLECTION = 'users';
 
-if (!MONGODB_URI) {
+if (!databaseUri) {
   console.error('MONGODB_URI is not set');
   process.exit(1);
 }
@@ -34,7 +42,7 @@ async function hashPassword(password: string, pepper: string) {
 }
 
 async function run() {
-  await mongoose.connect(MONGODB_URI ?? '', { dbName: DB_NAME });
+  await mongoose.connect(databaseUri ?? '', { dbName });
 
   try {
     const { db } = mongoose.connection;

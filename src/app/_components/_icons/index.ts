@@ -17,8 +17,13 @@ import CheckMark from './CheckMark';
 import SignOut from './SignOut';
 import OpenEye from './OpenEye';
 import TracedEye from './TracedEye';
+import LinkIcon from './Link';
+import UpdateIcon from './Update';
+import PaperClip from './PaperClip';
+import AlertCircleIcon from './AlertCircle';
 
 export {
+  AlertCircleIcon,
   BrazilFlag,
   BossaNovaLogoHorizontal,
   BurgerMenu,
@@ -30,12 +35,15 @@ export {
   ForkKnife,
   GreatBritainFlag,
   Key,
+  LinkIcon,
   Mail,
   Megaphone,
   MenuHeaderIcon,
   OpenEye,
+  PaperClip,
   Pencil,
   PencilTrace,
   SignOut,
   TracedEye,
+  UpdateIcon,
 };

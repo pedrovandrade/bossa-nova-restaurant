@@ -8,7 +8,11 @@ const marketingData: MarketingData = {
   popin: {
     active: false,
     image: '',
-    altText: '',
+    altText: {
+      fr: '',
+      pt: '',
+      en: '',
+    },
   },
 };
 

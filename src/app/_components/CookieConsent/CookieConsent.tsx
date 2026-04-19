@@ -90,21 +90,21 @@ const CookieConsent: FC = () => {
   return (
     <>
       {/* Banner */}
-      {!preferences && <CookieConsentBanner
+      <CookieConsentBanner
+        isOpen={!preferences}
         onAcceptAll={acceptAll}
         onRefuseAll={refuseAll}
         onOpenPreferences={openPreferences}
-      />}
+      />
 
       {/* Modal / Popin */}
-      {isModalOpen && (
-        <CookieConsentModal
-          closeModal={closeModal}
-          localPreferences={localPrefs}
-          setCookiePreference={setCookiePreference}
-          onConfirmPreferences={confirmPreferences}
-        />
-      )}
+      <CookieConsentModal
+        isOpen={isModalOpen}
+        closeModal={closeModal}
+        localPreferences={localPrefs}
+        setCookiePreference={setCookiePreference}
+        onConfirmPreferences={confirmPreferences}
+      />
     </>
   );
 };

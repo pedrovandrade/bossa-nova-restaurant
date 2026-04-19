@@ -42,20 +42,20 @@ const PresentationBanner: FC<PresentationBannerProps> = ({
           {/* Desktop view */}
           <Image
             src={mainImageFile}
-            alt=""
+            alt=''
             priority
             fill
-            objectFit='cover'
+            style={{objectFit: 'cover'}}
             className={ mobileImageFile ? `hidden md:block` : `block` }
           />
           {/* Mobile view */}
           { mobileImageFile &&
             <Image
               src={mobileImageFile}
-              alt=""
+              alt=''
               priority
               fill
-              objectFit='cover'
+              style={{objectFit: 'cover'}}
               className='block md:hidden'
             />
           }

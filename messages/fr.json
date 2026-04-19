@@ -203,6 +203,98 @@
       },
       "forgotPasswordLink": "Mot de passe oublié ?"
     },
+    "dashboard": {
+      "title": "Panneau de contrôle",
+      "items": {
+        "menu": "La carte",
+        "openingHours": "Horaires d'ouverture",
+        "marketing": "Marketing",
+        "logout": "Déconnexion"
+      },
+      "pages": {
+        "openingHours": {
+          "title": "Horaires d'ouverture",
+          "caption": "Tableau pour éditer les horaires d'ouverture de chaque jour de la semaine. Utilisez les boutons pour marquer un jour comme ouvert ou fermé et ajouter / supprimer des plages horaires.",
+          "tableHeaders": {
+            "weekday": "Jour",
+            "openingHours": "Horaires d'ouverture",
+            "status": "Statut"
+          },
+          "weekdays": {
+            "monday": "Lundi",
+            "tuesday": "Mardi",
+            "wednesday": "Mercredi",
+            "thursday": "Jeudi",
+            "friday": "Vendredi",
+            "saturday": "Samedi",
+            "sunday": "Dimanche"
+          },
+          "errors": {
+            "hourMissed": "Les horaires de début et fin doivent être fournis",
+            "startAfterEnd": "L'horaire de début doit être plus tôt que celui de fin",
+            "hoursOverlap": "Impossible de commencer une plage horaire avant la fin de la dernière",
+            "validationFailed": "Il y a des erreurs de validation dans le formulaire",
+            "globalMessage": "Merci de corriger les erreurs du formulaire avant l'enregistrement"
+          },
+          "open": "Ouvert",
+          "closed": "Fermé",
+          "from": "de",
+          "to": "à",
+          "add": "Ajouter",
+          "saveChanges": "Sauvegarder",
+          "discardChanges": "Abandonner"
+        },
+        "marketing": {
+          "title": "Marketing",
+          "errorMessage": "Une erreur est survenue lors de la sauvegarde des modifications. Veuillez réessayer.",
+          "editionForm": {
+            "saveChanges": "Sauvegarder les modifications",
+            "discardChanges": "Abandonner les modifications",
+            "instagramFeedEditor": {
+              "title": "Éditeur de feed Instagram",
+              "switch": {
+                "enabledLabel": "Feed activé",
+                "disabledLabel": "Feed désactivé",
+                "enabledAriaLabel": "Feed Instagram actif",
+                "disabledAriaLabel": "Feed Instagram inactif"
+              },
+              "inputLabel": "URL de la publication Instagram",
+              "previewButtonLabel": "Voir l'aperçu",
+              "errors": {
+                "invalidUrl": "URL Instagram invalide",
+                "badOrigin": "L'URL Instagram doit avoir l'origine https://www.instagram.com",
+                "notAPost": "L'URL doit pointer vers une publication Instagram avec le chemin /p/{post-code}"
+              }
+            },
+            "popinEditor": {
+              "title": "Éditeur de popin",
+              "switch": {
+                "enabledLabel": "Popin activée",
+                "disabledLabel": "Popin désactivée",
+                "enabledAriaLabel": "Popin active",
+                "disabledAriaLabel": "Popin inactive"
+              },
+              "imagePreview": {
+                "title": "Aperçu de l'image",
+                "noImageUploaded": "Aucune image téléchargée",
+                "uploadImage": "Télécharger une image"
+              },
+              "imageDescriptionTitle": "Description de l'image (pour l'accessibilité)",
+              "errors": {
+                "tooManyFiles": "Trop de fichiers. Un seul fichier est autorisé.",
+                "fileInvalidType": "Type de fichier invalide. Veuillez télécharger une image.",
+                "fileTooLarge": "Le fichier est trop volumineux. Veuillez télécharger une image plus petite.",
+                "fileTooSmall": "Le fichier est trop petit. Veuillez télécharger une image plus grande.",
+                "fileInvalid": "Fichier invalide. Veuillez réessayer.",
+                "fileExists": "Le fichier existe déjà. Veuillez choisir un fichier différent.",
+                "noEmptyDescription": "La description ne peut pas être vide.",
+                "default": "Une erreur inconnue s'est produite lors du téléchargement de ce fichier."
+              }
+            }
+          }
+        }
+      }
+    },
     "privacyPolicy": {
       "0": "<h1>Politique de Confidentialité et Charte de Protection des Données Personnelles</h1>",
       "1": "<h2>Introduction</h2>",

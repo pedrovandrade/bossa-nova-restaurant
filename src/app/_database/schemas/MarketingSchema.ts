@@ -9,7 +9,11 @@ const MarketingSchema = new Schema(
     popin: {
       active: { type: Boolean, required: true },
       image: { type: String, required: false },
-      altText: { type: String, required: false },
+      altText: {
+        fr: { type: String, required: false },
+        pt: { type: String, required: false },
+        en: { type: String, required: false },
+      },
     },
   }
 );

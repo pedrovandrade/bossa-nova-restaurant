@@ -203,6 +203,98 @@
       },
       "forgotPasswordLink": "Esqueceu sua senha?"
     },
+    "dashboard": {
+      "title": "Painel de controle",
+      "items": {
+        "menu": "Cardápio",
+        "openingHours": "Horários de funcionamento",
+        "marketing": "Marketing",
+        "logout": "Sair"
+      },
+      "pages": {
+        "openingHours": {
+          "title": "Horários de funcionamento",
+          "caption": "Tabela para editar os horários de funcionamento de cada dia da semana. Use os botões para marcar um dia como aberto ou fechado e adicionar/remover intervalos de horário.",
+          "tableHeaders": {
+            "weekday": "Dia",
+            "openingHours": "Horários de funcionamento",
+            "status": "Status"
+          },
+          "weekdays": {
+            "monday": "Segunda-feira",
+            "tuesday": "Terça-feira",
+            "wednesday": "Quarta-feira",
+            "thursday": "Quinta-feira",
+            "friday": "Sexta-feira",
+            "saturday": "Sábado",
+            "sunday": "Domingo"
+          },
+          "errors": {
+            "hourMissed": "Os horários de início e fim devem ser fornecidos",
+            "startAfterEnd": "O horário de início deve ser mais cedo que o de fim",
+            "hoursOverlap": "Impossível começar um intervalo de horário antes do fim do anterior",
+            "validationFailed": "Há erros de validação no formulário",
+            "globalMessage": "Por favor, corrija os erros do formulário antes de salvar"
+          },
+          "open": "Aberto",
+          "closed": "Fechado",
+          "from": "de",
+          "to": "a",
+          "add": "Adicionar",
+          "saveChanges": "Salvar",
+          "discardChanges": "Descartar"
+        },
+        "marketing": {
+          "title": "Marketing",
+          "errorMessage": "Ocorreu um erro ao salvar as alterações. Por favor, tente novamente.",
+          "editionForm": {
+            "saveChanges": "Salvar alterações",
+            "discardChanges": "Descartar alterações",
+            "instagramFeedEditor": {
+              "title": "Editor de Feed do Instagram",
+              "switch": {
+                "enabledLabel": "Fluxo ativado",
+                "disabledLabel": "Fluxo desativado",
+                "enabledAriaLabel": "Fluxo do Instagram ativo",
+                "disabledAriaLabel": "Fluxo do Instagram inativo"
+              },
+              "inputLabel": "URL da publicação do Instagram",
+              "previewButtonLabel": "Ver prévia",
+              "errors": {
+                "invalidUrl": "URL do Instagram inválida",
+                "badOrigin": "A URL do Instagram deve ter a origem https://www.instagram.com",
+                "notAPost": "A URL deve apontar para uma publicação do Instagram com o caminho /p/{post-code}"
+              }
+            },
+            "popinEditor": {
+              "title": "Editor de Popin",
+              "switch": {
+                "enabledLabel": "Popin ativada",
+                "disabledLabel": "Popin desativada",
+                "enabledAriaLabel": "Popin ativa",
+                "disabledAriaLabel": "Popin inativa"
+              },
+              "imagePreview": {
+                "title": "Prévia da imagem",
+                "noImageUploaded": "Nenhuma imagem enviada",
+                "uploadImage": "Enviar uma imagem"
+              },
+              "imageDescriptionTitle": "Descrição da imagem (para acessibilidade)",
+              "errors": {
+                "tooManyFiles": "Demasiados arquivos. Apenas um arquivo é permitido.",
+                "fileInvalidType": "Tipo de arquivo inválido. Por favor, envie uma imagem.",
+                "fileTooLarge": "O arquivo é muito grande. Por favor, envie uma imagem menor.",
+                "fileTooSmall": "O arquivo é muito pequeno. Por favor, envie uma imagem maior.",
+                "fileInvalid": "Arquivo inválido. Por favor, tente novamente.",
+                "fileExists": "O arquivo já existe. Por favor, escolha um arquivo diferente.",
+                "noEmptyDescription": "A descrição não pode estar vazia.",
+                "default": "Um erro desconhecido ocorreu ao enviar este arquivo."
+              }
+            }
+          }
+        }
+      }
+    },
     "privacyPolicy": {
       "0": "<h1>Política de privacidade e cartilha de proteção de dados pessoais</h1>",
       "1": "<h2>Introdução</h2>",

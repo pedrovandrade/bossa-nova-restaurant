@@ -1,10 +1,10 @@
 import { useLocale } from 'next-intl';
-import { type FC } from 'react';
+import { ReactEventHandler, type FC } from 'react';
 
 type EmbededPostProps = {
   url?: string;
   isLoaded?: boolean;
-  onLoad?: () => void;
+  onLoad?: ReactEventHandler<HTMLIFrameElement>;
 }
 
 const EmbededPost: FC<EmbededPostProps> = ({ url, isLoaded, onLoad }) => {
@@ -28,6 +28,7 @@ const EmbededPost: FC<EmbededPostProps> = ({ url, isLoaded, onLoad }) => {
         height={isLoaded ? '745' : '1'}
         data-instgrm-payload-id='instagram-media-payload-0'
         scrolling='no'
+        seamless={true}
         style={{
           background: 'white',
           maxWidth: '540px',

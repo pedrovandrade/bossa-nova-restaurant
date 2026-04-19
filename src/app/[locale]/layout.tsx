@@ -86,16 +86,17 @@ export default async function RootLayout({
     if (!hasLocale(routing.locales, locale)) {
         notFound();
     }
+
     return (
       <html lang={locale}>
         <body className={`${openSans.variable} ${heebo.variable} ${phenomena.variable} ${phenomena.className} ${feelingPassionate.variable} font-normal text-xl antialiased`}>
           <NextIntlClientProvider>
+            <CookieConsent />
             <Header />
             <main className='flex flex-col min-h-screen row-start-2 items-center sm:items-start pt-20 overflow-clip bg-orange-50'>
               {children}
             </main>
             <Footer />
-            <CookieConsent />
           </NextIntlClientProvider>
         </body>
       </html>

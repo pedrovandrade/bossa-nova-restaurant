@@ -23,7 +23,7 @@ const MapPlaceholder: FC<MapPlaceholderProps> = ({ onOpenPreferences }) => {
         src={mapsPlaceholder}
         alt={t('altText')}
         fill
-        objectFit='cover'
+        style={{objectFit: 'cover'}}
         className='absolute w-full h-full rounded-md'
       />
       <div className='px-15 z-50 rounded-md w-full h-full flex items-center justify-center bg-gray-800/50 hover:bg-gray-800/60 transition-colors'>

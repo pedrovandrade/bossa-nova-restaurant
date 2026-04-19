@@ -1,10 +1,13 @@
 import { FC } from 'react';
-import * as Switch from '@radix-ui/react-switch';
+import { Switch } from '@ark-ui/react/switch';
+import { Dialog } from '@ark-ui/react/dialog';
+import { Portal } from '@ark-ui/react/portal';
 import { CookiePreferences } from './CookieConsent';
 import { Cross } from '@/components/_icons';
 import { useTranslations } from 'next-intl';
 
 type CookieConsentModalProps = {
+  isOpen: boolean;
   closeModal: () => void;
   localPreferences: CookiePreferences;
   setCookiePreference: (name: string, value: boolean) => void;
@@ -12,6 +15,7 @@ type CookieConsentModalProps = {
 };
 
 const CookieConsentModal: FC<CookieConsentModalProps> = ({
+  isOpen,
   closeModal,
   localPreferences,
   setCookiePreference,
@@ -47,76 +51,103 @@ const CookieConsentModal: FC<CookieConsentModalProps> = ({
   ];
 
   return (
-    <div
-      role='dialog'
-      aria-modal='true'
-      className='fixed inset-0 z-[10000] flex items-end md:items-center justify-center p-4'
+    <Dialog.Root
+      open={isOpen}
+      onInteractOutside={closeModal}
+      onEscapeKeyDown={closeModal}
     >
-      <div className='absolute inset-0 bg-black/40' onClick={closeModal} />
-
-      <div className='relative w-full max-w-2xl bg-white rounded-lg shadow-xl px-6 md:px-10 py-6 z-10'>
-        {/* Close (X) button */}
-        <button
-          aria-label={t('closeButtonAriaLabel')}
+      <Portal>
+        <Dialog.Backdrop
+          className='fixed inset-0 z-[10000] bg-black/40'
           onClick={closeModal}
-          className='absolute top-3 h-8 w-8 text-gray-500 right-3 p-1 rounded hover:bg-gray-100'
-        >
-          <Cross />
-        </button>
+        />
+        <Dialog.Positioner className='fixed inset-0 z-[10000] flex items-end md:items-center justify-center'>
+          <Dialog.Content className='relative w-full max-w-3xl bg-white rounded-lg shadow-xl px-6 md:px-14 py-6 md:py-10 z-10'>
 
-        <h2 className='text-2xl text-bossanova-cyan font-semibold mb-4'>{t('title')}</h2>
+            <Dialog.CloseTrigger
+              className='absolute top-3 h-8 w-8 text-gray-500 right-3 p-1 rounded hover:bg-gray-100'
+              aria-label={t('closeButtonAriaLabel')}
+              onKeyDown={(event) => {
+                if (event.key === ' ' || event.key === 'Enter') {
+                  event.preventDefault();
+                  closeModal();
+                }
+              }}
+            >
+              <Cross />
+            </Dialog.CloseTrigger>
 
-        <div className='space-y-4'>
-          {cookieDataList.map((cookie) => {
-            const { name, label, description, ariaLabel, disabled, checked } = cookie;
-            const descriptionId = `cookie-description-${name}`;
+            <Dialog.Title className='text-3xl text-bossanova-cyan font-semibold mb-4'>
+              {t('title')}
+            </Dialog.Title>
 
-            return (
-              <div key={name} className=''>
-                <div className='flex items-center justify-between'>
-                  <label className='font-medium'>{label}</label>
-                  <Switch.Root
-                    className={[
-                      'w-11',
-                      'h-6',
-                      'rounded-full',
-                      'relative',
-                      checked ? 'bg-bossanova-cyan' : 'bg-gray-400',
-                      disabled ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer',
-                    ].join(' ')}
-                    checked={checked}
-                    onCheckedChange={(value) => setCookiePreference(name, value)}
-                    disabled={disabled}
-                    aria-label={ariaLabel}
-                    aria-describedby={descriptionId}
-                  >
-                    <Switch.Thumb className='block w-5 h-5 bg-white rounded-full translate-x-1 data-[state=checked]:translate-x-5 transition-transform' />
-                  </Switch.Root>
-                </div>
-                <p className='text-base text-gray-500 py-2' id={descriptionId}>
-                  {description}
-                </p>
-              </div>
-            );
-          })}
-        </div>
+            <div className='space-y-8'>
+              {cookieDataList.map((cookie) => {
+                const { name, label, description, ariaLabel, disabled, checked } = cookie;
+                const descriptionId = `cookie-description-${name}`;
 
-        <div className='mt-6 flex justify-end gap-3 text-lg'>
-          <button
-            onClick={closeModal}
-            className='bg-white border border-gray-400 px-4 py-2 rounded-md hover:cursor-pointer hover:bg-gray-100'
-          >
-            {t('buttons.cancel')}
-          </button>
-          <button
-            onClick={onConfirmPreferences}
-            className='bg-bossanova-cyan text-white px-4 py-2 rounded-md font-medium hover:cursor-pointer hover:bg-bossanova-green'
-          >
-            {t('buttons.savePreferences')}
-          </button>
-        </div>
-      </div>
-    </div>
+                return (
+                  <div key={name} className=''>
+                    <div className='flex items-center justify-between'>
+                      <label className='font-medium'>{label}</label>
+                      <Switch.Root
+                        className={[
+                          'w-11',
+                          'h-7',
+                          'rounded-full',
+                          'relative',
+                          'data-[focus-visible]:ring-2',
+                          checked ? 'bg-bossanova-cyan' : 'bg-gray-400',
+                          disabled ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer',
+                        ].join(' ')}
+                        checked={checked}
+                        onCheckedChange={(e) => setCookiePreference(name, e.checked)}
+                        disabled={disabled}
+                        aria-label={ariaLabel}
+                        aria-describedby={descriptionId}
+                      >
+                        <Switch.Control asChild>
+                          <Switch.Thumb
+                            className={[
+                              'block w-5 h-5',
+                              'bg-white',
+                              'rounded-full',
+                              'translate-1',
+                              'data-[state=checked]:translate-x-5',
+                              'transition-transform',
+                            ].join(' ')}
+                          />
+                        </Switch.Control>
+                        <Switch.HiddenInput className='peer' />
+                      </Switch.Root>
+                    </div>
+                    <p className='text-gray-500 py-2' id={descriptionId}>
+                      {description}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className='mt-6 flex justify-end gap-3'>
+              <button
+                onClick={closeModal}
+                className='bg-white border border-gray-400 px-4 py-2 rounded-md hover:cursor-pointer hover:bg-gray-100'
+              >
+                {t('buttons.cancel')}
+              </button>
+              <button
+                onClick={onConfirmPreferences}
+                className='bg-bossanova-cyan text-white px-4 py-2 rounded-md font-medium hover:cursor-pointer hover:bg-bossanova-green'
+              >
+                {t('buttons.savePreferences')}
+              </button>
+            </div>
+
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Portal>
+    </Dialog.Root>
   );
 };
 

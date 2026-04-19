@@ -2,13 +2,14 @@ import TextImageContainer, { TextImageContainerProps } from '@/components/TextIm
 import PresentationBanner from '@/components/PresentationBanner';
 import foodPhoto1 from '@/assets/images/entree-plat-1.jpg';
 import foodPhoto2 from '@/assets/images/entree-plat-2.jpg';
-import InstagramFeed from '@/app/_homePageComponents/InstagramFeed';
+import InstagramFeed from '@/components/InstagramFeed';
 import FadeInContainer from '@/components/FadeInContainer';
 import restaurantOverviewDesktop from '@/assets/images/restaurant-overview-desktop.jpg';
 import restaurantOverviewMobile from '@/assets/images/restaurant-overview-mobile.jpg';
 import OpeningHours from '@/app/_homePageComponents/OpeningHours';
 import { getMessages, getTranslations } from 'next-intl/server';
 import { MarketingData } from '@/types/MarketingData';
+import MarketingPopin from '@/components/MarketingPopin';
 
 type TextImageContainerParams = {
   image: {
@@ -56,13 +57,32 @@ export default async function Home() {
 
   const t = await getTranslations('pages.home');
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/marketing`);
-  const marketingData: MarketingData = await response.json();
-  const isInstagramActive = marketingData.instagram.active;
-  const instagramFeedUrl = marketingData.instagram.url;
+  let marketingData: MarketingData | null = null;
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/marketing`);
+    marketingData = await response.json();
+  } catch (error) {
+    console.error('Error in retrieving the marketing data:', error);
+  }
+
+  const { instagram, popin } = marketingData ?? {};
+
+  // Instagram marketing data
+  const isInstagramActive = instagram?.active ?? false;
+  const instagramFeedUrl = instagram?.url ?? '';
+
+  // Popin marketing data
+  const isPopinActive = popin?.active ?? false;
+  const popinImage = popin?.image ?? '';
+  const popinDescription = popin?.altText ?? {};
 
   return (
     <>
+      <MarketingPopin
+        isActive={isPopinActive}
+        image={popinImage}
+        description={popinDescription}
+      />
       <PresentationBanner
         title={t('presentationBanner.title')}
         description={t("presentationBanner.description")}

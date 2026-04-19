@@ -2,17 +2,25 @@ import mongoose from 'mongoose';
 import { OpeningHoursSchema } from '@/database/schemas/OpeningHoursSchema';
 import { openingHours } from '@/database/seed/openingHoursSeed';
 
-const MONGODB_URI = process.env.MONGODB_URI;
-const DB_NAME = process.env.MONGODB_DB || process.env.DB_NAME || 'bossa_nova_restaurant';
+let databasePassword = process.env.DB_PASSWORD || '';
+databasePassword = encodeURIComponent(databasePassword);
+
+let databaseUri = process.env.MONGODB_URI;
+if (!databaseUri) {
+  throw new Error('MONGODB_URI environment variable is not set');
+}
+databaseUri = databaseUri.replace('<DB_PASSWORD>', databasePassword);
+
+const dbName = process.env.DB_NAME || 'bossa_nova_restaurant';
 const COLL_NAME = 'openingHours';
 
 async function run() {
-  if (!MONGODB_URI) {
+  if (!databaseUri) {
     console.error('MONGODB_URI is not set');
     process.exit(1);
   }
 
-  await mongoose.connect(MONGODB_URI, { dbName: DB_NAME });
+  await mongoose.connect(databaseUri, { dbName });
   try {
     const { db } = mongoose.connection;
     if (!db) {

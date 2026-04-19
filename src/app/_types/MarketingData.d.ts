@@ -1,3 +1,5 @@
+import { LocalizedText } from '@/types/LocalizedText';
+
 type MarketingData = {
   instagram: {
     active: boolean,
@@ -6,7 +8,7 @@ type MarketingData = {
   popin: {
     active: boolean,
     image: string,
-    altText: string,
+    altText: LocalizedText,
   },
 };
 

@@ -1,9 +1,13 @@
 import { MongoClient } from 'mongodb';
 
-const databaseUri = process.env.MONGODB_URI;
+let databasePassword = process.env.DB_PASSWORD || '';
+databasePassword = encodeURIComponent(databasePassword);
+
+let databaseUri = process.env.MONGODB_URI;
 if (!databaseUri) {
   throw new Error('MONGODB_URI environment variable is not set');
 }
+databaseUri = databaseUri.replace('<DB_PASSWORD>', databasePassword);
 
 const dbName = process.env.DB_NAME || 'bossa_nova_restaurant';
 
@@ -34,7 +38,5 @@ async function createDatabase(): Promise<boolean> {
     await client.close();
   }
 }
-
-//export { createDatabase };
 
 createDatabase();

@@ -1,6 +1,6 @@
-import { NextRequest } from 'next/server';
 import { createOpeningHours, getOpeningHours, updateOpeningHours } from './_repository';
 import { OpeningHoursData } from '@/types/OpeningHoursData';
+import { requireOwner } from '../_util';
 
 const GET = async () => {
   const response = await getOpeningHours();
@@ -18,7 +18,7 @@ const GET = async () => {
   });
 };
 
-const POST = async (request: NextRequest) => {
+const POST = requireOwner(async (request) => {
   try {
     const payload = (await request.json()) as OpeningHoursData;
     const created = await createOpeningHours(payload);
@@ -38,12 +38,14 @@ const POST = async (request: NextRequest) => {
       headers: { 'content-type': 'application/json' },
     });
   }
-};
+});
 
-const PUT = async (request: NextRequest) => {
+const PUT = requireOwner(async (request) => {
   try {
     const patch = (await request.json()) as OpeningHoursData;
     const updated = await updateOpeningHours(patch);
+    console.log('patch:', patch);
+    console.log('updated:', updated);
     if (!updated) {
       return new Response(JSON.stringify({ error: 'No opening hours document to update' }), {
         status: 404,
@@ -60,6 +62,6 @@ const PUT = async (request: NextRequest) => {
       headers: { 'content-type': 'application/json' },
     });
   }
-};
+});
 
 export { GET, POST, PUT };
