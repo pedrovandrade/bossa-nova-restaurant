@@ -65,7 +65,6 @@ const InstagramFeed: FC<InstagramFeedProps> = ({ url }) => {
       {!iframeLoaded && <PostPlaceholder url={url} hasConsent={hasEmbedConsent} />}
       <EmbededPost
         url={url}
-        isLoaded={iframeLoaded}
         onLoad={() => setIframeLoaded(true)}
       />
     </>

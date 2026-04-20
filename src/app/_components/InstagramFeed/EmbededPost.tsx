@@ -1,50 +1,74 @@
-import { useLocale } from 'next-intl';
-import { ReactEventHandler, type FC } from 'react';
+import { FC, useEffect, useRef } from 'react';
 
 type EmbededPostProps = {
   url?: string;
-  isLoaded?: boolean;
-  onLoad?: ReactEventHandler<HTMLIFrameElement>;
-}
+  onLoad?: () => void;
+};
 
-const EmbededPost: FC<EmbededPostProps> = ({ url, isLoaded, onLoad }) => {
-  const currentLocale = useLocale();
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://bossa-nova-restaurant.vercel.app';
-    const queryParams = new URLSearchParams({
-      cr: '1',
-      v: '14',
-      wp: '540',
-      rd: baseUrl,
-      rp: `/${currentLocale}`,
-    });
-    const src = `${url}/embed/captioned/?${queryParams.toString()}`;
-  
-    return (
-      <iframe
-        className='instagram-media instagram-media-rendered'
-        id='instagram-embed-0'
-        src={src}
-        allowFullScreen={true}
-        height={isLoaded ? '745' : '1'}
-        data-instgrm-payload-id='instagram-media-payload-0'
-        scrolling='no'
-        seamless={true}
-        style={{
-          background: 'white',
-          maxWidth: '540px',
-          width: '99.375%',
-          borderRadius: '3px',
-          border: '1px solid rgb(219, 219, 219)',
-          boxShadow: 'none',
-          display: 'block',
-          margin: '0px 0px 12px',
-          minWidth: '326px',
-          padding: '0px',
-        }}
-        loading='lazy'
-        onLoad={onLoad}
-      ></iframe>
-    );
+type ExtendedWindow = Window & {
+  instgrm?: {
+    Embeds: {
+      process: () => void;
+    };
   };
-  
-  export default EmbededPost;
+};
+
+const EmbededPost: FC<EmbededPostProps> = ({ url, onLoad }) => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const processEmbed = () => {
+      if ((window as ExtendedWindow).instgrm) {
+        (window as ExtendedWindow).instgrm?.Embeds.process();
+      }
+    };
+
+    // Load Instagram script once
+    if (!(window as ExtendedWindow).instgrm) {
+      const script = document.createElement('script');
+      script.src = 'https://www.instagram.com/embed.js';
+      script.async = true;
+      script.onload = processEmbed;
+      document.body.appendChild(script);
+    } else {
+      processEmbed();
+    }
+
+    // Observe DOM changes inside container
+    const observer = new MutationObserver(() => {
+      if (!containerRef.current) return;
+
+      // Instagram injects an iframe inside
+      const iframe = containerRef.current.querySelector('iframe');
+      if (iframe) {
+        onLoad?.(); // signal 'loaded'
+        observer.disconnect();
+      }
+    });
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current, {
+        childList: true,
+        subtree: true,
+      });
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [url, onLoad]);
+
+  return (
+    <div key={url} className='w-full flex justify-center items-center' ref={containerRef}>
+      <blockquote
+        className='instagram-media'
+        data-instgrm-permalink={url}
+        data-instgrm-captioned
+        data-instgrm-version='14'
+        style={{ maxWidth: 540, width: '100%' }}
+      />
+    </div>
+  );
+};
+
+export default EmbededPost;
