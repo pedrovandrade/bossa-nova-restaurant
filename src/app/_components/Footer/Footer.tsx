@@ -56,14 +56,14 @@ const Footer: FC = () => {
           <MapLocation query='Bossa Nova Restaurant Toulouse' />
         </div>
       </div>
-      <p className='w-full flex gap-2 justify-center items-center text-sm'>
+      <div className='w-full flex flex-col sm:flex-row gap-2 justify-center items-center text-sm'>
         <span>
           &copy; {new Date().getFullYear()} {t('allRightsReserved')}
         </span>
         <span>
           {t('madeBy')} <a className='underline' target='_blank' href='https://www.linkedin.com/in/pedro-v-andrade/'>Pedro Andrade</a>.
         </span>
-      </p>
+      </div>
     </footer>
   );
 };

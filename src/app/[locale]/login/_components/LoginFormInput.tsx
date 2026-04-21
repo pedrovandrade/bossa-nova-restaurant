@@ -46,14 +46,15 @@ const LoginFormInput: FC<LoginFormInputProps> = ({ name, type, validators, icon 
   const inputType = isPassword ? (showPassword ? 'text' : 'password') : type;
 
   return (
-    <Form.Field name={name} className='w-full'>
+    <Form.Field name={name} className='group w-full'>
       <div className={[
           'flex',
           'grow',
           'items-center',
-          'rounded-3xl',
+          'rounded-lg',
           'border',
           'border-slate-400',
+          'group-data-[invalid]:border-red-600',
           'px-3',
         ].join(' ')}
       >
@@ -91,6 +92,7 @@ const LoginFormInput: FC<LoginFormInputProps> = ({ name, type, validators, icon 
               '-translate-y-1/2',
               'text-2xl',
               'text-gray-500',
+              'font-semibold',
               'transition-all',
               'peer-focus:top-2',
               'peer-focus:text-base',

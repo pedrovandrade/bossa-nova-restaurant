@@ -28,6 +28,10 @@
       "sunday": "Dimanche"
     }
   },
+  "marketingPopin": {
+    "closeButtonAriaLabel": "Fermer la popin d'information de marketing",
+    "defaultImageAlt": "Popin avec de l'information de marketing temporaire"
+  },
   "cookies": {
     "banner": {
       "title": "Cookies... ou bolachas ?",
@@ -197,6 +201,10 @@
           "password": {
             "valueMissing": "Le mot de passe est requis",
             "tooShort": "Le mot de passe doit comporter au moins 8 caractères, dont une majuscule, une minuscule et un chiffre"
+          },
+          "http": {
+            "invalidCredentials": "Identifiants invalides.",
+            "default": "Un erreur est survenue."
           }
         },
         "submitButton": "Se connecter"

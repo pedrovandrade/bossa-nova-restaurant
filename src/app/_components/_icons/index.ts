@@ -21,6 +21,7 @@ import LinkIcon from './Link';
 import UpdateIcon from './Update';
 import PaperClip from './PaperClip';
 import AlertCircleIcon from './AlertCircle';
+import LoaderIcon from './Loader';
 
 export {
   AlertCircleIcon,
@@ -36,6 +37,7 @@ export {
   GreatBritainFlag,
   Key,
   LinkIcon,
+  LoaderIcon,
   Mail,
   Megaphone,
   MenuHeaderIcon,

@@ -3,6 +3,8 @@ import { getToken } from 'next-auth/jwt';
 
 type EndpointFunction = (req: Request | NextRequest) => Response | NextResponse | Promise<Response> | Promise<NextResponse>;
 
+const baseUrl = new URL(process.env.NEXT_PUBLIC_BASE_URL || '');
+
 /**
  * Decorator for API route handlers that requires an authenticated user with role "owner".
  *
@@ -26,7 +28,9 @@ type EndpointFunction = (req: Request | NextRequest) => Response | NextResponse 
 export function requireOwner(handler: EndpointFunction): EndpointFunction {
   return async (req): Promise<Response> => {
     const secret = process.env.AUTH_SECRET || '';
-    const token = await getToken({ req, secret });
+    const secureCookie = baseUrl.protocol === 'https'; 
+
+    const token = await getToken({ secureCookie, req, secret });
 
       if (!token) {
         return new Response(JSON.stringify({ error: 'Authentication required' }), {

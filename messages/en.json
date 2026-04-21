@@ -28,6 +28,10 @@
       "sunday": "Sunday"
     }
   },
+  "marketingPopin": {
+    "closeButtonAriaLabel": "Close the marketing information popin",
+    "defaultImageAlt": "Popin with temporary marketing information"
+  },
   "cookies": {
     "banner": {
       "title": "Cookies... or bolachas ?",
@@ -197,6 +201,10 @@
           "password": {
             "valueMissing": "Password is required",
             "tooShort": "Password must be at least 8 characters long, including an uppercase letter, a lowercase letter, and a number"
+          },
+          "http": {
+            "invalidCredentials": "Invalid credentials",
+            "default": "Something went wrong."
           }
         },
         "submitButton": "Log In"

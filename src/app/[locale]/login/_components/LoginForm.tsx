@@ -34,8 +34,8 @@ const LoginForm: FC = () => {
     if (response.ok) {
       router.refresh();
     } else {
-      const { error } = await response.json();
-      setErrorMessage(error);
+      const { messageCode } = await response.json();
+      setErrorMessage(t(`errors.http.${messageCode}`));
     }
   };
 
@@ -95,8 +95,19 @@ const LoginForm: FC = () => {
             </>
           )}
           <Form.Submit
-            className='bg-bossanova-cyan hover:bg-bossanova-cyan/95 text-white font-bold p-4 rounded-full'
+            className={[
+              'bg-bossanova-cyan',
+              'hover:bg-bossanova-green',
+              'hover:cursor-pointer',
+              'text-white',
+              'font-bold',
+              'p-4',
+              'rounded-full',
+              'disabled:bg-bossanova-cyan/50',
+              'disabled:cursor-not-allowed',
+            ].join(' ')}
             aria-disabled={isPending}
+            disabled={isPending}
           >
             {t('submitButton')}
           </Form.Submit>

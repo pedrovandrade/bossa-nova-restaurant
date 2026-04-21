@@ -6,10 +6,20 @@ import InstagramFeedEditor from './InstagramFeedEditor';
 import PopinEditor from './PopinEditor';
 import { useRouter } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
+// import { createToaster, Portal, Toast, Toaster } from '@ark-ui/react';
+// import { AlertCircleIcon, CheckMark, Cross, LoaderIcon } from '@/components/_icons';
+import { LoaderIcon } from '@/components/_icons';
 
 type MarketingEditionFormProps = {
   data: MarketingData;
 };
+
+// const toaster = createToaster({
+//   overlap: true,
+//   placement: 'bottom-end',
+//   gap: 16,
+//   // duration: Infinity,
+// })
 
 const MarketingEditionForm: FC<MarketingEditionFormProps> = ({ data }) => {
   const router = useRouter();
@@ -24,6 +34,19 @@ const MarketingEditionForm: FC<MarketingEditionFormProps> = ({ data }) => {
   const hasErrors = useCallback(() => {
     return Object.values(errorsMap).some(hasError => hasError);
   }, [errorsMap]);
+
+  // const getIcon = (type: string | undefined) => {
+  //   switch (type) {
+  //     case 'loading':
+  //       return <LoaderIcon data-type='loading' />
+  //     case 'success':
+  //       return <CheckMark />
+  //     case 'error':
+  //       return <AlertCircleIcon />
+  //     default:
+  //       return null
+  //   }
+  // }
 
   /** ********** Handlers for the user data change ********** */
 
@@ -169,12 +192,27 @@ const MarketingEditionForm: FC<MarketingEditionFormProps> = ({ data }) => {
       router.push('/dashboard');
     } catch (err) {
       console.error(err);
-      // mark popin error if response indicated image problems, otherwise mark url error generically
-      setErrorsMap(prev => ({ ...prev, popinImage: true }));
     } finally {
       setSaving(false);
     }
   }
+
+  // const handleSaveChanges = async () => {
+  //   toaster.promise(saveChanges, {
+  //     loading: {
+  //       title: 'Saving...',
+  //       description: 'Please wait while the information is being registered.',
+  //     },
+  //     success: {
+  //       title: 'Saving succeded',
+  //       description: 'Your information has been saved.',
+  //     },
+  //     error: {
+  //       title: 'Error',
+  //       description: 'Could not save the information. Please try again.',
+  //     },
+  //   })
+  // };
 
   const cancelChanges = () => {
     router.push('/dashboard');
@@ -223,7 +261,15 @@ const MarketingEditionForm: FC<MarketingEditionFormProps> = ({ data }) => {
             disabled={hasErrors() || saving}
             onClick={handleSaveChanges}
           >
-            {saving ? 'Saving...' : t('saveChanges')}
+            {saving
+              ? (
+                <div className='flex gap-3'>
+                  <span className='h-6 w-6'><LoaderIcon/></span>
+                  <span>Saving...</span>
+                </div>
+              ) : t('saveChanges')
+            }
+            
           </button>
           <button
             className={[
@@ -236,14 +282,55 @@ const MarketingEditionForm: FC<MarketingEditionFormProps> = ({ data }) => {
               'hover:bg-bossanova-green',
               'focus:ring-2',
               'focus:ring-bossanova-cyan',
-              'focus:ring-opacity-50'
+              'focus:ring-opacity-50',
+              'disabled:opacity-50',
+              'disabled:hover:cursor-not-allowed',
+              'disabled:hover:bg-bossanova-cyan',
             ].join(' ')}
+            disabled={saving}
             onClick={cancelChanges}
           >
             {t('discardChanges')}
           </button>
         </div>
       </div>
+
+      {/* <Portal>
+        <Toaster toaster={toaster}>
+          {(toast) => (
+            <Toast.Root
+              key={toast.id}
+              className={[
+                'w-full',
+                'min-w-60',
+                'flex',
+                'flex-col',
+                'text-xl',
+                'items-start',
+                'bg-slate-800',
+                'text-white',
+                'px-8 py-4',
+                'rounded-lg',
+                'transition-all',
+              ].join(' ')}
+            >
+              <Toast.Title
+                className='flex items-center mb-6 font-semibold'
+              >
+                <div className='h-6 w-6 flex items-center px-1.5'>{getIcon(toast.type)}</div>
+                {toast.title}
+              </Toast.Title>
+              <Toast.Description className='m-0'>
+                {toast.description}
+              </Toast.Description>
+              <Toast.CloseTrigger className='absolute h-4 w-4 right-2 top-2 hover:cursor-pointer'>
+                <Cross />
+              </Toast.CloseTrigger>
+            </Toast.Root>
+          )}
+        </Toaster>
+      </Portal> */}
+
     </div>
   );
 };

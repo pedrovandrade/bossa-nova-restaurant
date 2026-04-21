@@ -16,7 +16,7 @@ type MarketingPopinProps = {
 
 const MarketingPopin: FC<MarketingPopinProps> = ({ isActive, image, description }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const t = useTranslations('cookies.modal');
+  const t = useTranslations('marketingPopin');
 
   const currentLocale = useLocale();
 
@@ -48,13 +48,15 @@ const MarketingPopin: FC<MarketingPopinProps> = ({ isActive, image, description 
           onClick={closeModal}
         >
           <Dialog.Content className='h-full w-full max-h-[90vh] rounded-lg p-0 relative'>
-            <Image
-              src={image}
-              alt={imgAlt}
-              style={{objectFit: 'contain'}}
-              fill
-              className='rounded-lg h-full'
-            />
+            {image &&
+              <Image
+                src={image}
+                alt={imgAlt}
+                style={{objectFit: 'contain'}}
+                fill
+                className='rounded-lg h-full'
+              />
+            }
             <Dialog.CloseTrigger
               className='absolute top-3 h-8 w-8 text-white right-3 p-1 rounded bg-bossanova-cyan hover:bg-gray-100 hover:cursor-pointer'
               aria-label={t('closeButtonAriaLabel')}
