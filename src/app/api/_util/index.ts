@@ -27,7 +27,7 @@ export function requireOwner(handler: EndpointFunction): EndpointFunction {
   return async (req): Promise<Response> => {
     const secret = process.env.AUTH_SECRET || '';
     const baseUrl = new URL(process.env.NEXT_PUBLIC_BASE_URL || '');
-    const secureCookie = baseUrl.protocol === 'https';
+    const secureCookie = baseUrl.protocol === 'https:';
 
     // Ensure getToken can read cookies correctly
     const nextReq = req instanceof NextRequest
