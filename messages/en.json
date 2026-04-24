@@ -213,6 +213,25 @@
     },
     "dashboard": {
       "title": "Dashboard",
+      "form": {
+        "saveChanges": "Save changes",
+        "discardChanges": "Discard changes",
+        "saving": "Saving...",
+        "toast": {
+          "loading": {
+            "title": "Saving...",
+            "description": "Please wait while the information is being registered."
+          },
+          "success": {
+            "title": "Saving succeded",
+            "description": "Your information has been saved."
+          },
+          "error": {
+            "title": "Error",
+            "description": "Could not save the information. Please try again."
+          }
+        }
+      },
       "items": {
         "menu": "Menu",
         "openingHours": "Opening hours",
@@ -248,16 +267,12 @@
           "closed": "Closed",
           "from": "from",
           "to": "to",
-          "add": "Add",
-          "saveChanges": "Save",
-          "discardChanges": "Discard"
+          "add": "Add"
         },
         "marketing": {
           "title": "Marketing",
           "errorMessage": "Failed to load the marketing data",
           "editionForm": {
-            "saveChanges": "Save changes",
-            "discardChanges": "Discard changes",
             "instagramFeedEditor": {
               "title": "Instagram feed editor",
               "switch": {

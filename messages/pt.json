@@ -213,6 +213,25 @@
     },
     "dashboard": {
       "title": "Painel de controle",
+      "form": {
+        "saveChanges": "Salvar",
+        "discardChanges": "Cancelar",
+        "saving": "Salvando...",
+        "toast": {
+          "loading": {
+            "title": "Salvando...",
+            "description": "Por favor aguarde enquanto os dados são salvos."
+          },
+          "success": {
+            "title": "Sucesso",
+            "description": "As modificações foram salvas."
+          },
+          "error": {
+            "title": "Erro",
+            "description": "Impossível de salvar as modificações. Tente mais tarde."
+          }
+        }
+      },
       "items": {
         "menu": "Cardápio",
         "openingHours": "Horários de funcionamento",
@@ -248,9 +267,7 @@
           "closed": "Fechado",
           "from": "de",
           "to": "a",
-          "add": "Adicionar",
-          "saveChanges": "Salvar",
-          "discardChanges": "Descartar"
+          "add": "Adicionar"
         },
         "marketing": {
           "title": "Marketing",

@@ -213,6 +213,25 @@
     },
     "dashboard": {
       "title": "Panneau de contrôle",
+      "form": {
+        "saveChanges": "Sauvegarder",
+        "discardChanges": "Annuler",
+        "saving": "Enregistrement en cours...",
+        "toast": {
+          "loading": {
+            "title": "Enregistrement en cours...",
+            "description": "Merci de patienter pendant que les changements sont enregistrés."
+          },
+          "success": {
+            "title": "Enregistrement réussi",
+            "description": "Les changements ont été enregistrés."
+          },
+          "error": {
+            "title": "Erreur",
+            "description": "Impossible de sauvegarder les données. Merci d'essayer plus tard."
+          }
+        }
+      },
       "items": {
         "menu": "La carte",
         "openingHours": "Horaires d'ouverture",
@@ -248,9 +267,7 @@
           "closed": "Fermé",
           "from": "de",
           "to": "à",
-          "add": "Ajouter",
-          "saveChanges": "Sauvegarder",
-          "discardChanges": "Abandonner"
+          "add": "Ajouter"
         },
         "marketing": {
           "title": "Marketing",

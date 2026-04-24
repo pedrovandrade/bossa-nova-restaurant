@@ -1,7 +1,7 @@
 import { UpdateIcon } from '@/app/_components/_icons';
 import LinkIcon from '@/components/_icons/Link';
 import InstagramFeed from '@/components/InstagramFeed/InstagramFeed';
-import { FC, useId, useState } from 'react';
+import { FC, MouseEventHandler, useId, useState } from 'react';
 import { Switch } from '@ark-ui/react';
 import { useTranslations } from 'next-intl';
 
@@ -60,7 +60,8 @@ const InstagramFeedEditor: FC<InstagramFeedEditorProps> = ({ isActive, onActiveS
     onUrlChange?.(newUrl, parsedUrl);
   }
 
-  const handleSeeUrlPreview = () => {
+  const handleSeeUrlPreview: MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.preventDefault();
     const parsedUrl = checkInstagramUrl(url);
     if (parsedUrl) {
       setPublicationPreviewUrl(parsedUrl);
@@ -189,6 +190,7 @@ const InstagramFeedEditor: FC<InstagramFeedEditorProps> = ({ isActive, onActiveS
 
           {/* Preview button */}
           <button
+            type='button'
             onClick={handleSeeUrlPreview}
             disabled={!isActive || Boolean(urlError)}
             className={[

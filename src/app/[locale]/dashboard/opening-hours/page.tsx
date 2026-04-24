@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { OpeningHoursData } from '@/types/OpeningHoursData';
 import { Cross } from '@/components/_icons';
 import { Switch } from '@ark-ui/react';
+import DashboardForm from '@/components/DashboardForm';
 
 type Weekday =
   | 'monday'
@@ -109,8 +110,6 @@ function validateOpeningHours(openingHours: OpeningHoursData) {
 const OpeningHoursPage: FC = () => {
   const router = useRouter();
   const [openingHours, setOpeningHours] = useState<OpeningHoursData | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [saving, setSaving] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [touched, setTouched] = useState(false);
 
@@ -132,11 +131,8 @@ const OpeningHoursPage: FC = () => {
         const fallback: OpeningHoursData = {} as OpeningHoursData;
         for (const weekday of WEEKDAYS) fallback[weekday] = { ...DEFAULT_DAY };
         if (mounted) setOpeningHours(fallback);
-      } finally {
-        if (mounted) setLoading(false);
       }
     };
-    setLoading(true);
     fetchData();
     return () => {
       mounted = false;
@@ -229,40 +225,32 @@ const OpeningHoursPage: FC = () => {
    */
   async function saveChanges() {
     if (!openingHours) return;
-    const { hasError } = validation;
-    if (hasError) {
-      setSubmitError(t('errors.validationFailed'));
-      return;
-    }
-    setSubmitError(null);
-    setSaving(true);
-    try {
-      const res = await fetch('/api/openingHours', {
-        method: 'PUT',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify(openingHours),
-      });
-      if (!res.ok) {
-        const txt = await res.text();
-        throw new Error(txt || 'Save failed');
-      }
-    } catch (err) {
-      setSubmitError(String(((err as { message: string})?.message) ?? err));
-    } finally {
-      setSaving(false);
-      router.push(`/${currentLocale ?? 'fr'}/dashboard`);
+
+    const res = await fetch('/api/openingHours', {
+      method: 'PUT',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(openingHours),
+    });
+
+    if (!res.ok) {
+      const txt = await res.text();
+      setSubmitError(txt || 'Save failed');
+      throw new Error(txt || 'Save failed');
     }
   }
 
   function cancelChanges() {
-    setLoading(true);
     router.push(`/${currentLocale ?? 'fr'}/dashboard`);
   }
 
   return (
     <section className='text-bossanova-cyan py-8 w-full flex flex-col items-center'>
       <h1 className='text-4xl text-black font-bold mb-4 flex justify-center'>{t('title')}</h1>
-      <div className='bg-white w-full md:w-auto'>
+      <DashboardForm
+        onSubmit={saveChanges}
+        onCancel={cancelChanges}
+        hasErrors={touched && validation.hasError}
+      >
         <div className='px-4 py-8 md:px-12'>
           <table className='border-collapse w-full' aria-describedby='opening-hours-desc'>
             <caption id='opening-hours-desc' className='sr-only'>
@@ -308,7 +296,7 @@ const OpeningHoursPage: FC = () => {
                                   min='00:00'
                                   max='23:59'
                                   value={timespan.begin}
-                                  disabled={!day.isOpen || saving}
+                                  disabled={!day.isOpen}
                                   onChange={(event) => updateTimespan(weekday, index, 'begin', event.target.value)}
                                   className={[
                                     'border',
@@ -329,7 +317,7 @@ const OpeningHoursPage: FC = () => {
                                   min='00:00'
                                   max='23:59'
                                   value={timespan.end}
-                                  disabled={!day.isOpen || saving}
+                                  disabled={!day.isOpen}
                                   onChange={(event) => updateTimespan(weekday, index, 'end', event.target.value)}
                                   className={[
                                     'border',
@@ -346,6 +334,7 @@ const OpeningHoursPage: FC = () => {
                               <div className='flex items-center gap-2 ml-3'>
                                 <button
                                   onClick={() => deleteTimespan(weekday, index)}
+                                  type='button'
                                   className={[
                                     'w-6',
                                     'h-6',
@@ -357,7 +346,7 @@ const OpeningHoursPage: FC = () => {
                                     'disabled:hidden',
                                   ].join(' ')}
                                   aria-label={`Delete timespan ${index + 1} for ${t(`weekdays.${weekday}`)}`}
-                                  disabled={!day.isOpen || saving}
+                                  disabled={!day.isOpen}
                                 >
                                   <Cross />
                                 </button>
@@ -376,7 +365,6 @@ const OpeningHoursPage: FC = () => {
                                 <Switch.Root
                                   checked={day.isOpen}
                                   onCheckedChange={() => toggleOpen(weekday)}
-                                  disabled={saving}
                                   aria-label={`${t(`weekdays.${weekday}`)} ${t('open')}`}
                                   className={[
                                     'h-6',
@@ -413,6 +401,7 @@ const OpeningHoursPage: FC = () => {
                       <tr className='border-b border-b-slate-300'>
                         <td className='px-3 pt-3 pb-8'>
                           <button
+                            type='button'
                             onClick={() => addTimespan(weekday)}
                             className={[
                               'bg-bossanova-green',
@@ -431,7 +420,7 @@ const OpeningHoursPage: FC = () => {
                               'disabled:bg-bossanova-green/50'
                             ].join(' ')}
                             aria-label={`Add timespan for ${t(`weekdays.${weekday}`)}`}
-                            disabled={!day.isOpen || saving}
+                            disabled={!day.isOpen}
                           >
                             {t('add')}
                           </button>
@@ -455,36 +444,7 @@ const OpeningHoursPage: FC = () => {
             </div>
           )}
         </div>
-
-        <div className='sticky bg-white bottom-0 w-full h-20 px-10 mt-10 shadow-[0_-5px_10px_rgba(0,0,0,0.25)]'>
-          <div className='flex gap-15 absolute right-10 top-1/2 -translate-y-1/2'>
-            <button
-              className='bg-bossanova-cyan text-white px-6 py-2 rounded-md hover:cursor-pointer hover:bg-bossanova-green focus:ring-2 focus:ring-bossanova-cyan focus:ring-opacity-50'
-              onClick={saveChanges}
-            >
-              {saving ? (
-              <svg className='animate-spin h-4 w-4' viewBox='0 0 24 24'>
-                    <circle cx='12' cy='12' r='10' stroke='currentColor' strokeWidth='4' fill='none' strokeDasharray='60' />
-                  </svg>
-                ) : t('saveChanges')
-              }
-            </button>
-            <button
-              className='bg-bossanova-cyan text-white px-6 py-2 rounded-md hover:cursor-pointer hover:bg-bossanova-green focus:ring-2 focus:ring-bossanova-cyan focus:ring-opacity-50'
-              disabled={saving || loading}
-              onClick={cancelChanges}
-            >
-              {saving ? (
-                <svg className='animate-spin h-4 w-4' viewBox='0 0 24 24'>
-                  <circle cx='12' cy='12' r='10' stroke='currentColor' strokeWidth='4' fill='none' strokeDasharray='60' />
-                </svg>
-                ) : t('discardChanges')
-              }
-            </button>
-          </div>
-        </div>
-
-      </div>
+      </DashboardForm>
     </section>
   );
 };

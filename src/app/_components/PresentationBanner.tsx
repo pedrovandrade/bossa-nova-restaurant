@@ -42,6 +42,7 @@ const PresentationBanner: FC<PresentationBannerProps> = ({
           {/* Desktop view */}
           <Image
             src={mainImageFile}
+            placeholder='blur'
             alt=''
             priority
             fill
@@ -52,6 +53,7 @@ const PresentationBanner: FC<PresentationBannerProps> = ({
           { mobileImageFile &&
             <Image
               src={mobileImageFile}
+              placeholder='blur'
               alt=''
               priority
               fill

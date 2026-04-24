@@ -124,7 +124,7 @@ const PopinEditor: FC<PopinEditorProps> = ({
       <div className='w-full px-5 gap-6 flex flex-col md:flex-row items-center justify-center'>
         <section className='my-4'>
           <h3 className='text-xl mb-4 font-semibold'>{t('imagePreview.title')}</h3>
-            {image
+            {imagePreviewUrl
               ? (
                 <Image
                   src={imagePreviewUrl || ''}
@@ -134,7 +134,7 @@ const PopinEditor: FC<PopinEditorProps> = ({
                   className={[
                     'object-cover',
                     'rounded-lg',
-                    'height-auto',
+                    'h-auto',
                     !isActive && 'opacity-50',
                   ].join(' ')}
                 />

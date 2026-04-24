@@ -1,9 +1,7 @@
-import type { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, type NextResponse } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 
-type EndpointFunction = (req: Request | NextRequest) => Response | NextResponse | Promise<Response> | Promise<NextResponse>;
-
-const baseUrl = new URL(process.env.NEXT_PUBLIC_BASE_URL || '');
+type EndpointFunction = (req: Request) => Response | NextResponse | Promise<Response> | Promise<NextResponse>;
 
 /**
  * Decorator for API route handlers that requires an authenticated user with role "owner".
@@ -28,19 +26,39 @@ const baseUrl = new URL(process.env.NEXT_PUBLIC_BASE_URL || '');
 export function requireOwner(handler: EndpointFunction): EndpointFunction {
   return async (req): Promise<Response> => {
     const secret = process.env.AUTH_SECRET || '';
-    const secureCookie = baseUrl.protocol === 'https'; 
+    const baseUrl = new URL(process.env.NEXT_PUBLIC_BASE_URL || '');
+    const secureCookie = baseUrl.protocol === 'https';
 
-    const token = await getToken({ secureCookie, req, secret });
+    // Ensure getToken can read cookies correctly
+    const nextReq = req instanceof NextRequest
+      ? req
+      : new NextRequest(req);
 
-      if (!token) {
-        return new Response(JSON.stringify({ error: 'Authentication required' }), {
-          status: 401,
-          headers: { 'content-type': 'application/json' },
-        });
-      }
+    // Temporary debug — remove after diagnosis
+    console.log('[requireOwner] secureCookie:', secureCookie);
+    console.log('[requireOwner] secret set:', !!secret);
+    console.log('[requireOwner] cookies:', req.headers.get('cookie'));
 
-      // authorized — forward to original handler
-      const result = await handler(req);
-      return result;
+    const token = await getToken({
+      req: nextReq,
+      secureCookie,
+      secret,
+      cookieName: secureCookie
+        ? '__Secure-authjs.session-token'
+        : 'authjs.session-token',
+    });
+
+    console.log('[requireOwner] token:', token);
+
+    if (!token) {
+      return new Response(JSON.stringify({ error: 'Authentication required' }), {
+        status: 401,
+        headers: { 'content-type': 'application/json' },
+      });
+    }
+
+    // authorized — forward to original handler
+    const result = await handler(req);
+    return result;
   };
 }
