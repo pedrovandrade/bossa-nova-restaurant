@@ -34,24 +34,22 @@ export function requireOwner(handler: EndpointFunction): EndpointFunction {
       ? req
       : new NextRequest(req);
 
-    // Temporary debug — remove after diagnosis
-    console.log('[requireOwner] secureCookie:', secureCookie);
-    console.log('[requireOwner] secret set:', !!secret);
-    console.log('[requireOwner] cookies:', req.headers.get('cookie'));
-
     const token = await getToken({
       req: nextReq,
       secureCookie,
       secret,
-      cookieName: secureCookie
-        ? '__Secure-authjs.session-token'
-        : 'authjs.session-token',
     });
 
-    console.log('[requireOwner] token:', token);
-
     if (!token) {
-      return new Response(JSON.stringify({ error: 'Authentication required' }), {
+      return new Response(JSON.stringify({
+        error: 'Authentication required',
+        cookies: req.headers.get("cookies"),
+        nextCookies: nextReq.headers.get("cookies"),
+        secureCookie,
+        secret,
+        token,
+        baseUrl,
+      }), {
         status: 401,
         headers: { 'content-type': 'application/json' },
       });

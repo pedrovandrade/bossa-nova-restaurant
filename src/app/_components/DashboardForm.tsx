@@ -41,8 +41,6 @@ const DashboardForm: FC<DashboardFormProps> = (props) => {
   const submitForm = async () => {
     try {
       await onSubmit();
-    } catch (error) {
-      console.error(error);
     } finally {
       setSaving(false);
     }
