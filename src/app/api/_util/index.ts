@@ -1,4 +1,4 @@
-import { NextRequest, type NextResponse } from 'next/server';
+import { type NextResponse } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 
 type EndpointFunction = (req: Request) => Response | NextResponse | Promise<Response> | Promise<NextResponse>;
@@ -29,13 +29,8 @@ export function requireOwner(handler: EndpointFunction): EndpointFunction {
     const baseUrl = new URL(process.env.NEXT_PUBLIC_BASE_URL || '');
     const secureCookie = baseUrl.protocol === 'https:';
 
-    // Ensure getToken can read cookies correctly
-    const nextReq = req instanceof NextRequest
-      ? req
-      : new NextRequest(req);
-
     const token = await getToken({
-      req: nextReq,
+      req,
       secureCookie,
       secret,
     });
@@ -43,12 +38,6 @@ export function requireOwner(handler: EndpointFunction): EndpointFunction {
     if (!token) {
       return new Response(JSON.stringify({
         error: 'Authentication required',
-        cookies: req.headers.get("cookies"),
-        nextCookies: nextReq.headers.get("cookies"),
-        secureCookie,
-        secret,
-        token,
-        baseUrl,
       }), {
         status: 401,
         headers: { 'content-type': 'application/json' },
