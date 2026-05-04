@@ -40,7 +40,7 @@ async function run() {
 
     if (Array.isArray(foodPages) && foodPages.length > 0) {
       await db.collection(collName).deleteMany({});
-      await FoodPage.insertMany(foodPages);
+      await FoodPage.insertMany(foodPages, { ordered: true });
       console.log(`Seeded ${foodPages.length} documents into "${collName}".`);
     } else {
       if (!existing) {

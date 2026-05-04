@@ -4,7 +4,6 @@ import { MarketingData } from '@/types/MarketingData';
 import { FC, useCallback, useState } from 'react';
 import InstagramFeedEditor from './InstagramFeedEditor';
 import PopinEditor from './PopinEditor';
-import { useRouter } from '@/i18n/navigation';
 import DashboardForm from '@/components/DashboardForm';
 
 type MarketingEditionFormProps = {
@@ -12,8 +11,6 @@ type MarketingEditionFormProps = {
 };
 
 const MarketingEditionForm: FC<MarketingEditionFormProps> = ({ data }) => {
-  const router = useRouter();
-  
   const [marketingData, setMarketingData] = useState<MarketingData>(data);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [parsedInstagramUrl, setParsedInstagramUrl] = useState<string | null>(data.instagram.url);
@@ -163,14 +160,9 @@ const MarketingEditionForm: FC<MarketingEditionFormProps> = ({ data }) => {
     }
   }
 
-  const cancelChanges = () => {
-    router.push('/dashboard');
-  };
-
   return (
     <DashboardForm
       onSubmit={handleSaveChanges}
-      onCancel={cancelChanges}
       hasErrors={hasErrors()}
     >
       <div>

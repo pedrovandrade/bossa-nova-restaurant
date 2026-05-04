@@ -56,6 +56,7 @@ const Title: FC<TitleProps> = ({ id, page, currentText, className, onTitleChange
           className={className}
           localizedText={localizedText}
           id={id}
+          textCenter={true}
           onInputChange={handleTextChange}
           validators={[NoEmptyFields]}
           onValidation={handleTextValidation}

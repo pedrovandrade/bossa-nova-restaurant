@@ -1,6 +1,7 @@
-import { CurrentLocale, LocalizedText } from '@/types/LocalizedText';
+import { CurrentLocale, LocalizedText, LocalizedTextArray } from '@/types/LocalizedText';
 import { routing } from '@/i18n/routing';
 import { FC, useState } from 'react';
+import { BrazilFlag, FranceFlag, GreatBritainFlag } from '@/components/_icons';
 
 export enum ValidationType {
   None = 0,
@@ -12,6 +13,9 @@ type LocalizedTextInputProps = {
   localizedText: LocalizedText;
   id: string;
   bold?: boolean;
+  textCenter?: boolean;
+  multiline?: boolean;
+  showLabel?: boolean;
   className?: string,
   onInputChange?: (locale: CurrentLocale, value: string) => void;
   validators?: ValidationType[];
@@ -26,6 +30,9 @@ const LocalizedTextInput: FC<LocalizedTextInputProps> = ({
   localizedText,
   id,
   bold,
+  textCenter,
+  showLabel = true,
+  multiline = false,
   className,
   onInputChange,
   validators,
@@ -33,10 +40,19 @@ const LocalizedTextInput: FC<LocalizedTextInputProps> = ({
 }) => {
   const { locales } = routing;
 
+  const flags = {
+    pt: <BrazilFlag/>,
+    fr: <FranceFlag/>,
+    en: <GreatBritainFlag/>,
+  };
+
   const [errors, setErrors] = useState<ValidationType[]>([]);
 
-  const hasEmptyField = (localized: LocalizedText) => {
-    return Object.values(localized).some((text) => !text || text.trim() === '');
+  const hasEmptyField = (localized: LocalizedText | LocalizedTextArray) => {
+    return Object.values(localized).some((text: string | string[]) => {
+      const inputText = Array.isArray(text) ? text.join('\n'): text;
+      return !inputText || inputText.trim() === ''
+    });
   };
 
   const validate = (locale: CurrentLocale, text: string) => {
@@ -56,42 +72,65 @@ const LocalizedTextInput: FC<LocalizedTextInputProps> = ({
   return (
     <div>
       {locales.map((locale) => {
-        const label = locale.toUpperCase();
         const inputId = `${id}-${locale}`;
         return (
           <div
             className={`flex gap-4 ${className || ''}`}
             key={locale}
           >
-            <span className='font-(family-name:--font-phenomena)'>
-              <label
-                className='font-(family-name:--font-phenomena) font-bold text-gray-500'
-                htmlFor={inputId}
-              >
-                {label}:
-              </label>
-            </span>
-            <input
-              id={inputId}
-              type='text'
-              className={[
-                bold ? 'font-extrabold' : '',
-                'w-full',
-                'p-1',
-                'rounded-md',
-                'border',
-                'border-gray-100',
-                'focus:border-bossanova-cyan',
-                'focus:ring',
-                'focus:ring-bossanova-cyan',
-                'focus:ring-opacity-50',
-              ].join(' ')}
-              defaultValue={localizedText[locale] || ''}
-              onChange={(e) => {
-                onInputChange?.(locale, e.target.value);
-                validate(locale, e.target.value);
-              }}
-            />
+            { showLabel &&
+              <div className='flex flex-col items-center justify-center'>
+                <span className='block h-3 w-4'>{flags[locale]}</span>
+              </div>
+            }
+            { multiline
+              ? (
+                <textarea
+                  id={inputId}
+                  className={[
+                    bold ? 'font-extrabold' : '',
+                    textCenter ? 'text-center' : '',
+                    'w-full',
+                    'p-1',
+                    'rounded-md',
+                    'border',
+                    'border-gray-300',
+                    'focus:border-bossanova-cyan',
+                    'focus:ring',
+                    'focus:ring-bossanova-cyan',
+                    'focus:ring-opacity-50',
+                  ].join(' ')}
+                  defaultValue={localizedText[locale] || ''}
+                  onChange={(e) => {
+                    onInputChange?.(locale, e.target.value);
+                    validate(locale, e.target.value);
+                  }}
+                />
+              ) : (
+                <input
+                  id={inputId}
+                  type='text'
+                  className={[
+                    bold ? 'font-extrabold' : '',
+                    textCenter ? 'text-center' : '',
+                    'w-full',
+                    'p-1',
+                    'rounded-md',
+                    'border',
+                    'border-gray-300',
+                    'focus:border-bossanova-cyan',
+                    'focus:ring',
+                    'focus:ring-bossanova-cyan',
+                    'focus:ring-opacity-50',
+                  ].join(' ')}
+                  defaultValue={localizedText[locale] || ''}
+                  onChange={(e) => {
+                    onInputChange?.(locale, e.target.value);
+                    validate(locale, e.target.value);
+                  }}
+                />
+              )
+            }
           </div>
         );
       })}

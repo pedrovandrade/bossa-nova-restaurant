@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 import { routing } from '@/i18n/routing';
 import { AlertCircleIcon, Cross, PaperClip } from '@/components/_icons';
+import TextInput from '@/app/_components/TextInput';
 
 type PopinEditorProps = {
   isActive: boolean;
@@ -260,71 +261,16 @@ const PopinEditor: FC<PopinEditorProps> = ({
             const hasError = descriptionEmpty[locale];
 
             return (
-              <div key={locale} className='w-full'>
-                <div
-                  className={[
-                    'flex',
-                    'grow',
-                    'w-full',
-                    'items-center',
-                    'rounded-lg',
-                    'border',
-                    'px-3',
-                    hasError ? 'border-red-500' : 'border-slate-400',
-                    hasError ? '' : 'mb-6',
-                    isActive ? 'bg-white' : 'bg-slate-100',
-                    !isActive && 'opacity-50'
-                  ].join(' ')}
-                >
-                  <div className='relative w-full'>
-                    <input
-                      id={inputId}
-                      placeholder=' '
-                      required={true}
-                      disabled={!isActive}
-                      value={altText?.[locale] || ''}
-                      onChange={(e) => handleDescriptionChange(locale, e.target.value)}
-                      className={[
-                        'peer',
-                        'w-full',
-                        'pt-8',
-                        'pb-3',
-                        'outline-none',
-                        'text-2xl',
-                        'disabled:cursor-not-allowed'
-                      ].join(' ')}
-                    />
-                    <label
-                      htmlFor={inputId}
-                      className={[
-                        'pointer-events-none',
-                        'absolute',
-                        'left-0',
-                        'top-1/2',
-                        '-translate-y-1/2',
-                        'text-2xl',
-                        'text-gray-700',
-                        'font-semibold',
-                        'transition-all',
-                        'peer-focus:top-2',
-                        'peer-focus:text-base',
-                        'peer-focus:-translate-y-0',
-                        'peer-not-placeholder-shown:top-2',
-                        'peer-not-placeholder-shown:text-base',
-                        'peer-not-placeholder-shown:-translate-y-0',
-                      ].join(' ')}
-                    >
-                      {languageNames[locale]}
-                    </label>
-                  </div>
-                </div>
-                {/* Error messages */}
-                {hasError && (
-                  <p className='text-red-500 w-full text-base'>
-                    {t('errors.noEmptyDescription')}
-                  </p>
-                )}
-              </div>
+              <TextInput
+                key={locale}
+                id={inputId}
+                required={true}
+                isActive={isActive}
+                value={altText?.[locale] || ''}
+                onChange={(e) => handleDescriptionChange(locale, e.target.value)}
+                label={languageNames[locale]}
+                error={hasError ? t('errors.noEmptyDescription') : ''}
+              />
             );
           })}
         </div>

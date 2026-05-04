@@ -44,8 +44,7 @@ const PUT = requireOwner(async (request) => {
   try {
     const patch = (await request.json()) as OpeningHoursData;
     const updated = await updateOpeningHours(patch);
-    console.log('patch:', patch);
-    console.log('updated:', updated);
+
     if (!updated) {
       return new Response(JSON.stringify({ error: 'No opening hours document to update' }), {
         status: 404,

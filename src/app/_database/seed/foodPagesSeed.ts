@@ -10,7 +10,6 @@ const foodPages: FoodMenuPageData[] = [
       pt: 'Entradas ou tapas para compartilhar',
       en: 'Starters or tapas to share',
     },
-    category: 'starters',
     items: [
       {
         name: {
@@ -134,7 +133,6 @@ const foodPages: FoodMenuPageData[] = [
       pt: 'Pratos',
       en: 'Main Courses',
     },
-    category: 'mainCourses',
     items: [
       {
         name: {
@@ -258,9 +256,9 @@ const foodPages: FoodMenuPageData[] = [
     ],
     footer: {
       notes: {
-        fr: ['Viande origine Argentine'],
-        pt: ['Carne de origem Argentina'],
-        en: ['Meat of Argentine origin'],
+        fr: ['* Viande origine Argentine'],
+        pt: ['* Carne de origem Argentina'],
+        en: ['* Meat of Argentine origin'],
       },
       generalNote: {
         fr: 'La liste des allergènes présents dans nos plats est disponible sur demande.',
@@ -276,7 +274,6 @@ const foodPages: FoodMenuPageData[] = [
       pt: 'Sobremesas',
       en: 'Desserts',
     },
-    category: 'desserts',
     items: [
       {
         name: {

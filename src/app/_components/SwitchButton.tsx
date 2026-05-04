@@ -12,7 +12,7 @@ const SwitchButton: FC<SwitchButtonProps> = (props) => {
   return (
     <div className='flex items-center'>
       <Switch.Root
-        className='w-8 h-5 mx-5 my-3 bg-gray-200 rounded-full relative hover:cursor-pointer data-[state=checked]:bg-teal-600'
+        className='w-8 h-5 mr-5 my-2 bg-gray-200 rounded-full relative hover:cursor-pointer data-[state=checked]:bg-teal-600'
         onCheckedChange={onCheckedChange}
         defaultChecked={defaultChecked || false}
       >

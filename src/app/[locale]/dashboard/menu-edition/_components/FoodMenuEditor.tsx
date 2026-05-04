@@ -1,12 +1,29 @@
 import { FoodMenuPageData } from '@/types/FoodMenuPageData';
 import { MenuHeaderIcon } from '@/components/_icons';
-import { useLocalized } from '@/hooks/language';
 import { FC } from 'react';
+import Title from './_common/Title';
+import { FoodEditionParams, FoodFooterEditionParams, TitleEditionParams } from './MenuEditor';
+import FoodItem from './_foodMenu/FoodItem';
+import { defaultLocalizedTextArray } from './_utils/localizedTextService';
+import FoodMenuFooter from './_foodMenu/FoodMenuFooter';
 
-const FoodMenuEditor: FC<FoodMenuPageData> = ({ title, items, footer }) => {
-  const getLocalized = useLocalized();
-  const footerNotes: string[] = getLocalized(footer?.notes || {}) as string[] || [];
-  const footerGeneralNote: string = getLocalized(footer?.generalNote || {}) as string || '';
+type FoodMenuEditorProps = {
+  pageData: FoodMenuPageData;
+  pageIndex: number;
+  onTitleChange?: (params: TitleEditionParams) => void;
+  onFoodChange?: (params: FoodEditionParams) => void;
+  onFooterChange?: (params: FoodFooterEditionParams) => void;
+};
+
+const FoodMenuEditor: FC<FoodMenuEditorProps> = (props) => {
+  const {
+    pageData,
+    pageIndex,
+    onTitleChange,
+    onFoodChange,
+    onFooterChange,
+  } = props;
+  const { title, items, footer } = pageData;
 
   return (
     <section className="flex flex-col justify-between w-full bg-white pl-7 md:pl-20 pr-7 md:pr-30 py-7 text-bossanova-cyan">
@@ -14,57 +31,40 @@ const FoodMenuEditor: FC<FoodMenuPageData> = ({ title, items, footer }) => {
         <div className='flex justify-center max-h-20 mb-4'>
           <MenuHeaderIcon />
         </div>
-        {/* Title */}
-        <h1 className="text-4xl font-medium text-center mb-6 font-(family-name:--font-feeling-passionate)">
-          {getLocalized(title)}
-        </h1>
+        <Title
+          id='food-menu-title'
+          page={pageIndex}
+          currentText={title}
+          className='text-4xl font-medium text-center mb-6 font-(family-name:--font-feeling-passionate)'
+          onTitleChange={onTitleChange}
+        />
 
         {/* Menu Items */}
         <ul className='tracking-wider'>
           {items.map((item, index) => {
-            const description = getLocalized(item?.description || {});
-            const descriptionParagraphs = typeof description === 'string'
-              ? [description]
-              : description || [];
-            const descriptionText = descriptionParagraphs.map((paragraph, idx) => (
-              <p key={idx} className="mt-2 text-base">{paragraph}</p>
-            ));
-            
-            const { price } = item;
-            let priceFormatted = '';
-            if (price) {
-              priceFormatted = price % 1 === 0 ? price.toFixed(0) : price.toFixed(2);
-            }
-
-            const itemName = getLocalized(item.name);
-
+            const { name, description, price } = item;
             return (
-              <li key={index} className="py-4">
-                <div className="flex justify-between text-xl font-extrabold uppercase tracking-widest text-bossanova-orange">
-                  <span>{itemName}</span>
-                  { price && <span>{priceFormatted} euros</span> }
-                </div>
-                {descriptionText}
-              </li>
+              <FoodItem
+                key={`food-menu-item-${pageIndex}-${index}`}
+                page={pageIndex}
+                index={index}
+                id={`food-menu-item-${pageIndex}-${index}`}
+                name={name}
+                description={description ?? defaultLocalizedTextArray}
+                price={price}
+                onFoodItemChange={onFoodChange}
+              />
             );
           })}
         </ul>
       </div>
 
       {/* Footer notes */}
-      {(footerNotes?.length || footerGeneralNote) && (
-        <div className="flex flex-col text-sm items-center mt-auto text-center">
-          {footerNotes?.map((note, index) => (
-            <div key={index} className="flex items-start text-bossanova-orange">
-              <span className="mr-2 font-bold">*</span>
-              <span>{note}</span>
-            </div>
-          ))}
-          {footer.generalNote && (
-            <div className="mt-2 text-bossanova-cyan font-bold">{footerGeneralNote}</div>
-          )}
-        </div>
-      )}
+      <FoodMenuFooter
+        page={pageIndex}
+        footerData={footer}
+        onChange={onFooterChange}
+      />
     </section>
   );
 };

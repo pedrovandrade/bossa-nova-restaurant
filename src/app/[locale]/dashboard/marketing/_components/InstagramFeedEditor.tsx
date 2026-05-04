@@ -4,6 +4,7 @@ import InstagramFeed from '@/components/InstagramFeed/InstagramFeed';
 import { FC, MouseEventHandler, useId, useState } from 'react';
 import { Switch } from '@ark-ui/react';
 import { useTranslations } from 'next-intl';
+import TextInput from '@/app/_components/TextInput';
 
 type InstagramFeedEditorProps = {
   isActive: boolean;
@@ -111,84 +112,33 @@ const InstagramFeedEditor: FC<InstagramFeedEditorProps> = ({ isActive, onActiveS
         <Switch.HiddenInput />
       </Switch.Root>
 
-      <div className='w-full max-w-2xl px-5'>
-        <div
-          className={[
-            'w-full',
-            'gap-6',
-            'flex',
-            'flex-col',
-            'md:flex-row',
-            'items-center',
-            'justify-center',
-            isActive && Boolean(urlError) ? 'mb-0' : 'mb-6',
-          ].join(' ')}
-        >
-
-          {/* Input field for Instagram Post URL */}
-          <div className={[
-              'flex',
-              'grow',
-              'w-full',
-              'md:w-auto',
-              'items-center',
-              'max-w-2xl',
-              'rounded-lg',
-              'border',
-              'px-3',
-              isActive && Boolean(urlError) ? 'border-red-500' : 'border-slate-400',
-              isActive ? 'bg-white' : 'bg-slate-100',
-              !isActive && 'opacity-50',
-            ].join(' ')}
-          >
-            <div className='pr-2 mr-3 text-gray-500'>
-              <LinkIcon />
-            </div>
-            <div className='relative w-full'>
-              <input
-                id={inputId}
-                autoComplete='url'
-                placeholder=' '
-                required={true}
-                disabled={!isActive}
-                value={url}
-                onChange={(e) => handleUrlChange(e.target.value)}
-                className={[
-                  'peer',
-                  'w-full',
-                  'pt-8',
-                  'pb-3',
-                  'outline-none',
-                  'text-2xl',
-                  'disabled:cursor-not-allowed'
-                ].join(' ')}
-              />
-              <label
-                htmlFor={inputId}
-                className={[
-                  'pointer-events-none',
-                  'absolute',
-                  'left-0',
-                  'top-1/2',
-                  '-translate-y-1/2',
-                  'text-2xl',
-                  'text-gray-700',
-                  'font-semibold',
-                  'transition-all',
-                  'peer-focus:top-2',
-                  'peer-focus:text-base',
-                  'peer-focus:-translate-y-0',
-                  'peer-not-placeholder-shown:top-2',
-                  'peer-not-placeholder-shown:text-base',
-                  'peer-not-placeholder-shown:-translate-y-0',
-                ].join(' ')}
-              >
-                {t('inputLabel')}
-              </label>
-            </div>
-          </div>
-
-          {/* Preview button */}
+      <div
+        className={[
+          'w-full',
+          'flex',
+          'flex-col',
+          'gap-6',
+          'md:flex-row',
+          'items-start',
+          'justify-center',
+          'max-w-2xl',
+          'px-5',
+        ].join(' ')}
+      >
+        <div className='flex w-full md:w-auto grow items-center'>
+          <TextInput
+            id={inputId}
+            autoComplete='url'
+            required={true}
+            isActive={isActive}
+            value={url}
+            onChange={(e) => handleUrlChange(e.target.value)}
+            label={t('inputLabel')}
+            icon={<LinkIcon />}
+            error={urlError}
+          />
+        </div>
+        {/* Preview button */}
           <button
             type='button'
             onClick={handleSeeUrlPreview}
@@ -217,15 +167,6 @@ const InstagramFeedEditor: FC<InstagramFeedEditorProps> = ({ isActive, onActiveS
             <span className='mr-2'><UpdateIcon /></span>
             {t('previewButtonLabel')}
           </button>
-        </div>
-
-        {/* Error messages */}
-        {urlError && isActive && (
-          <p className='text-red-500 w-full text-base'>
-            {urlError}
-          </p>
-        )}
-
       </div>
 
       {/* Instagram Feed Preview */}

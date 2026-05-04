@@ -1,18 +1,23 @@
-import { LocalizedText } from '@/types/LocalizedText';
+import { LocalizedText, LocalizedTextArray } from '@/types/LocalizedText';
 import { useLocalized } from '@/hooks/language';
 import { FC } from 'react';
 
 type LocalizedTextDisplayProps = {
-  localizedText: LocalizedText;
+  localizedText: LocalizedText | LocalizedTextArray;
   className?: string;
 };
 
 const LocalizedTextDisplay: FC<LocalizedTextDisplayProps> = ({ localizedText, className }) => {
   const getLocalized = useLocalized();
+  const text = getLocalized(localizedText) || '';
+
+  const textParagraphs = typeof text === 'string' ? [text] : text;
 
   return (
     <div className={className}>
-      <p>{getLocalized(localizedText) || ''}</p>
+      {textParagraphs.map((paragraph, index) => (
+        <p key={index}>{paragraph}</p>
+      ))}
     </div>
   );
 };

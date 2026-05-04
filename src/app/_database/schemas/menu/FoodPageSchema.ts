@@ -14,7 +14,6 @@ const FoodPageSchema = new Schema(
   {
     title: { type: LocalizedTextSchema, required: true },
     lastUpdated: { type: Date, required: true },
-    category: { type: String, enum: ['starters', 'mainCourses', 'desserts'], required: true },
     items: { type: [FoodItemSchema], required: true },
     footer: {
       notes: { type: LocalizedTextArraySchema, required: false },

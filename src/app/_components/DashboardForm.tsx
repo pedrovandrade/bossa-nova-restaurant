@@ -3,11 +3,11 @@
 import { FC, FormEventHandler, PropsWithChildren, useState } from 'react';
 import { createToaster, Portal, Toast, Toaster } from '@ark-ui/react';
 import { AlertCircleIcon, CheckMark, Cross, LoaderIcon } from '@/components/_icons';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
+import { useRouter } from 'next/navigation';
 
 type DashboardFormProps = PropsWithChildren & {
   onSubmit: () => Promise<void>;
-  onCancel?: () => void;
   hasErrors?: boolean;
 };
 
@@ -19,7 +19,10 @@ const toaster = createToaster({
 });
 
 const DashboardForm: FC<DashboardFormProps> = (props) => {
-  const { children, onSubmit, onCancel, hasErrors } = props;
+  const { children, onSubmit, hasErrors } = props;
+
+  const router = useRouter();
+  const currentLocale = useLocale();
 
   const getIcon = (type: string | undefined) => {
     switch (type) {
@@ -67,6 +70,10 @@ const DashboardForm: FC<DashboardFormProps> = (props) => {
       },
     })
   };
+
+  function cancelChanges() {
+    router.push(`/${currentLocale ?? 'fr'}/dashboard`);
+  }
 
   return (
     <form
@@ -123,7 +130,7 @@ const DashboardForm: FC<DashboardFormProps> = (props) => {
               'disabled:hover:bg-bossanova-cyan',
             ].join(' ')}
             disabled={saving}
-            onClick={onCancel}
+            onClick={cancelChanges}
           >
             {t('discardChanges')}
           </button>

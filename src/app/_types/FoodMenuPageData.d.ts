@@ -8,8 +8,6 @@ type FoodMenuPageData = {
   lastUpdated: Date;
   /** Localized page title (e.g. `"Plats"`). */
   title: LocalizedText;
-  /** Category identifier for the page. */
-  category: 'starters' | 'mainCourses' | 'desserts';
   /** Menu items on the page. */
   items: {
     /** Localized item name. */

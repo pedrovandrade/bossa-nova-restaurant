@@ -43,7 +43,7 @@ async function run() {
       // Replace existing documents with seed to ensure deterministic state
       await db.collection(collName).deleteMany({});
       // Insert using the model to ensure schema casting
-      await DrinkPage.insertMany(drinkPages);
+      await DrinkPage.insertMany(drinkPages, { ordered: true });
       console.log(`Seeded ${drinkPages.length} documents into "${collName}".`);
     } else {
       if (!existing) {

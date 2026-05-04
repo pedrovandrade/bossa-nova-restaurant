@@ -286,7 +286,7 @@
               "errors": {
                 "invalidUrl": "Invalid instagram URL",
                 "badOrigin": "instagram URL must have origin https://www.instagram.com",
-                "notAPost": "The URL must point to an Instagram post with path /p/{post-code}"
+                "notAPost": "The URL must point to an Instagram post with path /p/post-code"
               }
             },
             "popinEditor": {
