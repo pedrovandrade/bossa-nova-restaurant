@@ -239,6 +239,53 @@
         "logout": "Log-out"
       },
       "pages": {
+        "menu": {
+          "title": "Menu editor",
+          "errorMessage": "Failed to load the menu data",
+          "page": "Page",
+          "editorBox": {
+            "edit": "Edit",
+            "delete": "Delete",
+            "confirm": "Confirm",
+            "cancel": "Cancel",
+            "bold": "Bold",
+            "small": "Small",
+            "inline": "Inline",
+            "top": "Top",
+            "bottom": "Bottom"
+          },
+          "drinkMenu": {
+            "addCategory": "Add a category",
+            "addCategoryNote": "Add a category note",
+            "deleteCategory": "Delete this category",
+            "inlineItems": "Inline items",
+            "addDrink": "Add a drink",
+            "item": {
+              "name": "Drink name",
+              "description": "Drink description",
+              "addDescription": "Add a description",
+              "price": "Price",
+              "nameStyle": {
+                "legend": "Drink name style"
+              },
+              "descriptionStyle": {
+                "legend": "Drink description style"
+              },
+              "descriptionPosition": {
+                "legend": "Drink description position"
+              }
+            }
+          },
+          "foodMenu": {
+            "addFood": "Add a food",
+            "footerNotes": "Footer notes",
+            "generalFooterNotes": "General footer notes",
+            "noFooterNote": "No footer note",
+            "noGeneralFooterNote": "No general footer note",
+            "addFooterNote": "Add a footer note",
+            "addGeneralFooterNote": "Add a general footer note"
+          }
+        },
         "openingHours": {
           "title": "Opening hours",
           "caption": "Table to edit opening hours for each weekday. Use the toggles to mark a day open or closed and add / remove time spans.",

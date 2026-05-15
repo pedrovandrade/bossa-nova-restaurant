@@ -5,6 +5,7 @@ import EditorBox from '../_utils/EditorBox';
 import LocalizedTextDisplay from '../_utils/LocalizedTextDisplay';
 import LocalizedTextInput from '../_utils/LocalizedTextInput';
 import SwitchButton from '@/components/SwitchButton';
+import { useTranslations } from 'next-intl';
 
 type NoteData = {
   text: LocalizedText;
@@ -16,16 +17,27 @@ type CategoryProps = {
   page: number;
   index: number;
   title: LocalizedText;
+  inline?: boolean;
   id: string;
   note?: NoteData;
   onCategoryChange?: (params: CategoryEditionParams) => void;
 };
 
 const Category: FC<CategoryProps> = (props) => {
-  const { page, index, title, id, note, onCategoryChange } = props;
+  const {
+    page,
+    index,
+    title,
+    inline = false,
+    id,
+    note,
+    onCategoryChange,
+  } = props;
 
   const [localizedTitle, setLocalizedTitle] = useState<LocalizedText>(title);
   const [noteData, setNoteData] = useState<NoteData | undefined>(note);
+
+  const t = useTranslations('pages.dashboard.pages.menu');
 
   const handleConfirm = () => {
     const allTextsEmpty: boolean = Object.values(noteData?.text || {}).every(text => !text);
@@ -34,6 +46,7 @@ const Category: FC<CategoryProps> = (props) => {
 
     onCategoryChange?.({
       page,
+      inline,
       categoryIndex: index,
       newTitle: localizedTitle,
       note: newNote,
@@ -91,7 +104,7 @@ const Category: FC<CategoryProps> = (props) => {
       }
       editContent={
         <div>
-          <div className={`mb-4 ${noteData?.inline ? 'flex gap-4': ''}`}>
+          <div className={`mb-4 ${noteData?.inline ? 'flex': ''}`}>
             <LocalizedTextInput
               className='text-xl font-extrabold text-bossanova-orange uppercase tracking-widest'
               localizedText={title}
@@ -99,22 +112,23 @@ const Category: FC<CategoryProps> = (props) => {
               onInputChange={handleTitleChange}
             />
             {noteData ? (
-              <div>
+              <div className='w-full'>
                 <LocalizedTextInput
-                  className='mt-1 text-sm'
+                  className='grow text-sm h-9.5'
                   localizedText={noteData?.text}
                   bold={noteData?.bold}
-                  id={id}
+                  id={`${id}-note`}
                   onInputChange={handleNoteTextChange}
+                  showLabel={!noteData?.inline}
                 />
                 <div className='flex gap-4'>
                   <SwitchButton
-                    label='Inline'
+                    label={t('editorBox.inline')}
                     onCheckedChange={handleNoteInlineChange}
                     defaultChecked={noteData?.inline}
                   />
                   <SwitchButton
-                    label='Bold'
+                    label={t('editorBox.bold')}
                     onCheckedChange={handleNoteBoldChange}
                     defaultChecked={noteData?.bold}
                   />
@@ -126,7 +140,7 @@ const Category: FC<CategoryProps> = (props) => {
                   className='text-teal-600 hover:underline hover:cursor-pointer'
                   onClick={addNote}
                 >
-                  Add note
+                  {t('drinkMenu.addCategoryNote')}
                 </button>
               </div>
             )}

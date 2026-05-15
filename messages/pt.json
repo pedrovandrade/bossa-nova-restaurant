@@ -239,6 +239,53 @@
         "logout": "Sair"
       },
       "pages": {
+        "menu": {
+          "title": "Editor do cardápio",
+          "errorMessage": "Ocorreu um erro ao salvar as alterações. Por favor, tente novamente.",
+          "page": "Página",
+          "editorBox": {
+            "edit": "Editar",
+            "delete": "Excluir",
+            "confirm": "Confirmar",
+            "cancel": "Cancelar",
+            "bold": "Negrito",
+            "small": "Pequeno",
+            "inline": "Em linha",
+            "top": "Topo",
+            "bottom": "Inferior"
+          },
+          "drinkMenu": {
+            "addCategory": "Adicionar uma categoria",
+            "addCategoryNote": "Adicionar uma nota de categoria",
+            "deleteCategory": "Excluir esta categoria",
+            "inlineItems": "Itens em linha",
+            "addDrink": "Adicionar uma bebida",
+            "item": {
+              "name": "Nome da bebida",
+              "description": "Descrição da bebida",
+              "addDescription": "Adicionar uma descrição",
+              "price": "Preço",
+              "nameStyle": {
+                "legend": "Estilo do nome da bebida"
+              },
+              "descriptionStyle": {
+                "legend": "Estilo da descrição da bebida"
+              },
+              "descriptionPosition": {
+                "legend": "Posição da descrição da bebida"
+              }
+            }
+          },
+          "foodMenu": {
+            "addFood": "Adicionar um prato",
+            "footerNotes": "Notas de rodapé",
+            "generalFooterNotes": "Notas de rodapé gerais",
+            "noFooterNote": "Nenhuma nota de rodapé",
+            "noGeneralFooterNote": "Nenhuma nota de rodapé geral",
+            "addFooterNote": "Adicionar uma nota de rodapé",
+            "addGeneralFooterNote": "Adicionar uma nota de rodapé geral"
+          }
+        },
         "openingHours": {
           "title": "Horários de funcionamento",
           "caption": "Tabela para editar os horários de funcionamento de cada dia da semana. Use os botões para marcar um dia como aberto ou fechado e adicionar/remover intervalos de horário.",

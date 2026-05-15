@@ -239,6 +239,53 @@
         "logout": "Déconnexion"
       },
       "pages": {
+        "menu": {
+          "title": "Éditeur de menu",
+          "errorMessage": "Échec du chargement des données du menu",
+          "page": "Page",
+          "editorBox": {
+            "edit": "Modifier",
+            "delete": "Supprimer",
+            "confirm": "Confirmer",
+            "cancel": "Annuler",
+            "bold": "Gras",
+            "small": "Petit",
+            "inline": "En ligne",
+            "top": "Haut",
+            "bottom": "Bas"
+          },
+          "drinkMenu": {
+            "addCategory": "Ajouter une catégorie",
+            "addCategoryNote": "Ajouter une note de catégorie",
+            "deleteCategory": "Supprimer cette catégorie",
+            "inlineItems": "Éléments en ligne",
+            "addDrink": "Ajouter une boisson",
+            "item": {
+              "name": "Nom de la boisson",
+              "description": "Description de la boisson",
+              "addDescription": "Ajouter une description",
+              "price": "Prix",
+              "nameStyle": {
+                "legend": "Style du nom de la boisson"
+              },
+              "descriptionStyle": {
+                "legend": "Style de la description de la boisson"
+              },
+              "descriptionPosition": {
+                "legend": "Position de la description de la boisson"
+              }
+            }
+          },
+          "foodMenu": {
+            "addFood": "Ajouter un plat",
+            "footerNotes": "Notes de bas de page",
+            "generalFooterNotes": "Notes de bas de page générales",
+            "noFooterNote": "Aucune note de bas de page",
+            "noGeneralFooterNote": "Aucune note de bas de page générale",
+            "addFooterNote": "Ajouter une note de bas de page",
+            "addGeneralFooterNote": "Ajouter une note de bas de page générale"
+          }
+        },
         "openingHours": {
           "title": "Horaires d'ouverture",
           "caption": "Tableau pour éditer les horaires d'ouverture de chaque jour de la semaine. Utilisez les boutons pour marquer un jour comme ouvert ou fermé et ajouter / supprimer des plages horaires.",

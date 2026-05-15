@@ -1,11 +1,18 @@
 import { FoodMenuPageData } from '@/types/FoodMenuPageData';
-import { MenuHeaderIcon } from '@/components/_icons';
+import { Cross, MenuHeaderIcon } from '@/components/_icons';
 import { FC } from 'react';
 import Title from './_common/Title';
-import { FoodEditionParams, FoodFooterEditionParams, TitleEditionParams } from './MenuEditor';
+import type {
+  FoodEditionParams,
+  FoodFooterEditionParams,
+  FoodLocationParams,
+  TitleEditionParams,
+} from './MenuEditor';
 import FoodItem from './_foodMenu/FoodItem';
 import { defaultLocalizedTextArray } from './_utils/localizedTextService';
 import FoodMenuFooter from './_foodMenu/FoodMenuFooter';
+import React from 'react';
+import { useTranslations } from 'next-intl';
 
 type FoodMenuEditorProps = {
   pageData: FoodMenuPageData;
@@ -13,6 +20,46 @@ type FoodMenuEditorProps = {
   onTitleChange?: (params: TitleEditionParams) => void;
   onFoodChange?: (params: FoodEditionParams) => void;
   onFooterChange?: (params: FoodFooterEditionParams) => void;
+  onFoodItemDelete?: (params: FoodLocationParams) => void;
+  onFoodAdd?: (params: { page: number; categoryIndex: number }) => void;
+};
+
+const AddFoodButton = (
+  props: {
+    pageIndex: number,
+    categoryIndex: number,
+    onFoodAdd?: (params: { page: number; categoryIndex: number }) => void
+  }
+) => {
+  const { pageIndex, categoryIndex, onFoodAdd } = props;
+
+  const t = useTranslations('pages.dashboard.pages.menu.foodMenu');
+
+  return (
+    <button
+      type='button'
+      className={[
+          'py-1',
+          'text-sm',
+          'text-cyan-600',
+          'hover:text-cyan-800',
+          'hover:cursor-pointer',
+          'hover:font-semibold',
+          'flex',
+          'items-center',
+          'gap-2',
+        ].join(' ')
+      }
+      aria-label={t('addFood')}
+      onClick={(event) => {
+        event.preventDefault();
+        onFoodAdd?.({ page: pageIndex, categoryIndex });
+      }}
+    >
+      <Cross className='h-3 w-3 rotate-45' />
+      {t('addFood')}
+    </button>
+  );
 };
 
 const FoodMenuEditor: FC<FoodMenuEditorProps> = (props) => {
@@ -21,7 +68,9 @@ const FoodMenuEditor: FC<FoodMenuEditorProps> = (props) => {
     pageIndex,
     onTitleChange,
     onFoodChange,
+    onFoodItemDelete,
     onFooterChange,
+    onFoodAdd,
   } = props;
   const { title, items, footer } = pageData;
 
@@ -39,25 +88,38 @@ const FoodMenuEditor: FC<FoodMenuEditorProps> = (props) => {
           onTitleChange={onTitleChange}
         />
 
+        <AddFoodButton
+          pageIndex={pageIndex}
+          categoryIndex={0}
+          onFoodAdd={onFoodAdd}
+        />
+
         {/* Menu Items */}
         <ul className='tracking-wider'>
           {items.map((item, index) => {
             const { name, description, price } = item;
             return (
-              <FoodItem
-                key={`food-menu-item-${pageIndex}-${index}`}
-                page={pageIndex}
-                index={index}
-                id={`food-menu-item-${pageIndex}-${index}`}
-                name={name}
-                description={description ?? defaultLocalizedTextArray}
-                price={price}
-                onFoodItemChange={onFoodChange}
-              />
-            );
-          })}
-        </ul>
-      </div>
+              <React.Fragment key={`food-menu-item-${name?.fr}-${pageIndex}-${index}`}>
+                <FoodItem
+                  page={pageIndex}
+                  index={index}
+                  id={`food-menu-item-${pageIndex}-${index}`}
+                  name={name}
+                  description={description ?? defaultLocalizedTextArray}
+                  price={price}
+                  onChange={onFoodChange}
+                  onDelete={onFoodItemDelete}
+                />
+                <AddFoodButton
+                  pageIndex={pageIndex}
+                  categoryIndex={index + 1}
+                  onFoodAdd={onFoodAdd}
+                />
+              </React.Fragment>
+          );
+        })}
+      </ul>
+    </div>
 
       {/* Footer notes */}
       <FoodMenuFooter

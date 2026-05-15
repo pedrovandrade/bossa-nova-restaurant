@@ -19,5 +19,5 @@ export default NextAuth(authConfig).auth((request: NextRequest) => {
 
 export const config = {
   // Match only internationalized pathnames
-  matcher: ['/((?!api|_next/static|_next/image|.*\\.png$)/)', '/(fr|en|pt)/:path*']
+  matcher: ['/((?!api|_next/static|_next/image|.*\\.png$)/)', '/(fr|en|pt)/:path*', '/']
 };

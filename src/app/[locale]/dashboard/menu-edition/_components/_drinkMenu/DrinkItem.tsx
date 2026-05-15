@@ -3,9 +3,10 @@ import EditorBox from '../_utils/EditorBox';
 import LocalizedTextDisplay from '../_utils/LocalizedTextDisplay';
 import LocalizedTextInput from '../_utils/LocalizedTextInput';
 import { CurrentLocale, LocalizedText } from '@/types/LocalizedText';
-import { type DrinkEditionParams } from '../MenuEditor';
-import SwitchButton from '@/app/_components/SwitchButton';
+import { type DrinkLocationParams, type DrinkEditionParams } from '../MenuEditor';
+import SwitchButton from '@/components/SwitchButton';
 import { RadioGroup } from 'radix-ui';
+import { useTranslations } from 'next-intl';
 
 type DrinkName = {
   text: LocalizedText;
@@ -28,7 +29,8 @@ type DrinkItemProps = {
   description?: Description;
   price?: number;
   inline?: boolean,
-  onDrinkItemChange?: (params: DrinkEditionParams) => void;
+  onChange?: (params: DrinkEditionParams) => void;
+  onDelete?: (params: DrinkLocationParams) => void;
 };
 
 /* Small presentational Radio option component (keeps onValueChange non-inline) */
@@ -57,8 +59,11 @@ const DrinkItem: FC<DrinkItemProps> = (props) => {
     description,
     price,
     inline,
-    onDrinkItemChange,
+    onChange,
+    onDelete,
   } = props;
+
+  const t = useTranslations('pages.dashboard.pages.menu');
 
   const [itemsInline, setItemsInline] = useState<boolean>(Boolean(inline));
   const [drinkName, setDrinkName] = useState<DrinkName>(name);
@@ -70,7 +75,7 @@ const DrinkItem: FC<DrinkItemProps> = (props) => {
     const newDescription = allTextsEmpty ? undefined : drinkDescription;
     setDrinkDescription(newDescription);
 
-    onDrinkItemChange?.({
+    onChange?.({
       page,
       categoryIndex,
       drinkIndex,
@@ -88,6 +93,14 @@ const DrinkItem: FC<DrinkItemProps> = (props) => {
     setDrinkName(name);
     setDrinkDescription(description);
     setItemPrice(price);
+  };
+
+  const handleDelete = () => {
+    onDelete?.({
+      page,
+      categoryIndex,
+      drinkIndex,
+    });
   };
 
   const addDescription = () => {
@@ -135,7 +148,12 @@ const DrinkItem: FC<DrinkItemProps> = (props) => {
 
   /** ************ Drink price ************ */
   const handlePriceChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    setItemPrice(Number(e.target.value));
+    const newPrice = Number(e.target.value);
+    if (!isNaN(newPrice)) {
+      setItemPrice(newPrice);
+    } else {
+      setItemPrice(undefined);
+    }
   };
 
   const formatMoney = (price: number): string => (
@@ -144,14 +162,15 @@ const DrinkItem: FC<DrinkItemProps> = (props) => {
 
   return (
     <EditorBox
-      className='flex'
+      className={`flex flex-col md:flex-row ${inline ? 'max-w-auto sm:max-w-1/2' : ''}`}
       onConfirm={handleConfirm}
       onCancel={handleCancel}
+      onDelete={handleDelete}
       readContent={
         <li
           className={[
             'flex grow',
-            inline ? 'flex-row' : 'flex-col',
+            inline ? 'flex-row gap-2' : 'flex-col',
           ].join(' ')}
         >
           <div
@@ -160,7 +179,7 @@ const DrinkItem: FC<DrinkItemProps> = (props) => {
               'tracking-wide',
               'text-bossanova-cyan',
               'flex',
-              inline ? 'gap-4' : 'justify-between w-full'
+              inline ? 'gap-2 md:gap-4' : 'justify-between w-full'
             ].join(' ')}
           >
             {/* Drink name (and description if description is inline)*/}
@@ -223,12 +242,8 @@ const DrinkItem: FC<DrinkItemProps> = (props) => {
                     bold={drinkName.bold}
                     className='text-base'
                     localizedText={drinkName.text}
+                    legend={t('drinkMenu.item.name')}
                     onInputChange={handleDrinkNameTextChange}
-                  />
-                  <SwitchButton
-                    label='Bold'
-                    onCheckedChange={handleDrinkNameBoldChange}
-                    defaultChecked={drinkName?.bold}
                   />
                 </div>
                 {drinkDescription?.position === 'inline' &&
@@ -239,76 +254,85 @@ const DrinkItem: FC<DrinkItemProps> = (props) => {
                       showLabel={false}
                       className={drinkDescription?.small ? 'text-sm' : 'text-base'}
                       localizedText={drinkDescription.text}
+                      legend={t('drinkMenu.item.description')}
                       onInputChange={handleDrinkDescriptionTextChange}
-                    />
-                    <SwitchButton
-                      label='Bold'
-                      onCheckedChange={handleDrinkDescriptionBoldChange}
-                      defaultChecked={drinkDescription?.bold}
-                    />
-                    <SwitchButton
-                      label='Small'
-                      onCheckedChange={handleDrinkDescriptionSmallChange}
-                      defaultChecked={drinkDescription?.small}
                     />
                   </div>
                 }
               </div>
 
               {/* Drink price */}
-              {itemPrice &&
-                <div className='font-extrabold inline-flex min-w-15 justify-end'>
-                  <input
-                    id={`${id}-price`}
-                    className='pl-3 h-8 w-18 border border-gray-300 rounded-xl'
-                    type='number'
-                    value={itemPrice}
-                    onChange={handlePriceChange}
-                  />
-                  <span className='pl-3'>euros</span>
-                </div>
-              }
+              <div className='font-extrabold inline-flex min-w-15 justify-end mt-7'>
+                <input
+                  id={`${id}-price`}
+                  className='pl-3 h-8 w-18 border border-gray-300 rounded-xl'
+                  type='number'
+                  value={itemPrice}
+                  onChange={handlePriceChange}
+                />
+                <span className='pl-3'>euros</span>
+              </div>
             </div>
 
             {/* Drink description (if not inline) */}
             {drinkDescription?.text && drinkDescription?.position !== 'inline' &&
-              <div className={drinkDescription?.position === 'top' ?'order-1' : 'order-2'}>
+              <div className={drinkDescription?.position === 'top' ? 'order-1' : 'order-2'}>
                 <LocalizedTextInput
                   id={`${id}-description`}
                   bold={drinkDescription.bold}
                   className={drinkDescription?.small ? 'text-sm' : 'text-base'}
                   localizedText={drinkDescription.text}
+                  legend={t('drinkMenu.item.description')}
                   onInputChange={handleDrinkDescriptionTextChange}
-                />
-                <SwitchButton
-                  label='Bold'
-                  onCheckedChange={handleDrinkDescriptionBoldChange}
-                  defaultChecked={drinkDescription?.bold}
-                />
-                <SwitchButton
-                  label='Small'
-                  onCheckedChange={handleDrinkDescriptionSmallChange}
-                  defaultChecked={drinkDescription?.small}
                 />
               </div>
             }
 
-            {/* Radio group for selecting the description position */}
-            <div className='mb-3 ml-5'>
-              <label htmlFor={`${id}-radiogroup-description`}>
-                Description position
-              </label>
-              <RadioGroup.Root
-                id={`${id}-radiogroup-description`}
-                className='flex flex-col sm:flex-row gap-2'
-                value={drinkDescription?.position ?? 'bottom'}
-                onValueChange={handleDescriptionPositionChange}
-                aria-label='Description position'
-              >
-                <RadioOption value='top' label='Top' />
-                <RadioOption value='inline' label='Inline' />
-                <RadioOption value='bottom' label='Bottom' />
-              </RadioGroup.Root>
+            <div className='order-3 flex flex-col sm:flex-row gap-1.5 justify-between'>
+              <fieldset className='text-base font-semibold'>
+                <legend className='py-2'>{t('drinkMenu.item.nameStyle.legend')}</legend>
+                <SwitchButton
+                  label={t('editorBox.bold')}
+                  id={`${id}-radiogroup-name-bold`}
+                  onCheckedChange={handleDrinkNameBoldChange}
+                  defaultChecked={drinkName?.bold}
+                />
+              </fieldset>
+
+              {drinkDescription &&
+                <>
+                  <fieldset className='text-base font-semibold'>
+                    <legend className='py-2'>{t('drinkMenu.item.descriptionStyle.legend')}</legend>
+                    <SwitchButton
+                      label={t('editorBox.bold')}
+                      onCheckedChange={handleDrinkDescriptionBoldChange}
+                      defaultChecked={drinkDescription?.bold}
+                    />
+                    <SwitchButton
+                      label={t('editorBox.small')}
+                      onCheckedChange={handleDrinkDescriptionSmallChange}
+                      defaultChecked={drinkDescription?.small}
+                    />
+                  </fieldset>
+
+                  <fieldset className='text-base font-semibold'>
+                    <legend className='py-2'>
+                      {t('drinkMenu.item.descriptionPosition.legend')}
+                    </legend>
+                    <RadioGroup.Root
+                      id={`${id}-radiogroup-description`}
+                      className='flex flex-col sm:flex-row gap-2'
+                      value={drinkDescription?.position ?? 'bottom'}
+                      onValueChange={handleDescriptionPositionChange}
+                      aria-label={t('drinkMenu.item.descriptionPosition.legend')}
+                    >
+                      <RadioOption value='top' label={t('editorBox.top')} />
+                      <RadioOption value='inline' label={t('editorBox.inline')} />
+                      <RadioOption value='bottom' label={t('editorBox.bottom')} />
+                    </RadioGroup.Root>
+                  </fieldset>
+                </>
+              }
             </div>
 
           </div>
@@ -318,7 +342,7 @@ const DrinkItem: FC<DrinkItemProps> = (props) => {
                 className='text-teal-600 hover:underline hover:cursor-pointer'
                 onClick={addDescription}
               >
-                Add description
+                {t('drinkMenu.item.addDescription')}
               </button>
             </div>
           }

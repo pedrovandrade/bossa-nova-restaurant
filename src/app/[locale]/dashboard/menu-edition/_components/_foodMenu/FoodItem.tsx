@@ -3,7 +3,7 @@ import { ChangeEventHandler, FC, useState } from 'react';
 import EditorBox from '../_utils/EditorBox';
 import LocalizedTextDisplay from '../_utils/LocalizedTextDisplay';
 import LocalizedTextInput from '../_utils/LocalizedTextInput';
-import { FoodEditionParams } from '../MenuEditor';
+import type { FoodEditionParams, FoodLocationParams } from '../MenuEditor';
 import { localizedTextArraysToText, localizedTextToTextArrays } from '../_utils/localizedTextService';
 
 type FoodItemProps = {
@@ -15,7 +15,8 @@ type FoodItemProps = {
   description: LocalizedTextArray;
   /** Numeric price in euros. */
   price?: number;
-  onFoodItemChange?: (params: FoodEditionParams) => void;
+  onChange?: (params: FoodEditionParams) => void;
+  onDelete?: (params: FoodLocationParams) => void;
 };
 
 const FoodItem: FC<FoodItemProps> = (props) => {
@@ -26,7 +27,8 @@ const FoodItem: FC<FoodItemProps> = (props) => {
     name,
     description,
     price,
-    onFoodItemChange,
+    onChange,
+    onDelete,
   } = props;
 
   const descriptionParagraphs = localizedTextArraysToText(description);
@@ -50,7 +52,12 @@ const FoodItem: FC<FoodItemProps> = (props) => {
 
   /** ************ Food price ************ */
   const handleFoodPriceChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    setItemPrice(Number(e.target.value));
+    const newPrice = Number(e.target.value);
+    if (!isNaN(newPrice)) {
+      setItemPrice(newPrice);
+    } else {
+      setItemPrice(undefined);
+    }
   };
 
   const formatMoney = (price: number): string => (
@@ -60,13 +67,17 @@ const FoodItem: FC<FoodItemProps> = (props) => {
   /** ************ Form actions ************ */
   const handleConfirm = () => {
     const descriptionArrays = localizedTextToTextArrays(foodDescription);
-    onFoodItemChange?.({
+    onChange?.({
       page,
       index,
       name: foodName,
       description: descriptionArrays,
       price: itemPrice,
     });
+  };
+
+  const handleDelete = () => {
+    onDelete?.({ page, index });
   };
 
   /**
@@ -84,6 +95,7 @@ const FoodItem: FC<FoodItemProps> = (props) => {
         className='flex'
         onConfirm={handleConfirm}
         onCancel={handleCancel}
+        onDelete={handleDelete}
         readContent={
           <div className='grow'>
             <div className='flex justify-between text-xl font-extrabold text-bossanova-orange uppercase tracking-widest'>
@@ -108,18 +120,16 @@ const FoodItem: FC<FoodItemProps> = (props) => {
                   onInputChange={handleFoodNameChange}
                 />
               </div>
-              {itemPrice &&
-                <div className='font-extrabold inline-flex min-w-15 justify-end'>
-                  <input
-                    id={`${id}-price`}
-                    className='pl-3 h-8 w-18 border border-gray-300 rounded-xl'
-                    type='number'
-                    value={itemPrice}
-                    onChange={handleFoodPriceChange}
-                  />
-                  <span className='pl-3'>euros</span>
-                </div>
-              }
+              <div className='font-extrabold inline-flex min-w-15 justify-end'>
+                <input
+                  id={`${id}-price`}
+                  className='pl-3 h-8 w-18 border border-gray-300 rounded-xl'
+                  type='number'
+                  value={itemPrice}
+                  onChange={handleFoodPriceChange}
+                />
+                <span className='pl-3'>euros</span>
+              </div>
             </div>
             <LocalizedTextInput
               className='mt-1 text-sm'

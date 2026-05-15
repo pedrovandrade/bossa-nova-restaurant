@@ -11,6 +11,7 @@ export enum ValidationType {
 type LocalizedTextInputProps = {
   /** The default text for each locale. */
   localizedText: LocalizedText;
+  legend?: string;
   id: string;
   bold?: boolean;
   textCenter?: boolean;
@@ -28,6 +29,7 @@ const errorMessages: Partial<Record<ValidationType, string>> = {
 
 const LocalizedTextInput: FC<LocalizedTextInputProps> = ({
   localizedText,
+  legend,
   id,
   bold,
   textCenter,
@@ -70,7 +72,12 @@ const LocalizedTextInput: FC<LocalizedTextInputProps> = ({
   };
 
   return (
-    <div>
+    <fieldset className={legend ? '' : 'mt-7'}>
+      {legend &&
+        <legend className='h-6 mb-1 text-base font-semibold'>
+          {legend}
+        </legend>
+      }
       {locales.map((locale) => {
         const inputId = `${id}-${locale}`;
         return (
@@ -140,7 +147,7 @@ const LocalizedTextInput: FC<LocalizedTextInputProps> = ({
           {errorMessages[error]}
         </p>
       ))}
-    </div>
+    </fieldset>
   );
 };
 

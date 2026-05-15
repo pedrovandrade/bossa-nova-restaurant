@@ -43,7 +43,7 @@ const DrinkMenuPage: FC<DrinkMenuPageData> = ({ title, items }) => {
                   </p>
                 )}
               </div>
-              <ul className={inline ? 'flex justify-between' : ''}>
+              <ul className={inline ? 'flex justify-between flex-wrap gap-2' : ''}>
                 {item.drinks.map((drink, drinkIndex) => {
                   const { description, name, price } = drink;
                   const descriptionText = getLocalized(description?.text || {});
@@ -62,7 +62,7 @@ const DrinkMenuPage: FC<DrinkMenuPageData> = ({ title, items }) => {
                       key={drinkIndex}
                       className={[
                         'flex',
-                        inline ? 'flex-row' : 'flex-col',
+                        inline ? 'flex-row gap-2 max-w-[calc(50%-0.5rem)]' : 'flex-col',
                       ].join(' ')}
                     >
                       <div

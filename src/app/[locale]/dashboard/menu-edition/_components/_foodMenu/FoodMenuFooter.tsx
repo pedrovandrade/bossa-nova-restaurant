@@ -9,6 +9,7 @@ import {
   localizedTextToTextArrays,
 } from '../_utils/localizedTextService';
 import { FoodFooterEditionParams } from '../MenuEditor';
+import { useTranslations } from 'next-intl';
 
 type FoodMenuFooterProps = {
   page: number;
@@ -29,6 +30,8 @@ const FoodMenuFooter: FC<FoodMenuFooterProps> = (props) => {
   const [footerGeneralNote, setFooterGeneralNote] = useState<LocalizedText | undefined>(
     footerData?.generalNote
   );
+
+  const t = useTranslations('pages.dashboard.pages.menu.foodMenu');
 
   /** ------------------- Handlers ------------------- */
   /** ------------------------------------------------ */
@@ -76,14 +79,14 @@ const FoodMenuFooter: FC<FoodMenuFooterProps> = (props) => {
                 className='flex flex-col text-bossanova-orange'
                 localizedText={footerData.notes}
               />
-            : <p className='text-gray-400'>No footer note</p>
+            : <p className='text-gray-400'>{t('noFooterNote')}</p>
           }
           {footerData.generalNote
             ? <LocalizedTextDisplay
                 className='mt-2 text-bossanova-cyan font-bold'
                 localizedText={footerData.generalNote}
               />
-            : <p className='text-gray-400'>No general footer note</p>
+            : <p className='text-gray-400'>{t('noGeneralFooterNote')}</p>
           }
         </div>
       }
@@ -92,7 +95,7 @@ const FoodMenuFooter: FC<FoodMenuFooterProps> = (props) => {
 
           <fieldset>
             <legend className='text-lg ml-10'>
-              Footer notes
+              {t('footerNotes')}
             </legend>
             {footerNotes
               ? <LocalizedTextInput
@@ -108,14 +111,14 @@ const FoodMenuFooter: FC<FoodMenuFooterProps> = (props) => {
                   className=''
                   onClick={() => setFooterNotes(defaultLocalizedText)}
                 >
-                  Add footer notes
+                  {t('addFooterNote')}
                 </button>
             }
           </fieldset>
 
           <fieldset>
             <legend className='text-lg ml-10'>
-              General footer note
+              {t('generalFooterNotes')}
             </legend>
             {footerGeneralNote
               ? <LocalizedTextInput
@@ -130,7 +133,7 @@ const FoodMenuFooter: FC<FoodMenuFooterProps> = (props) => {
                   className=''
                   onClick={() => setFooterGeneralNote(defaultLocalizedText)}
                 >
-                  Add footer general note
+                  {t('addGeneralFooterNote')}
                 </button>
             }
           </fieldset>
