@@ -73,6 +73,7 @@ const CookieConsentModal: FC<CookieConsentModalProps> = ({
                   closeModal();
                 }
               }}
+              onClick={() => closeModal()}
             >
               <Cross />
             </Dialog.CloseTrigger>

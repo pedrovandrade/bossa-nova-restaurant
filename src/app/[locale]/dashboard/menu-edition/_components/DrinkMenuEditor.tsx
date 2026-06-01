@@ -185,9 +185,10 @@ const DrinkMenuEditor: FC<DrinkMenuEditorProps> = (props) => {
         {/* Menu Items */}
         {items.map((item, index) => {
           const inline = item.inline || false;
+          const categoryName = item.category?.en?.toLowerCase().replace(/\s+/g, '-') || 'no-drink-category';
 
           return (
-            <React.Fragment key={`${item.category.fr}-${index}`}>
+            <React.Fragment key={`${categoryName}-${index}`}>
               <section
                 className='mt-8 tracking-wider border border-dashed border-cyan-600 p-1'
               >
@@ -201,13 +202,13 @@ const DrinkMenuEditor: FC<DrinkMenuEditorProps> = (props) => {
                   page={pageIndex}
                   index={index}
                   title={item.category}
-                  id={`drink-menu-category-page-${pageIndex}-${index}`}
+                  id={`drink-menu-category-page-${categoryName}-${pageIndex}-${index}`}
                   note={item.note}
                   onCategoryChange={onCategoryChange}
                 />
                 <SwitchButton
                   label={t('inlineItems')}
-                  id={`drink-category-inline-${pageIndex}-${index}`}
+                  id={`drink-category-inline-${categoryName}-${pageIndex}-${index}`}
                   onCheckedChange={(isInline) => handleDrinkCategoryInlineChange(isInline, index)}
                   defaultChecked={inline}
                 />
@@ -217,9 +218,9 @@ const DrinkMenuEditor: FC<DrinkMenuEditorProps> = (props) => {
 
                     return (
                       <DrinkItem
-                        key={`drink-menu-category-${pageIndex}-${index}-${drinkIndex}`}
+                        key={`drink-menu-category-${categoryName}-${pageIndex}-${index}-${drinkIndex}`}
                         page={pageIndex}
-                        id={`drink-menu-category-${pageIndex}-${index}-${drinkIndex}`}
+                        id={`drink-menu-category-${categoryName}-${pageIndex}-${index}-${drinkIndex}`}
                         categoryIndex={index}
                         drinkIndex={drinkIndex}
                         name={name}

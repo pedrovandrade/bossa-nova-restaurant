@@ -200,8 +200,8 @@ const MenuEditor: FC<MenuEditorProps> = ({ data }) => {
       const updatedDrink = {
         ...existing,
         name,
-        description: description ?? existing.description,
-        price: typeof price !== 'undefined' ? price : existing.price,
+        description: description,
+        price,
       };
 
       drinks[drinkIndex] = updatedDrink;

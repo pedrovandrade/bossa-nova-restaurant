@@ -98,12 +98,14 @@ const FoodMenuEditor: FC<FoodMenuEditorProps> = (props) => {
         <ul className='tracking-wider'>
           {items.map((item, index) => {
             const { name, description, price } = item;
+            const foodName = name?.en?.toLowerCase().replace(/\s+/g, '-') || `no-food-name-${index}`;
+
             return (
-              <React.Fragment key={`food-menu-item-${name?.fr}-${pageIndex}-${index}`}>
+              <React.Fragment key={`food-menu-item-${foodName}-${pageIndex}-${index}`}>
                 <FoodItem
                   page={pageIndex}
                   index={index}
-                  id={`food-menu-item-${pageIndex}-${index}`}
+                  id={`food-menu-item-${foodName}-${pageIndex}-${index}`}
                   name={name}
                   description={description ?? defaultLocalizedTextArray}
                   price={price}

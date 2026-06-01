@@ -32,7 +32,7 @@ const ReservationsPage: FC = () => {
   ];
 
   const reservationUrl = 'https://www.google.com/maps/reserve/v/dine/c/pj35s-OGtJQ?source=pa&opi=89978449&hl=fr-FR&gei=rpR-aO20NrDX7M8PgqOHwQ0&sourceurl=https%3A%2F%2Fwww.google.com%2Fsearch%3Fq%3Dbossa%2Bnova%2Btoulouse%26client%3Dsafari%26sca_esv%3D873f597c83ac3191%26rls%3Den%26ei%3DPLRraJrmLdSnkdUPjOT0qQo%26ved%3D0ahUKEwia9M_31qqOAxXUU6QEHQwyPaUQ4dUDCBA%26uact%3D5%26oq%3Dbossa%2Bnova%2Btoulouse%26gs_lp%3DEgxnd3Mtd2l6LXNlcnAiE2Jvc3NhIG5vdmEgdG91bG91c2UyDhAuGIAEGLADGMcBGK8BMgkQABiwAxgHGB4yCRAAGLADGAcYHjIJEAAYsAMYBxgeMgkQABiwAxgHGB4yCRAAGLADGAcYHjILEAAYgAQYsAMYogQyCBAAGLADGO8FSJUEUABYAHABeACQAQCYAQCgAQCqAQC4AQPIAQCYAgGgAhGYAwCIBgGQBgiSBwExoAcAsgcAuAcAwgcDMy0xyAcN%26sclient%3Dgws-wiz-serp&ihs=4';
-  const phoneNumber = '+33561320707';
+  const phoneNumber = '+33567686479';
 
   const containerData: TextImageContainerProps[] = Object
     .entries(textImageContainers)
