@@ -57,6 +57,8 @@ type FoodEditionParams = FoodLocationParams & {
   description?: LocalizedTextArray;
   /** Numeric price in euros. */
   price?: number;
+  allergens?: string[];
+  allergenTraces?: string[];
 };
 
 type FoodFooterEditionParams = {
@@ -286,7 +288,7 @@ const MenuEditor: FC<MenuEditorProps> = ({ data }) => {
   };
 
   const handleFoodItemChange = (params: FoodEditionParams) => {
-    const { page, index, name, description, price } = params;
+    const { page, index, name, description, price, allergens, allergenTraces } = params;
 
     setMenuPages((prev) => {
       const foodPages = [...prev.foodPages];
@@ -302,6 +304,8 @@ const MenuEditor: FC<MenuEditorProps> = ({ data }) => {
         name,
         description: description ?? targetFood.description,
         price,
+        allergens: allergens ?? targetFood.allergens,
+        allergenTraces: allergenTraces ?? targetFood.allergenTraces,
       };
 
       items[index] = updatedFood;

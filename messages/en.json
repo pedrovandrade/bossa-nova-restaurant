@@ -133,6 +133,30 @@
         "1": "Here you will find the complete menu with all our fixed dishes.",
         "2": "In case of allergies, please let us know when you make your reservation."
       },
+      "allergens": {
+        "allergenList": "List of allergens",
+        "allergens": "Allergens",
+        "allergenTraces": "Allergen traces",
+        "deleteAllergen": "Delete allergen",
+        "noMatchingAllergens": "No matching allergens found.",
+        "description": "We take care to indicate the presence of allergens in our dishes. However, we cannot guarantee the absence of cross-contamination.",
+        "list": {
+          "celery": "Celery",
+          "crustaceans": "Crustaceans",
+          "eggs": "Eggs",
+          "fish": "Fish",
+          "gluten": "Gluten",
+          "lupin": "Lupin",
+          "milk": "Milk",
+          "molluscs": "Molluscs",
+          "mustard": "Mustard",
+          "nuts": "Nuts",
+          "peanuts": "Peanuts",
+          "sesameSeeds": "Sesame seeds",
+          "soybeans": "Soybeans",
+          "sulphites": "Sulphites"
+        }
+      },
       "lastUpdated": "Last updated:"
     },
     "reservations": {

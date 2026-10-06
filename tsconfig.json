@@ -22,37 +22,36 @@
         "name": "next"
       }
     ],
-    "baseUrl": ".",
     "paths": {
       "@/*": [
-        "src/*"
+        "./src/*"
       ],
       "@/public/*": [
-        "public/*"
+        "./public/*"
       ],
       "@/assets/*": [
-        "src/assets/*"
+        "./src/assets/*"
       ],
       "@/app/*": [
-        "src/app/*"
+        "./src/app/*"
       ],
       "@/components/*": [
-        "src/app/_components/*"
+        "./src/app/_components/*"
       ],
       "@/database/*": [
-        "src/app/_database/*"
+        "./src/app/_database/*"
       ],
       "@/types/*": [
-        "src/app/_types/*"
+        "./src/app/_types/*"
       ],
       "@/hooks/*": [
-        "src/app/_hooks/*"
+        "./src/app/_hooks/*"
       ],
       "@/pages/*": [
-        "src/app/[locale]/*"
+        "./src/app/[locale]/*"
       ],
       "@/swagger/*": [
-        "src/app/swagger/*"
+        "./src/app/swagger/*"
       ]
     }
   },

@@ -1,0 +1,15 @@
+export type AllergenType =
+  | 'celery'
+  | 'crustaceans'
+  | 'eggs'
+  | 'fish'
+  | 'gluten'
+  | 'lupin'
+  | 'milk'
+  | 'molluscs'
+  | 'mustard'
+  | 'nuts'
+  | 'peanuts'
+  | 'sesameSeeds'
+  | 'soybeans'
+  | 'sulphites';

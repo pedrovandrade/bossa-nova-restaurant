@@ -97,7 +97,7 @@ const FoodMenuEditor: FC<FoodMenuEditorProps> = (props) => {
         {/* Menu Items */}
         <ul className='tracking-wider'>
           {items.map((item, index) => {
-            const { name, description, price } = item;
+            const { name, description, price, allergens, allergenTraces } = item;
             const foodName = name?.en?.toLowerCase().replace(/\s+/g, '-') || `no-food-name-${index}`;
 
             return (
@@ -109,6 +109,8 @@ const FoodMenuEditor: FC<FoodMenuEditorProps> = (props) => {
                   name={name}
                   description={description ?? defaultLocalizedTextArray}
                   price={price}
+                  allergens={allergens}
+                  allergenTraces={allergenTraces}
                   onChange={onFoodChange}
                   onDelete={onFoodItemDelete}
                 />

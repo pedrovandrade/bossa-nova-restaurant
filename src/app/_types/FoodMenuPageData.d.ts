@@ -16,6 +16,13 @@ type FoodMenuPageData = {
     description?: LocalizedTextArray;
     /** Numeric price in euros. */
     price?: number;
+    /**
+     * Array of allergen identifiers (e.g. "celery", "gluten", etc.)
+     * associated with the item.
+     */
+    allergens?: AllergenType[];
+    /** Array of allergen identifiers that may be present in traces in the item. */
+    allergenTraces?: AllergenType[];
   }[];
   /** Footer content for the page (notes and general note). */
   footer: {

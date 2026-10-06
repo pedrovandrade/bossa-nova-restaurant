@@ -133,6 +133,30 @@
         "1": "Aqui você encontrará o cardápio completo com todos os nossos pratos fixos.",
         "2": "Em caso de alergias, por favor nos avise no momento da sua reserva."
       },
+      "allergens": {
+        "allergenList": "Lista de alérgenos",
+        "allergens": "Alérgenos",
+        "allergenTraces": "Traços de alérgenos",
+        "deleteAllergen": "Excluir alérgeno",
+        "noMatchingAllergens": "Nenhum alérgeno correspondente encontrado.",
+        "description": "Nosso cardápio contém informações sobre os principais alérgenos presentes em nossos pratos. Para mais informações, por favor nos contate.",
+        "list": {
+          "celery": "Aipo",
+          "crustaceans": "Crustáceos",
+          "eggs": "Ovos",
+          "fish": "Peixes",
+          "gluten": "Glúten",
+          "lupin": "Tremoço",
+          "milk": "Leite",
+          "molluscs": "Moluscos",
+          "mustard": "Mostarda",
+          "nuts": "Nozes",
+          "peanuts": "Amendoim",
+          "sesameSeeds": "Sementes de sésamo",
+          "soybeans": "Soja",
+          "sulphites": "Sulfitos"
+        }
+      },
       "lastUpdated": "Última atualização:"
     },
     "reservations": {

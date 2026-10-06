@@ -5,6 +5,10 @@ import LocalizedTextDisplay from '../_utils/LocalizedTextDisplay';
 import LocalizedTextInput from '../_utils/LocalizedTextInput';
 import type { FoodEditionParams, FoodLocationParams } from '../MenuEditor';
 import { localizedTextArraysToText, localizedTextToTextArrays } from '../_utils/localizedTextService';
+import { useTranslations } from 'next-intl';
+import { AllergenType } from '@/types/Allergen';
+import { AllergenIcon } from '@/components/_icons';
+import AllergenSelector from './AllergenSelector';
 
 type FoodItemProps = {
   page: number;
@@ -15,6 +19,8 @@ type FoodItemProps = {
   description: LocalizedTextArray;
   /** Numeric price in euros. */
   price?: number;
+  allergens?: AllergenType[];
+  allergenTraces?: AllergenType[];
   onChange?: (params: FoodEditionParams) => void;
   onDelete?: (params: FoodLocationParams) => void;
 };
@@ -29,6 +35,8 @@ const FoodItem: FC<FoodItemProps> = (props) => {
     price,
     onChange,
     onDelete,
+    allergens,
+    allergenTraces,
   } = props;
 
   const descriptionParagraphs = localizedTextArraysToText(description);
@@ -36,6 +44,8 @@ const FoodItem: FC<FoodItemProps> = (props) => {
   const [foodName, setFoodName] = useState<LocalizedText>(name);
   const [foodDescription, setFoodDescription] = useState<LocalizedText>(descriptionParagraphs);
   const [itemPrice, setItemPrice] = useState<number | undefined>(price);
+  const [foodAllergens, setFoodAllergens] = useState<AllergenType[]>(allergens || []);
+  const [foodAllergenTraces, setFoodAllergenTraces] = useState<AllergenType[]>(allergenTraces || []);
 
   /** ------------------- Handlers ------------------- */
   /** ------------------------------------------------ */
@@ -64,6 +74,14 @@ const FoodItem: FC<FoodItemProps> = (props) => {
     price % 1 === 0 ? price.toFixed(0) : price.toFixed(2)
   );
 
+  const handleFoodAllergensChange = (nextAllergens: AllergenType[]) => {
+    setFoodAllergens(nextAllergens);
+  };
+
+  const handleFoodAllergenTracesChange = (nextAllergenTraces: AllergenType[]) => {
+    setFoodAllergenTraces(nextAllergenTraces);
+  };
+
   /** ************ Form actions ************ */
   const handleConfirm = () => {
     const descriptionArrays = localizedTextToTextArrays(foodDescription);
@@ -73,6 +91,8 @@ const FoodItem: FC<FoodItemProps> = (props) => {
       name: foodName,
       description: descriptionArrays,
       price: itemPrice,
+      allergens: foodAllergens,
+      allergenTraces: foodAllergenTraces,
     });
   };
 
@@ -88,6 +108,8 @@ const FoodItem: FC<FoodItemProps> = (props) => {
     setFoodDescription(descriptionParagraphs);
     setItemPrice(price);
   };
+
+  const t = useTranslations('pages.menu.allergens');
 
   return (
     <li key={index} className='py-4'>
@@ -108,6 +130,30 @@ const FoodItem: FC<FoodItemProps> = (props) => {
               className='mt-1 text-sm'
               localizedText={description}
             />
+            {foodAllergens && foodAllergens.length > 0 && (
+              <section className='flex items-center mt-4'>
+                <h3 className='text-lg font-bold text-bossanova-cyan'>{t('allergens')}</h3>
+                <ul className='flex flex-wrap gap-2'>
+                  {foodAllergens.map((allergen) => (
+                    <li key={allergen} className='px-2 py-1' title={t(`list.${allergen}`)}>
+                      <AllergenIcon type={allergen} size={25} aria-label={t(`list.${allergen}`)} />
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
+            {allergenTraces && allergenTraces.length > 0 && (
+              <section className='flex items-center mt-4'>
+                <h3 className='text-lg font-bold text-bossanova-cyan'>{t('allergenTraces')}</h3>
+                <ul className='mt-2 flex flex-wrap gap-2'>
+                  {allergenTraces.map((allergen) => (
+                    <li key={allergen} className='px-2 py-1' title={t(`list.${allergen}`)}>
+                      <AllergenIcon type={allergen} size={25} aria-label={t(`list.${allergen}`)} />
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
           </div>
         }
         editContent={
@@ -138,6 +184,19 @@ const FoodItem: FC<FoodItemProps> = (props) => {
               multiline={true}
               onInputChange={handleFoodDescriptionChange}
             />
+            <div>
+              <AllergenSelector
+                value={foodAllergens}
+                onChange={handleFoodAllergensChange}
+              />
+            </div>
+            <div>
+              <AllergenSelector
+                value={foodAllergenTraces}
+                onChange={handleFoodAllergenTracesChange}
+                isAllergenTraces={true}
+              />
+            </div>
           </>
         }
       />

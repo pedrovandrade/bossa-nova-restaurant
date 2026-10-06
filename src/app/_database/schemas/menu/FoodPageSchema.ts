@@ -5,6 +5,8 @@ const FoodItemSchema = new Schema(
   {
     name: { type: LocalizedTextSchema, required: true },
     description: { type: LocalizedTextArraySchema, required: false },
+    allergens: { type: [String], required: false },
+    allergenTraces: { type: [String], required: false },
     price: { type: Number, required: false },
   },
   { _id: false }

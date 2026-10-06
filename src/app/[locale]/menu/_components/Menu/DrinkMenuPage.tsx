@@ -13,9 +13,9 @@ const DrinkMenuPage: FC<DrinkMenuPageData> = ({ title, items }) => {
           <MenuHeaderIcon />
         </div>
         {/* Title */}
-        <h1 className='text-4xl font-medium text-center mb-6 font-(family-name:--font-feeling-passionate)'>
+        <h2 className='text-4xl font-medium text-center mb-6 font-(family-name:--font-feeling-passionate)'>
           {getLocalized(title)}
-        </h1>
+        </h2>
 
         {/* Menu Items */}
         {items.map((item, index) => {
@@ -28,9 +28,9 @@ const DrinkMenuPage: FC<DrinkMenuPageData> = ({ title, items }) => {
             <section key={index} className='mb-8 tracking-wider'>
               <div className={`mb-4 ${noteIsInline ? 'flex gap-4': ''}`}>
                 {/* Drink category name */}
-                <h2 className='text-xl font-extrabold text-bossanova-orange uppercase tracking-widest'>
+                <h3 className='text-xl font-extrabold text-bossanova-orange uppercase tracking-widest'>
                   {category}
-                </h2>
+                </h3>
                 {/* Category note, if any */}
                 {note && (
                   <p className={[

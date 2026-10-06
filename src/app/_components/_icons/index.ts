@@ -3,6 +3,7 @@ import BurgerMenu from './BurgerMenu';
 import FranceFlag from './FranceFlag';
 import GreatBritainFlag from './GreatBritainFlag';
 import MenuHeaderIcon from './MenuHeaderIcon';
+import Chevron from './Chevron';
 import Cookie from './Cookie';
 import Cross from './Cross';
 import Key from './Key';
@@ -22,14 +23,17 @@ import UpdateIcon from './Update';
 import PaperClip from './PaperClip';
 import AlertCircleIcon from './AlertCircle';
 import LoaderIcon from './Loader';
+import AllergenIcon from './Allergen';
 
 export {
+  AllergenIcon,
   AlertCircleIcon,
   BrazilFlag,
   BossaNovaLogoHorizontal,
   BurgerMenu,
   Calendar,
   CheckMark,
+  Chevron,
   Cookie,
   Cross,
   FranceFlag,

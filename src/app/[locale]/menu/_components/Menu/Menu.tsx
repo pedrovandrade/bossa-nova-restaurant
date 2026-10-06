@@ -1,35 +1,44 @@
-import { type FC } from 'react';
+import { JSX, type FC } from 'react';
 import { getTranslations, getMessages } from 'next-intl/server';
 import FoodMenuPage from './FoodMenuPage';
 import Carrousel from '@/components/Carrousel';
 import type { GetMenuResponse } from '@/app/api/menu/_repository';
 import DrinkMenuPage from './DrinkMenuPage';
+import AllergenList from './AllergenList';
 
 const Menu: FC = async () => {
   const t = await getTranslations('pages.menu');
   const messages = await getMessages();
 
+  let foodMenuPages: JSX.Element[] = [];
+  let drinkMenuPages: JSX.Element[] = [];
+  let lastUpdated = '-';
+
   // Fetch menu pages data from the API
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/menu`, {
-    cache: 'no-store',
-  });
-  
-  if (!response.ok) {
-    throw new Error(`Failed to fetch menu data: ${response.statusText}, status ${response.status}`);
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/menu`, {
+      cache: 'no-store',
+    });
+    
+    if (!response.ok) {
+      throw new Error(`Failed to fetch menu data: ${response.statusText}, status ${response.status}`);
+    }
+
+    const menuPagesData: GetMenuResponse = await response.json();
+    foodMenuPages = menuPagesData.foodPages.map((page, index) => (
+      <FoodMenuPage key={`foodpage_${index}`} {...page} />
+    ));
+    drinkMenuPages = menuPagesData.drinkPages.map((page, index) => (
+      <DrinkMenuPage key={`drinkpage_${index}`} {...page} />
+    ));
+
+    lastUpdated = menuPagesData.lastUpdated ? new Date(menuPagesData.lastUpdated).toLocaleDateString('fr') : '-';
+  } catch (error) {
+    console.error(error);
   }
 
-  const menuPagesData: GetMenuResponse = await response.json();
-  const foodMenuPages = menuPagesData.foodPages.map((page, index) => (
-    <FoodMenuPage key={`foodpage_${index}`} {...page} />
-  ));
-  const drinkMenuPages = menuPagesData.drinkPages.map((page, index) => (
-    <DrinkMenuPage key={`drinkpage_${index}`} {...page} />
-  ));
-
   const menuPages = [...drinkMenuPages, ...foodMenuPages];
-
   const descriptionParagraphKeys = Object.keys(messages.pages.menu.description);
-  const lastUpdated = menuPagesData.lastUpdated ? new Date(menuPagesData.lastUpdated).toLocaleDateString('fr') : '-';
 
   return (
     <>
@@ -44,6 +53,8 @@ const Menu: FC = async () => {
       <p className='text-center text-base text-bossanova-cyan py-6'>
         {t('lastUpdated')} {lastUpdated}
       </p>
+
+      <AllergenList />
 
       {/* Menu pages carrousel */}
       <Carrousel
