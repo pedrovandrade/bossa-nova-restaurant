@@ -8,6 +8,7 @@ import CookieConsent from '@/components/CookieConsent';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
+import { getSiteUrl } from '@/app/lib/siteUrl';
 
 const openSans = Open_Sans({
   variable: '--font-open-sans',
@@ -70,8 +71,11 @@ const feelingPassionate = localFont({
   });
 
 export const metadata: Metadata = {
-  title: 'Bossa Nova Restaurant',
-  description: 'Le restaurant brésilien à Toulouse',
+  metadataBase: new URL(getSiteUrl()),
+  title: {
+    default: 'Bossa Nova Restaurant',
+    template: '%s | Bossa Nova',
+  },
 };
 
 export default async function RootLayout({

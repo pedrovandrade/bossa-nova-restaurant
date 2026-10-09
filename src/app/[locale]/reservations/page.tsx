@@ -7,6 +7,25 @@ import reservationImageMobile from '@/assets/images/reservation-image-mobile.jpg
 import environmentCozy from '@/assets/images/environment-cozy.jpg';
 import environmentExternal from '@/assets/images/environment-extenal.jpg';
 import FadeInContainer from '@/app/_components/FadeInContainer';
+import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
+import { createPageMetadata } from '@/app/lib/pageMetadata';
+
+type LocalePageProps = {
+  params: Promise<{ locale: string }>;
+};
+
+export async function generateMetadata({ params }: LocalePageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'seo' });
+
+  return createPageMetadata({
+    locale,
+    path: '/reservations',
+    title: t('reservations.title'),
+    description: t('reservations.description'),
+  });
+}
 
 type TextImageContainerParams = {
   image: {

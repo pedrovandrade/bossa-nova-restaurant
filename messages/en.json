@@ -10,6 +10,28 @@
     },
     "language": "Language"
   },
+  "seo": {
+    "home": {
+      "title": "Brazilian Restaurant in Toulouse",
+      "description": "Discover Brazilian cuisine, shareable petiscos, and a boteco-inspired atmosphere in central Toulouse at Bossa Nova."
+    },
+    "menu": {
+      "title": "Brazilian Food Menu in Toulouse",
+      "description": "Explore Bossa Nova's Toulouse menu, with Brazilian specialties, starters to share, main courses, and desserts."
+    },
+    "about": {
+      "title": "Our Franco-Brazilian Story",
+      "description": "Meet Bossa Nova, a Brazilian restaurant in Toulouse, and discover the Brazilian traditions and influences behind our cuisine."
+    },
+    "reservations": {
+      "title": "Book a Table in Toulouse",
+      "description": "Reserve a table at Bossa Nova, a Brazilian restaurant in central Toulouse, or contact us about a private event."
+    },
+    "privacyPolicy": {
+      "title": "Privacy Policy",
+      "description": "Read the privacy policy for the Bossa Nova Restaurant website in Toulouse."
+    }
+  },
   "carrousel": {
     "previous": "Previous",
     "next": "Next"

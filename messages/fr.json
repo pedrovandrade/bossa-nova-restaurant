@@ -10,6 +10,28 @@
     },
     "language": "Langue"
   },
+  "seo": {
+    "home": {
+      "title": "Restaurant brésilien à Toulouse",
+      "description": "Découvrez la cuisine brésilienne, les petiscos et l'ambiance d'un boteco au cœur de Toulouse, chez Bossa Nova."
+    },
+    "menu": {
+      "title": "Menu brésilien à Toulouse",
+      "description": "Consultez la carte de Bossa Nova à Toulouse : spécialités brésiliennes, entrées à partager, plats et desserts."
+    },
+    "about": {
+      "title": "Notre histoire franco-brésilienne",
+      "description": "Découvrez l'histoire de Bossa Nova, restaurant brésilien à Toulouse, et notre cuisine inspirée des traditions du Brésil."
+    },
+    "reservations": {
+      "title": "Réserver une table à Toulouse",
+      "description": "Réservez votre table chez Bossa Nova, restaurant brésilien au cœur de Toulouse, ou contactez-nous pour un événement privé."
+    },
+    "privacyPolicy": {
+      "title": "Politique de confidentialité",
+      "description": "Consultez la politique de confidentialité du site de Bossa Nova Restaurant à Toulouse."
+    }
+  },
   "carrousel": {
     "previous": "Précédent",
     "next": "Suivant"

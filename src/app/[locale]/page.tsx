@@ -8,8 +8,30 @@ import restaurantOverviewDesktop from '@/assets/images/restaurant-overview-deskt
 import restaurantOverviewMobile from '@/assets/images/restaurant-overview-mobile.jpg';
 import OpeningHours from '@/app/_homePageComponents/OpeningHours';
 import { getMessages, getTranslations } from 'next-intl/server';
+import { getLocale } from 'next-intl/server';
+import type { Metadata } from 'next';
 import { MarketingData } from '@/types/MarketingData';
 import MarketingPopin from '@/components/MarketingPopin';
+import { createPageMetadata } from '@/app/lib/pageMetadata';
+import { getSiteUrl } from '@/app/lib/siteUrl';
+import { getOpeningHours } from '@/app/api/openingHours/_repository';
+import type { OpeningHoursData } from '@/types/OpeningHoursData';
+
+type LocalePageProps = {
+  params: Promise<{ locale: string }>;
+};
+
+export async function generateMetadata({ params }: LocalePageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'seo' });
+
+  return createPageMetadata({
+    locale,
+    path: '',
+    title: t('home.title'),
+    description: t('home.description'),
+  });
+}
 
 type TextImageContainerParams = {
   image: {
@@ -56,6 +78,54 @@ export default async function Home() {
   );
 
   const t = await getTranslations('pages.home');
+  const seo = await getTranslations('seo');
+  const locale = await getLocale();
+  const siteUrl = getSiteUrl();
+  const openingHours: OpeningHoursData | null = await getOpeningHours().catch(() => null);
+  const openingDays = [
+    ['monday', 'Monday'],
+    ['tuesday', 'Tuesday'],
+    ['wednesday', 'Wednesday'],
+    ['thursday', 'Thursday'],
+    ['friday', 'Friday'],
+    ['saturday', 'Saturday'],
+    ['sunday', 'Sunday'],
+  ] as const;
+
+  const restaurantStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Restaurant',
+    '@id': `${siteUrl}/#restaurant`,
+    name: 'Bossa Nova Restaurant',
+    url: `${siteUrl}/${locale}`,
+    image: new URL(restaurantOverviewDesktop.src, siteUrl).toString(),
+    description: seo('home.description'),
+    telephone: '+33567686479',
+    email: 'bossanovatoulouse@gmail.com',
+    servesCuisine: ['Brazilian', 'Latin American'],
+    acceptsReservations: true,
+    hasMenu: `${siteUrl}/${locale}/menu`,
+    openingHoursSpecification: openingHours
+      ? openingDays.flatMap(([day, schemaDay]) => {
+          const schedule = openingHours[day];
+          if (!schedule.isOpen) return [];
+
+          return schedule.timespans.map(({ begin, end }) => ({
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: `https://schema.org/${schemaDay}`,
+            opens: begin,
+            closes: end,
+          }));
+        })
+      : undefined,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '1 bis Rue de May',
+      postalCode: '31000',
+      addressLocality: 'Toulouse',
+      addressCountry: 'FR',
+    },
+  };
 
   let marketingData: MarketingData | null = null;
   try {
@@ -78,6 +148,12 @@ export default async function Home() {
 
   return (
     <>
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(restaurantStructuredData).replace(/</g, '\\u003c'),
+        }}
+      />
       <MarketingPopin
         isActive={isPopinActive}
         image={popinImage}

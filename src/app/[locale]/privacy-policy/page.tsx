@@ -1,8 +1,28 @@
 import { FC } from 'react';
 import I18nRichTextProcessor, { RichTextParams } from '@/components/I18nRichTextProcessor';
-import { useMessages, useTranslations } from 'next-intl';
+import { useLocale, useMessages, useTranslations } from 'next-intl';
+import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
+import { createPageMetadata } from '@/app/lib/pageMetadata';
+
+type LocalePageProps = {
+  params: Promise<{ locale: string }>;
+};
+
+export async function generateMetadata({ params }: LocalePageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'seo' });
+
+  return createPageMetadata({
+    locale,
+    path: '/privacy-policy',
+    title: t('privacyPolicy.title'),
+    description: t('privacyPolicy.description'),
+  });
+}
 
 const PrivacyPolicyPage: FC = () => {
+  const locale = useLocale();
   const messages = useMessages();
   const paragraphMap = messages.pages.privacyPolicy as {[key: string]: string};
 
@@ -11,7 +31,7 @@ const PrivacyPolicyPage: FC = () => {
 
   const params: RichTextParams = {
     phoneNumber: '+33567686479',
-    reservationUrl: 'https://www.bossa-nova-restaurant.fr/reservation',
+    reservationUrl: `/${locale}/reservations`,
   };
 
   return (

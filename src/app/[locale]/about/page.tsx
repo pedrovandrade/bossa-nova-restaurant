@@ -4,6 +4,25 @@ import Image from 'next/image';
 import { FC } from 'react';
 import ownersPicture from '@/assets/images/owners-picture.jpg';
 import FadeInContainer from '@/app/_components/FadeInContainer';
+import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
+import { createPageMetadata } from '@/app/lib/pageMetadata';
+
+type LocalePageProps = {
+  params: Promise<{ locale: string }>;
+};
+
+export async function generateMetadata({ params }: LocalePageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'seo' });
+
+  return createPageMetadata({
+    locale,
+    path: '/about',
+    title: t('about.title'),
+    description: t('about.description'),
+  });
+}
 
 const AboutPage: FC = () => {
   const messages = useMessages();

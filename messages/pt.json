@@ -10,6 +10,28 @@
     },
     "language": "Idioma"
   },
+  "seo": {
+    "home": {
+      "title": "Restaurante brasileiro em Toulouse",
+      "description": "Conheça a culinária brasileira, os petiscos para compartilhar e o ambiente inspirado nos botecos no centro de Toulouse, no Bossa Nova."
+    },
+    "menu": {
+      "title": "Cardápio brasileiro em Toulouse",
+      "description": "Confira o cardápio do Bossa Nova em Toulouse, com especialidades brasileiras, entradas para compartilhar, pratos e sobremesas."
+    },
+    "about": {
+      "title": "Nossa história franco-brasileira",
+      "description": "Conheça o Bossa Nova, restaurante brasileiro em Toulouse, e as tradições do Brasil que inspiram nossa cozinha."
+    },
+    "reservations": {
+      "title": "Reserve uma mesa em Toulouse",
+      "description": "Reserve uma mesa no Bossa Nova, restaurante brasileiro no centro de Toulouse, ou fale conosco sobre um evento privado."
+    },
+    "privacyPolicy": {
+      "title": "Política de privacidade",
+      "description": "Consulte a política de privacidade do site do Restaurante Bossa Nova em Toulouse."
+    }
+  },
   "carrousel": {
     "previous": "Anterior",
     "next": "Próximo"
