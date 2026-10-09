@@ -14,6 +14,7 @@ const FoodItemSchema = new Schema(
 
 const FoodPageSchema = new Schema(
   {
+    pageNumber: { type: Number, required: true, min: 1, max: 3 },
     title: { type: LocalizedTextSchema, required: true },
     lastUpdated: { type: Date, required: true },
     items: { type: [FoodItemSchema], required: true },

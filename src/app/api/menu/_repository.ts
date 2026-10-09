@@ -49,7 +49,9 @@ const getMenu = async (): Promise<GetMenuResponse | null> => {
     // Ensure the returned object matches GetMenuResponse shape as best-effort
     return {
       drinkPages: Array.isArray(menu.drinkPages) ? cleanupFields(menu.drinkPages) as DrinkMenuPageData[] : [],
-      foodPages: Array.isArray(menu.foodPages) ? cleanupFields(menu.foodPages) as FoodMenuPageData[] : [],
+      foodPages: Array.isArray(menu.foodPages)
+        ? (cleanupFields(menu.foodPages) as FoodMenuPageData[]).sort((a, b) => a.pageNumber - b.pageNumber)
+        : [],
       lastUpdated: menu.lastUpdated,
     };
   };

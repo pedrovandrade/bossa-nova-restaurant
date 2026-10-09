@@ -4,6 +4,7 @@ const lastUpdatedDate = new Date('2026-08-01T11:58:34.533Z');
 
 const foodPages: FoodMenuPageData[] = [
   {
+    "pageNumber": 1,
     "title": {
       "fr": "Entrées ou tapas à partager",
       "en": "Starters or tapas to share",
@@ -170,6 +171,7 @@ const foodPages: FoodMenuPageData[] = [
     }
   },
   {
+    "pageNumber": 2,
     "title": {
       "fr": "Plats",
       "en": "Main Courses",
@@ -346,6 +348,7 @@ const foodPages: FoodMenuPageData[] = [
     }
   },
   {
+    "pageNumber": 3,
     "title": {
       "fr": "Desserts",
       "en": "Desserts",

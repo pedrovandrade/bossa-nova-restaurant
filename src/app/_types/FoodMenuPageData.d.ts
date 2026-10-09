@@ -6,6 +6,8 @@ import { LocalizedText, LocalizedTextArray } from '@/types/LocalizedText';
 type FoodMenuPageData = {
   /** Date when the page was last updated. */
   lastUpdated: Date;
+  /** Stable display order: starters (1), main course (2), desserts (3). */
+  pageNumber: 1 | 2 | 3;
   /** Localized page title (e.g. `"Plats"`). */
   title: LocalizedText;
   /** Menu items on the page. */

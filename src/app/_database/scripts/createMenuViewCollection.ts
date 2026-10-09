@@ -60,6 +60,7 @@ async function run() {
         $lookup: {
           from: foodColl,
           pipeline: [
+            { $sort: { pageNumber: 1 } },
             {
               $group: {
                 _id: null,
