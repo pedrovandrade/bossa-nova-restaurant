@@ -1,6 +1,5 @@
 import type { MetadataRoute } from 'next';
-
-const siteUrl = 'https://www.bossanova-toulouse.fr';
+import { getSiteUrl } from '@/app/lib/siteUrl';
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -18,6 +17,6 @@ export default function robots(): MetadataRoute.Robots {
         '/pt/login',
       ],
     },
-    sitemap: `${siteUrl}/sitemap.xml`,
+    sitemap: `${getSiteUrl()}/sitemap.xml`,
   };
 }
